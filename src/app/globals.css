@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #173B2F;
+  --color-brand-gold: #B99655;
+  --color-brand-ivory: #F7F3EA;
+  --color-brand-bg-secondary: #EFE9DC;
+  --color-brand-charcoal: #1D211F;
+  --color-brand-muted-green: #4E655B;
+  
+  --font-display: var(--font-manrope), sans-serif;
+  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-cormorant), serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-drop: drop-down 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(1deg);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes drop-down {
+    0% {
+      transform: translateY(-20px) scale(0.8);
+      opacity: 0;
+    }
+    15% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    45% {
+      transform: translateY(220px) scale(0.95);
+      opacity: 1;
+    }
+    55%, 100% {
+      transform: translateY(220px) scale(1.4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #F7F3EA; /* brand-ivory */
+  color: #1D211F; /* brand-charcoal */
+  overflow-x: hidden;
+}
+
+/* Custom premium scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FCFAF5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C69B4D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A37E3E;
+}
+
+/* Glassmorphism utility */
+.glass-nav {
+  background: rgba(252, 250, 245, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(198, 155, 77, 0.15);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(198, 155, 77, 0.1);
+}
+
+/* Text stroke utility for numbers */
+.text-stroke-gold {
+  -webkit-text-stroke: 1.5px #C69B4D;
+  color: transparent;
+}
+
+/* Hide horizontal scrollbars everywhere */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
