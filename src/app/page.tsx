@@ -37,7 +37,7 @@ import { PRODUCT_CONFIG } from "@/config/product";
 export default function Home() {
   // Modal states
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [drawerQty, setDrawerQty] = useState(1);
+  const [selectedPackage, setSelectedPackage] = useState<1 | 2>(2); // 2 = Bundle Offer (default), 1 = Single Bottle
   
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState(0);
@@ -52,8 +52,8 @@ export default function Home() {
     });
   }, []);
 
-  const openDrawer = (qty = 1) => {
-    setDrawerQty(qty);
+  const openDrawer = (pkg: 1 | 2 = 2) => {
+    setSelectedPackage(pkg);
     setIsDrawerOpen(true);
   };
 
@@ -68,18 +68,18 @@ export default function Home() {
       <AnnouncementBar />
 
       {/* 2. NAVBAR */}
-      <Navbar onOrderClick={() => openDrawer(1)} />
+      <Navbar onOrderClick={() => openDrawer(selectedPackage)} />
 
       <main className="flex-1 w-full">
         {/* 3. HERO SECTION */}
-        <Hero onOrderClick={() => openDrawer(1)} />
+        <Hero onOrderClick={() => openDrawer(selectedPackage)} />
 
         {/* 4. TRUST STRIP */}
         <TrustStrip />
 
         {/* 5. PRODUCT SHOWCASE */}
         <ProductShowcase
-          onOrderClick={() => openDrawer(1)}
+          onOrderClick={() => openDrawer(selectedPackage)}
           onGalleryClick={openGallery}
         />
 
@@ -108,7 +108,7 @@ export default function Home() {
         <InteractiveShowcase />
 
         {/* 14. LIFESTYLE SECTION */}
-        <LifestyleSection onOrderClick={() => openDrawer(1)} />
+        <LifestyleSection onOrderClick={() => openDrawer(selectedPackage)} />
 
         {/* 15. PACKAGING GALLERY */}
         <PackagingGallery onGalleryClick={openGallery} />
@@ -120,7 +120,7 @@ export default function Home() {
         <ProductDetails />
 
         {/* 18. SPECIAL OFFER */}
-        <OfferSection onOrderClick={(qty) => openDrawer(qty)} />
+        <OfferSection onOrderClick={(pkg) => openDrawer(pkg as 1 | 2)} />
 
         {/* 19. COD / SHIPPING */}
         <CODTrust />
@@ -142,14 +142,18 @@ export default function Home() {
       <Footer />
 
       {/* 25. MOBILE STICKY CTA */}
-      <MobileStickyCTA onOrderClick={() => openDrawer(1)} isDrawerOpen={isDrawerOpen} />
+      <MobileStickyCTA 
+        selectedPackage={selectedPackage} 
+        onOrderClick={(pkg) => openDrawer(pkg)} 
+        isDrawerOpen={isDrawerOpen} 
+      />
 
       {/* Drawer & Slideshow Overlay Portals */}
       <OrderDrawer
-        key={isDrawerOpen ? `drawer-${drawerQty}` : "drawer-closed"}
+        key={isDrawerOpen ? `drawer-${selectedPackage}` : "drawer-closed"}
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
-        initialQty={drawerQty}
+        initialQty={selectedPackage}
       />
 
       <ZoomGallery

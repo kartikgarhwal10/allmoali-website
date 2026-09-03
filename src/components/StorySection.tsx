@@ -21,7 +21,7 @@ export default function StorySection() {
   };
 
   return (
-    <section id="formula" className="py-20 md:py-24 bg-brand-ivory border-t border-brand-gold/10 overflow-hidden">
+    <section id="formula" className="py-12 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <motion.div
@@ -29,7 +29,7 @@ export default function StorySection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"
         >
           {/* Left Column: Outline 50 */}
           <motion.div
@@ -37,25 +37,25 @@ export default function StorySection() {
             className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left relative"
           >
             <div className="relative select-none pointer-events-none">
-              <span className="text-stroke-gold text-[160px] sm:text-[200px] lg:text-[240px] font-serif font-black leading-none opacity-80 block select-none">
+              <span className="text-stroke-gold text-[100px] xs:text-[140px] sm:text-[180px] lg:text-[240px] font-serif font-black leading-none opacity-80 block select-none">
                 50
               </span>
-              <div className="absolute top-1/2 left-1/2 lg:left-0 transform -translate-x-1/2 -translate-y-1/2 lg:translate-x-0 w-32 h-32 bg-brand-gold/10 rounded-full blur-xl -z-10" />
+              <div className="absolute top-1/2 left-1/2 lg:left-0 transform -translate-x-1/2 -translate-y-1/2 lg:translate-x-0 w-28 h-28 bg-brand-gold/10 rounded-full blur-xl -z-10" />
             </div>
-            <span className="font-sans text-xs uppercase tracking-widest text-brand-gold font-bold -mt-2 mb-4">
+            <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold -mt-2 mb-4">
               Years of Formula Heritage
             </span>
           </motion.div>
 
           {/* Right Column: Content */}
-          <motion.div variants={itemVariants} className="lg:col-span-7 flex flex-col text-left">
-            <span className="font-sans text-xs uppercase tracking-widest text-brand-gold font-bold mb-3 block">
+          <motion.div variants={itemVariants} className="lg:col-span-7 flex flex-col text-left min-w-0">
+            <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
               OUR HERITAGE
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-green leading-tight mb-6">
+            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-brand-green leading-tight mb-4 sm:mb-6">
               50 Years of Formula Heritage
             </h2>
-            <p className="text-brand-muted-green font-sans text-base sm:text-lg leading-relaxed mb-6">
+            <p className="text-brand-muted-green font-sans text-sm sm:text-lg leading-relaxed mb-4 sm:mb-6">
               Allmoali&apos;s formula is inspired by a traditional Ayurvedic preparation that has been passed down over decades.
             </p>
             <p className="text-brand-muted-green font-sans text-xs sm:text-sm leading-relaxed border-l-2 border-brand-gold pl-4 py-1.5 bg-brand-gold/5">

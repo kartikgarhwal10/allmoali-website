@@ -12,15 +12,15 @@ export default function ProductExperience() {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-brand-green text-brand-ivory border-t border-brand-gold/10">
+    <section id="experience" className="py-12 sm:py-16 md:py-24 bg-brand-green text-brand-ivory border-t border-brand-gold/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         {/* Header */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <span className="font-sans text-xs uppercase tracking-widest text-brand-gold font-bold mb-3 block">
+        <div className="max-w-3xl mx-auto mb-10 sm:mb-16">
+          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
             THE EXPERIENCE
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold leading-tight">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight">
             Light on the skin. Easy on the routine.
           </h2>
           <div className="w-16 h-0.5 bg-brand-gold mx-auto mt-4" />

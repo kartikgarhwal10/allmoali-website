@@ -20,7 +20,7 @@ export default function LifestyleSection({ onOrderClick }: LifestyleSectionProps
           fill
           sizes="100vw"
           className="object-cover opacity-35"
-          priority
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-green via-brand-green/60 to-transparent" />
       </div>
@@ -34,13 +34,13 @@ export default function LifestyleSection({ onOrderClick }: LifestyleSectionProps
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <span className="font-sans text-xs uppercase tracking-widest text-brand-gold font-bold mb-4 block">
+          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-3 block">
             EVERYDAY MASSAGE RITUAL
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 max-w-2xl mx-auto">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-3 max-w-2xl mx-auto">
             Make Massage Part of Your Routine
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-brand-ivory/80 leading-relaxed max-w-lg mx-auto mb-8">
+          <p className="font-sans text-xs sm:text-sm text-brand-ivory/80 leading-relaxed max-w-lg mx-auto mb-6 sm:mb-8">
             A simple, convenient way to add a massage ritual to your everyday routine.
           </p>
 
@@ -50,10 +50,10 @@ export default function LifestyleSection({ onOrderClick }: LifestyleSectionProps
                 e.preventDefault();
                 onOrderClick();
               }}
-              className="inline-flex items-center gap-2 bg-brand-gold text-brand-green hover:bg-brand-ivory hover:text-brand-green border border-transparent py-3.5 px-8 rounded-full font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-md group"
+              className="inline-flex items-center gap-2 bg-brand-gold text-brand-green active:bg-brand-ivory border border-transparent py-3.5 px-8 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-md group touch-target h-[48px] cursor-pointer"
             >
               ORDER NOW
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </motion.div>

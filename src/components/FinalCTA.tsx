@@ -21,10 +21,10 @@ export default function FinalCTA() {
   )}`;
 
   return (
-    <section className="py-20 md:py-28 bg-brand-green text-brand-ivory relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-24 bg-brand-green text-brand-ivory relative overflow-hidden">
       {/* Decorative Golden Ambient Circles */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/3 pointer-events-none" />
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-80 h-80 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         
@@ -35,30 +35,30 @@ export default function FinalCTA() {
           transition={{ duration: 0.8 }}
         >
           {/* Headline */}
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-2xl mx-auto mb-6">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-2xl mx-auto mb-4 sm:mb-6">
             Ready to make massage part of your routine?
           </h2>
 
           {/* Product Label */}
-          <p className="font-sans text-sm sm:text-base text-brand-ivory/95 font-bold uppercase tracking-widest max-w-md mx-auto mb-3">
+          <p className="font-sans text-xs sm:text-base text-brand-ivory/95 font-bold uppercase tracking-widest max-w-md mx-auto mb-2 sm:mb-3">
             Allmoali Joint & Muscular Pain Oil
           </p>
 
           {/* Core Offer Badges */}
-          <div className="flex justify-center gap-4 text-xs font-bold text-brand-gold uppercase tracking-widest mb-10">
+          <div className="flex justify-center gap-3.5 text-xs font-bold text-brand-terracotta uppercase tracking-widest mb-8 sm:mb-10">
             <span>42% OFF</span>
             <span>•</span>
             <span>COD Available</span>
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-sm sm:max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-sm sm:max-w-md mx-auto">
             <a
               href="#order"
               onClick={(e) => handleScrollTo(e, "#order")}
-              className="flex w-full sm:w-auto items-center justify-center gap-2.5 bg-brand-gold text-brand-green hover:bg-brand-ivory hover:text-brand-green border border-transparent py-3.5 px-8 rounded-full font-sans text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-lg group text-center"
+              className="flex w-full sm:w-auto items-center justify-center gap-2.5 bg-brand-terracotta text-brand-ivory active:bg-brand-green border border-transparent py-3.5 px-8 rounded-full font-sans text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-200 shadow-lg text-center cursor-pointer touch-target h-[48px]"
             >
-              <ShoppingBag className="w-4 h-4 transition-transform group-hover:scale-110" />
+              <ShoppingBag className="w-4 h-4" />
               ORDER NOW
             </a>
             <a
@@ -66,7 +66,7 @@ export default function FinalCTA() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent("WhatsAppClick", { location: "final_cta" })}
-              className="flex w-full sm:w-auto items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 px-8 rounded-full font-sans text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-lg text-center"
+              className="flex w-full sm:w-auto items-center justify-center gap-2.5 bg-emerald-600 active:bg-emerald-700 text-white py-3.5 px-8 rounded-full font-sans text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-200 shadow-lg text-center touch-target h-[48px]"
             >
               <MessageSquare className="w-4 h-4" />
               WHATSAPP US

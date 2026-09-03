@@ -33,15 +33,15 @@ export default function HowToUse() {
   };
 
   return (
-    <section id="how-to-use" className="py-20 md:py-24 bg-brand-ivory border-t border-brand-gold/10 overflow-hidden">
+    <section id="how-to-use" className="py-12 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <span className="font-sans text-xs uppercase tracking-widest text-brand-gold font-bold mb-3 block">
+        <div className="max-w-3xl mx-auto mb-10 sm:mb-16">
+          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
             THE ROUTINE
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-brand-green leading-tight">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold text-brand-green leading-tight">
             A simple 2-minute ritual.
           </h2>
         </div>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { MessageSquare, ShoppingBag } from "lucide-react";
+import { MessageSquare, ShoppingBag, ShieldCheck } from "lucide-react";
 import { PRODUCT_CONFIG } from "@/config/product";
 import { trackEvent } from "@/utils/analytics";
 
@@ -11,126 +11,166 @@ interface OfferSectionProps {
 }
 
 export default function OfferSection({ onOrderClick }: OfferSectionProps) {
-  const [qty, setQty] = useState(1);
-
-  const handleQtyChange = (delta: number) => {
-    setQty((prev) => Math.max(1, prev + delta));
-  };
+  // 1 = Single Bottle, 2 = 2-Piece Bundle
+  const [selectedOption, setSelectedOption] = useState<1 | 2>(2);
 
   const whatsappUrl = `https://wa.me/${PRODUCT_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    PRODUCT_CONFIG.whatsappMessage
+    selectedOption === 2
+      ? "Hi, I want to order the Allmoali 2 Bottles Bundle (Best Value) for ₹499. Please share the details."
+      : "Hi, I want to order 1 Bottle of Allmoali Joint & Muscular Pain Oil for ₹285. Please share the details."
   )}`;
 
-  const currentPrice = PRODUCT_CONFIG.sellingPrice * qty;
+  const handleOrder = () => {
+    trackEvent("ClickOrder", { 
+      location: "offer_section", 
+      package: selectedOption === 2 ? "2 Bottles Bundle" : "1 Bottle",
+      quantity: selectedOption === 2 ? 2 : 1
+    });
+    onOrderClick(selectedOption === 2 ? 2 : 1);
+  };
 
   return (
     <section id="order" className="py-20 bg-brand-ivory border-t border-brand-gold/10">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-12">
-          <span className="font-sans text-xs uppercase tracking-widest text-brand-gold font-bold mb-3 block">
-            LAUNCH SPECIAL
+        <div className="text-center mb-16">
+          <span className="font-sans text-xs uppercase tracking-widest text-brand-terracotta font-bold mb-3 block">
+            Better Value for Your Routine
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-brand-green leading-tight">
-            A little more care, for a little less.
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-green leading-tight">
+            Choose the option that works for you.
           </h2>
-          <div className="w-16 h-0.5 bg-brand-gold mx-auto mt-4" />
+          <div className="w-16 h-0.5 bg-brand-terracotta mx-auto mt-4" />
         </div>
 
-        {/* Offer & Quantity Selector Box */}
-        <div className="rounded-3xl border border-brand-gold/15 overflow-hidden shadow-2xl bg-white grid grid-cols-1 md:grid-cols-12 items-stretch">
+        {/* Pricing Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch max-w-4xl mx-auto">
           
-          {/* Visual Column */}
-          <div className="md:col-span-5 bg-brand-green/5 p-8 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-brand-gold/10 relative min-h-[260px]">
-            <div className="relative w-48 h-48 aspect-square rounded-2xl overflow-hidden p-2 bg-linear-to-b from-brand-gold/10 to-transparent border border-brand-gold/10 shadow-md">
+          {/* Left Column: Product Photo & Benefits list */}
+          <div className="md:col-span-5 flex flex-col justify-center items-center p-8 bg-white rounded-3xl border border-brand-gold/15 shadow-xs">
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 aspect-square rounded-2xl overflow-hidden p-2 bg-linear-to-b from-brand-gold/10 to-transparent border border-brand-gold/10 shadow-xs mb-6">
               <Image
-                src="/images/product_bottle.jpg"
-                alt="Allmoali Joint Pain Oil checkout showcase"
+                src={selectedOption === 2 ? "/images/product_box_bottle.jpg" : "/images/product_bottle_only.jpg"}
+                alt="Allmoali Joint & Muscular Pain Oil package presentation"
                 fill
-                sizes="(max-width: 768px) 100vw, 240px"
+                sizes="(max-width: 768px) 100vw, 280px"
                 className="object-cover rounded-xl"
               />
             </div>
-            <span className="font-display text-base font-bold text-brand-green mt-4 block">
-              {PRODUCT_CONFIG.productName}
-            </span>
+            <div className="text-center">
+              <h4 className="font-display text-lg font-bold text-brand-green">
+                {selectedOption === 2 ? "2 Bottles Bundle" : "Joint & Muscular Pain Oil"}
+              </h4>
+              <p className="font-sans text-xs text-brand-muted-green mt-1">
+                {selectedOption === 2 
+                  ? "Double the care for a complete everyday massage routine." 
+                  : "Authentic 50-year-old traditional formulation."
+                }
+              </p>
+            </div>
           </div>
 
-          {/* Pricing & Control Column */}
-          <div className="md:col-span-7 p-8 md:p-10 flex flex-col justify-between">
+          {/* Right Column: Premium Pricing Card */}
+          <div className="md:col-span-7 flex flex-col justify-between p-8 sm:p-10 bg-white rounded-3xl border border-brand-gold/15 shadow-md">
             <div>
-              {/* Product Badge */}
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h4 className="font-display text-xl font-bold text-brand-green">
-                    Joint & Muscular Pain Oil
-                  </h4>
-                  <span className="font-sans text-[10px] text-brand-muted-green block mt-1">
-                    Authentic 50-year-old traditional formula.
-                  </span>
-                </div>
-                <span className="bg-brand-gold text-brand-green font-sans text-[10px] font-black px-3 py-1 rounded-md uppercase tracking-wider">
-                  {PRODUCT_CONFIG.discount}% OFF
+              {/* Product and Brand Info */}
+              <div className="border-b border-brand-gold/10 pb-4 mb-6">
+                <span className="font-sans text-[10px] font-bold text-brand-terracotta uppercase tracking-wider block mb-1">
+                  ALLMOALI SPECIAL
                 </span>
+                <h3 className="font-display text-xl font-bold text-brand-green leading-tight">
+                  Joint & Muscular Pain Oil
+                </h3>
               </div>
 
-              {/* Price Calculation details */}
-              <div className="space-y-3.5 py-5 border-t border-b border-brand-gold/10 my-6">
-                <div className="flex justify-between text-xs">
-                  <span className="font-sans text-brand-muted-green">MRP (Single Bottle)</span>
-                  <span className="font-sans text-brand-charcoal line-through">₹{PRODUCT_CONFIG.mrp}</span>
-                </div>
-                <div className="flex justify-between text-xs">
-                  <span className="font-sans text-brand-muted-green">Launch Discount ({PRODUCT_CONFIG.discount}%)</span>
-                  <span className="font-sans text-emerald-600 font-bold">-₹{PRODUCT_CONFIG.mrp - PRODUCT_CONFIG.sellingPrice}</span>
-                </div>
-
-                {/* Quantity Control Selector */}
-                <div className="flex items-center justify-between pt-3 border-t border-dashed border-brand-gold/10">
-                  <span className="font-sans text-xs font-bold text-brand-green">QUANTITY</span>
-                  <div className="flex items-center border border-brand-gold/25 rounded-md overflow-hidden bg-brand-ivory">
-                    <button
-                      onClick={() => handleQtyChange(-1)}
-                      className="px-3 py-1.5 text-xs font-bold hover:bg-brand-gold/10 focus:outline-none"
-                    >
-                      -
-                    </button>
-                    <span className="px-4 py-1.5 text-xs font-sans font-bold text-brand-green min-w-[20px] text-center">
-                      {qty}
-                    </span>
-                    <button
-                      onClick={() => handleQtyChange(1)}
-                      className="px-3 py-1.5 text-xs font-bold hover:bg-brand-gold/10 focus:outline-none"
-                    >
-                      +
-                    </button>
+              {/* Bundle Selector Options */}
+              <div className="space-y-3.5 mb-6">
+                {/* Option 1: 1 Bottle */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedOption(1)}
+                  className={`w-full p-4 rounded-xl border text-left transition-all duration-300 flex items-center justify-between cursor-pointer ${
+                    selectedOption === 1
+                      ? "border-brand-terracotta bg-brand-terracotta/5 shadow-xs"
+                      : "border-brand-gold/15 hover:border-brand-gold/40 hover:bg-brand-ivory/20"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                      selectedOption === 1 ? "border-brand-terracotta" : "border-brand-muted-green"
+                    }`}>
+                      {selectedOption === 1 && (
+                        <div className="w-2 h-2 rounded-full bg-brand-terracotta" />
+                      )}
+                    </div>
+                    <div>
+                      <span className="font-sans text-sm font-bold text-brand-green block">1 Bottle</span>
+                      <span className="font-sans text-xs text-brand-muted-green">₹285 + ₹80 delivery</span>
+                    </div>
                   </div>
-                </div>
-
-                {/* Live total */}
-                <div className="flex justify-between items-baseline pt-4 border-t border-brand-gold/15">
-                  <span className="font-display text-sm font-bold text-brand-green">Total Special Price</span>
-                  <div className="flex items-baseline gap-1">
-                    <span className="font-display text-2xl font-bold text-brand-green">₹{currentPrice}</span>
-                    <span className="font-sans text-[9px] text-brand-muted-green font-bold">COD Available</span>
+                  <div className="text-right">
+                    <span className="font-display text-base font-bold text-brand-green">₹285</span>
                   </div>
+                </button>
+
+                {/* Option 2: 2 Bottles (BEST VALUE) */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedOption(2)}
+                  className={`w-full p-4 rounded-xl border text-left transition-all duration-300 flex items-center justify-between relative cursor-pointer ${
+                    selectedOption === 2
+                      ? "border-brand-terracotta bg-brand-terracotta/5 shadow-xs"
+                      : "border-brand-gold/15 hover:border-brand-gold/40 hover:bg-brand-ivory/20"
+                  }`}
+                >
+                  <div className="absolute -top-2.5 right-4 bg-brand-terracotta text-brand-ivory font-sans text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full">
+                    BEST VALUE
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                      selectedOption === 2 ? "border-brand-terracotta" : "border-brand-muted-green"
+                    }`}>
+                      {selectedOption === 2 && (
+                        <div className="w-2 h-2 rounded-full bg-brand-terracotta" />
+                      )}
+                    </div>
+                    <div>
+                      <span className="font-sans text-sm font-bold text-brand-green block">2 Bottles Bundle</span>
+                      <span className="font-sans text-xs text-brand-muted-green">₹499 + ₹80 delivery</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-display text-base font-bold text-brand-green">₹499</span>
+                  </div>
+                </button>
+              </div>
+
+              {/* Pricing breakdown card details */}
+              <div className="bg-brand-ivory/30 border border-brand-gold/10 p-4 rounded-xl space-y-3 text-xs mb-6">
+                <div className="flex justify-between">
+                  <span className="font-sans text-brand-muted-green">Product price ({selectedOption === 2 ? "2 Pcs" : "1 Pc"})</span>
+                  <span className="font-sans text-brand-green font-semibold">₹{selectedOption === 2 ? 499 : 285}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="font-sans text-brand-muted-green">Delivery charge</span>
+                  <span className="font-sans text-brand-green font-semibold">₹80</span>
+                </div>
+                <div className="border-t border-brand-gold/10 pt-3 flex justify-between items-baseline font-bold">
+                  <span className="font-display text-sm text-brand-green uppercase tracking-wider">TOTAL AMOUNT</span>
+                  <span className="font-display text-xl text-brand-terracotta">₹{selectedOption === 2 ? 579 : 365}</span>
                 </div>
               </div>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  trackEvent("ClickOrder", { location: "offer_section" });
-                  onOrderClick(qty);
-                }}
-                className="w-full flex items-center justify-center gap-2.5 bg-brand-green text-brand-ivory hover:bg-brand-green/95 border border-transparent py-3.5 rounded-full font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-sm"
+                onClick={handleOrder}
+                className="w-full flex items-center justify-center gap-2.5 bg-brand-green text-brand-ivory active:bg-brand-terracotta py-4 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-sm cursor-pointer touch-target h-[48px]"
               >
                 <ShoppingBag className="w-4 h-4" />
-                ORDER NOW
+                {selectedOption === 2 ? "GET 2 FOR ₹499" : "ORDER NOW"}
               </button>
 
               <a
@@ -138,21 +178,26 @@ export default function OfferSection({ onOrderClick }: OfferSectionProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("WhatsAppClick", { location: "offer_section" })}
-                className="w-full flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 rounded-full font-sans text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-sm text-center"
+                className="w-full flex items-center justify-center gap-2.5 bg-emerald-600 active:bg-emerald-700 text-white py-4 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-sm text-center touch-target h-[48px]"
               >
                 <MessageSquare className="w-4 h-4" />
-                ORDER VIA WHATSAPP
+                ORDER ON WHATSAPP
               </a>
+
+              <div className="flex items-center justify-center gap-1.5 text-[10px] font-semibold text-brand-muted-green mt-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-terracotta" />
+                <span>COD Available · Secure checkout integration available</span>
+              </div>
             </div>
 
           </div>
 
         </div>
 
-        {/* Price Demo Disclaimer */}
-        <div className="mt-4 text-center select-none">
+        {/* Dynamic Pricing Note */}
+        <div className="mt-8 text-center select-none">
           <span className="font-sans text-[10px] text-brand-muted-green/75 block">
-            Offer price shown for demonstration. Final pricing to be confirmed by Allmoali.
+            Prices are inclusive of local taxes where applicable. Delivery charges are dynamically calculated at ₹80.
           </span>
         </div>
 

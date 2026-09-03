@@ -33,29 +33,32 @@ export default function ProductDetails() {
     },
     {
       id: "delivery",
-      title: "Delivery & Storage",
+      title: "Pricing & Delivery",
       specs: [
+        { label: "MRP (Single)", value: "₹493" },
+        { label: "Offer (Single)", value: "42% OFF" },
+        { label: "Single Bottle Price", value: "₹285 (+ ₹80 delivery)" },
+        { label: "2 Bottles Bundle", value: "₹499 (+ ₹80 delivery) — BEST VALUE" },
+        { label: "Delivery Charge", value: "₹80" },
         { label: "Shelf Life", value: "[TO BE CONFIRMED]" },
         { label: "Storage", value: "[TO BE CONFIRMED]" },
-        { label: "MRP", value: "₹493" },
-        { label: "Offer", value: "42% OFF" },
       ]
     }
   ];
 
   return (
-    <section className="py-16 md:py-20 bg-brand-ivory border-t border-brand-gold/10">
+    <section className="py-12 sm:py-16 md:py-20 bg-brand-ivory border-t border-brand-gold/10">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-10">
-          <span className="font-sans text-xs uppercase tracking-widest text-brand-gold font-bold mb-3 block">
+        <div className="text-center mb-8 sm:mb-10">
+          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-terracotta font-bold mb-2 block">
             TECHNICAL SPECIFICATIONS
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-brand-green leading-tight">
             Product Details
           </h2>
-          <div className="w-16 h-0.5 bg-brand-gold mx-auto mt-4" />
+          <div className="w-16 h-0.5 bg-brand-terracotta mx-auto mt-4" />
         </div>
 
         {/* Specs Table container (Desktop view, always expanded) */}
@@ -93,12 +96,12 @@ export default function ProductDetails() {
               <div key={group.id} className="rounded-2xl border border-brand-gold/15 bg-white overflow-hidden shadow-xs">
                 <button
                   onClick={() => setActiveAccordion(isOpen ? null : group.id)}
-                  className="w-full py-4 px-6 flex items-center justify-between text-left focus:outline-none select-none bg-brand-green text-brand-ivory"
+                  className="w-full min-h-[48px] py-3.5 px-5 flex items-center justify-between text-left focus:outline-none select-none bg-brand-green text-brand-ivory cursor-pointer touch-target"
                 >
                   <span className="font-display font-bold uppercase tracking-wider text-xs">
                     {group.title}
                   </span>
-                  {isOpen ? <ChevronUp className="w-4.5 h-4.5 text-brand-gold" /> : <ChevronDown className="w-4.5 h-4.5 text-brand-gold" />}
+                  {isOpen ? <ChevronUp className="w-4.5 h-4.5 text-brand-terracotta" /> : <ChevronDown className="w-4.5 h-4.5 text-brand-terracotta" />}
                 </button>
                 {isOpen && (
                   <div className="px-6 py-4 space-y-3.5 divide-y divide-brand-gold/5">

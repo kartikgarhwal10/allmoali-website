@@ -11,26 +11,26 @@ export default function Contact() {
   )}`;
 
   return (
-    <section id="contact" className="py-20 bg-brand-ivory border-t border-brand-gold/10">
+    <section id="contact" className="py-12 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/10">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         {/* Header */}
-        <div className="mb-16">
-          <span className="font-sans text-xs uppercase tracking-widest text-brand-gold font-bold mb-3 block">
+        <div className="mb-10 sm:mb-16">
+          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
             CUSTOMER ASSISTANCE
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-brand-green leading-tight">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold text-brand-green leading-tight">
             Get in Touch
           </h2>
           <div className="w-16 h-0.5 bg-brand-gold mx-auto mt-4" />
         </div>
 
         {/* Contact info grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mb-10 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-left mb-8 sm:mb-10 max-w-2xl mx-auto">
           {/* WhatsApp Card */}
-          <div className="p-8 rounded-3xl bg-white border border-brand-gold/15 shadow-xs flex flex-col justify-between">
+          <div className="p-6 sm:p-8 rounded-3xl bg-white border border-brand-gold/15 shadow-xs flex flex-col justify-between">
             <div>
-              <div className="w-10 h-10 rounded-xl bg-brand-green/5 flex items-center justify-center mb-5 text-brand-green">
+              <div className="w-10 h-10 rounded-xl bg-brand-green/5 flex items-center justify-center mb-4 sm:mb-5 text-brand-green">
                 <MessageSquare className="w-5 h-5" />
               </div>
               <h3 className="font-display text-base font-bold text-brand-green uppercase tracking-wide mb-2">
@@ -48,7 +48,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent("WhatsAppClick", { location: "contact_section" })}
-              className="inline-flex justify-center items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-sans text-xs font-bold uppercase tracking-wider py-3 px-6 rounded-full shadow-md transition-all text-center w-full"
+              className="inline-flex justify-center items-center gap-2 bg-emerald-600 active:bg-emerald-700 text-white font-sans text-xs font-bold uppercase tracking-wider py-3.5 px-6 rounded-full shadow-md transition-all text-center w-full touch-target h-[48px]"
             >
               <MessageSquare className="w-4 h-4" />
               CHAT ON WHATSAPP
@@ -56,9 +56,9 @@ export default function Contact() {
           </div>
 
           {/* Email Card */}
-          <div className="p-8 rounded-3xl bg-white border border-brand-gold/15 shadow-xs flex flex-col justify-between">
+          <div className="p-6 sm:p-8 rounded-3xl bg-white border border-brand-gold/15 shadow-xs flex flex-col justify-between">
             <div>
-              <div className="w-10 h-10 rounded-xl bg-brand-green/5 flex items-center justify-center mb-5 text-brand-green">
+              <div className="w-10 h-10 rounded-xl bg-brand-green/5 flex items-center justify-center mb-4 sm:mb-5 text-brand-green">
                 <Mail className="w-5 h-5" />
               </div>
               <h3 className="font-display text-base font-bold text-brand-green uppercase tracking-wide mb-2">
@@ -73,7 +73,7 @@ export default function Contact() {
             </div>
             <a
               href={`mailto:${PRODUCT_CONFIG.email}`}
-              className="inline-flex justify-center items-center gap-2 bg-brand-green hover:bg-brand-green/95 text-brand-ivory font-sans text-xs font-bold uppercase tracking-wider py-3 px-6 rounded-full shadow-md transition-all text-center w-full"
+              className="inline-flex justify-center items-center gap-2 bg-brand-green active:bg-brand-terracotta text-brand-ivory font-sans text-xs font-bold uppercase tracking-wider py-3.5 px-6 rounded-full shadow-md transition-all text-center w-full touch-target h-[48px]"
             >
               <Mail className="w-4 h-4" />
               SEND EMAIL

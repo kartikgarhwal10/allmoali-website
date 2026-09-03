@@ -13,7 +13,9 @@ interface OrderDrawerProps {
 }
 
 export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDrawerProps) {
-  const [qty, setQty] = useState(initialQty);
+  // 1 = Single Bottle, 2 = 2-Piece Bundle
+  const [selectedPackage, setSelectedPackage] = useState<1 | 2>(initialQty === 2 ? 2 : 1);
+  const [paymentMethod, setPaymentMethod] = useState<"cod" | "upi" | "card" | "netbanking">("cod");
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -27,6 +29,11 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Reset package selection if initialQty changes (i.e. drawer reopened with different bundle selection)
+    setSelectedPackage(initialQty === 2 ? 2 : 1);
+  }, [initialQty, isOpen]);
+
+  useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640);
     };
@@ -34,6 +41,17 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // Listen for Escape key to close drawer
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   // Lock body scroll when drawer is open
   useEffect(() => {
@@ -52,10 +70,6 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleQtyChange = (delta: number) => {
-    setQty((prev) => Math.max(1, prev + delta));
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone || !formData.address) {
@@ -63,10 +77,16 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
       return;
     }
 
+    if (paymentMethod !== "cod") {
+      alert("Online payment integration is active for live checkouts. To test this demo checkout, please select Cash on Delivery (COD).");
+      return;
+    }
+
     setLoading(true);
     trackEvent("InitiateCheckout", {
-      quantity: qty,
-      value: PRODUCT_CONFIG.sellingPrice * qty,
+      package: selectedPackage === 2 ? "2 Bottles Bundle" : "1 Bottle",
+      quantity: selectedPackage === 2 ? 2 : 1,
+      value: selectedPackage === 2 ? 499 : 285,
       currency: "INR",
     });
 
@@ -74,15 +94,19 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
       setLoading(false);
       setSuccess(true);
       trackEvent("Purchase", {
-        quantity: qty,
-        value: PRODUCT_CONFIG.sellingPrice * qty,
+        package: selectedPackage === 2 ? "2 Bottles Bundle" : "1 Bottle",
+        quantity: selectedPackage === 2 ? 2 : 1,
+        value: selectedPackage === 2 ? 499 : 285,
         currency: "INR",
         transaction_id: "demo-" + Math.floor(Math.random() * 1000000),
       });
     }, 1500);
   };
 
-  const totalPrice = PRODUCT_CONFIG.sellingPrice * qty;
+  // Pricing calculations
+  const productPrice = selectedPackage === 2 ? 499 : 285;
+  const deliveryCharge = 80;
+  const totalPrice = productPrice + deliveryCharge;
 
   const motionProps = isMobile
     ? {
@@ -129,7 +153,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
               </div>
               <button
                 onClick={onClose}
-                className="text-brand-ivory/80 hover:text-brand-gold focus:outline-none p-1.5 rounded-lg hover:bg-white/5 transition-colors"
+                className="text-brand-ivory/80 hover:text-brand-gold focus:outline-none p-1.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
                 aria-label="Close Drawer"
               >
                 <X className="w-5 h-5" />
@@ -149,16 +173,16 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                     <CheckCircle className="w-10 h-10" />
                   </div>
                   <h4 className="font-display text-2xl font-bold text-brand-green mb-3">
-                    Order received
+                    Order Received
                   </h4>
                   <p className="font-sans text-sm text-brand-muted-green leading-relaxed max-w-sm mb-8">
-                    Thank you. Your order request has been received.
+                    Thank you. Your Cash on Delivery order request has been received.
                   </p>
                   <div className="w-full bg-white border border-brand-gold/15 p-4 rounded-xl shadow-xs text-left mb-8">
-                    <span className="font-sans text-[10px] font-bold text-brand-gold uppercase tracking-wider block mb-2">Order Summary</span>
+                    <span className="font-sans text-[10px] font-bold text-brand-terracotta uppercase tracking-wider block mb-2">Order Summary</span>
                     <div className="flex justify-between font-sans text-xs text-brand-charcoal py-1">
                       <span>Item: Joint & Muscular Pain Oil</span>
-                      <span>Qty: {qty}</span>
+                      <span>Package: {selectedPackage === 2 ? "2 Bottles Bundle" : "1 Bottle"}</span>
                     </div>
                     <div className="flex justify-between font-sans text-xs text-brand-charcoal py-1">
                       <span>Payment Method</span>
@@ -172,7 +196,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                   <div className="flex flex-col gap-3 w-full">
                     <button
                       onClick={onClose}
-                      className="w-full bg-brand-green text-brand-ivory py-3.5 rounded-full font-sans text-xs font-bold uppercase tracking-wider hover:bg-brand-gold hover:text-brand-green transition-all shadow-md"
+                      className="w-full bg-brand-green text-brand-ivory py-3.5 rounded-full font-sans text-xs font-bold uppercase tracking-wider hover:bg-brand-terracotta hover:text-brand-ivory transition-all shadow-md cursor-pointer"
                     >
                       CONTINUE SHOPPING
                     </button>
@@ -191,42 +215,61 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
               ) : (
                 /* Checkout Form state */
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Product Mini card */}
-                  <div className="p-4 bg-white border border-brand-gold/10 rounded-2xl flex gap-4 items-center shadow-xs">
-                    <div className="w-16 h-16 rounded-xl bg-brand-green/5 border border-brand-gold/10 relative overflow-hidden flex-shrink-0 flex items-center justify-center text-brand-green font-display font-black text-xl">
-                      AO
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-display text-sm font-bold text-brand-green leading-tight">
-                        {PRODUCT_CONFIG.productName}
-                      </h4>
-                      <span className="font-sans text-[10px] text-brand-muted-green block mt-1">
-                        ₹{PRODUCT_CONFIG.sellingPrice} per unit
-                      </span>
-                      {/* Quantity Modifier */}
-                      <div className="flex items-center gap-3 mt-2">
-                        <span className="font-sans text-xs text-brand-muted-green">Qty:</span>
-                        <div className="flex items-center border border-brand-gold/25 rounded-md overflow-hidden bg-brand-ivory">
-                          <button
-                            type="button"
-                            onClick={() => handleQtyChange(-1)}
-                            className="px-2.5 py-1 text-xs font-bold hover:bg-brand-gold/10 focus:outline-none"
-                          >
-                            -
-                          </button>
-                          <span className="px-3 py-1 text-xs font-sans font-bold text-brand-green">
-                            {qty}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => handleQtyChange(1)}
-                            className="px-2.5 py-1 text-xs font-bold hover:bg-brand-gold/10 focus:outline-none"
-                          >
-                            +
-                          </button>
+                  
+                  {/* Package Selector inside Drawer */}
+                  <div className="space-y-2.5">
+                    <h5 className="font-display text-xs font-bold text-brand-green uppercase tracking-wider border-b border-brand-gold/10 pb-2 mb-2">
+                      Select Package Option
+                    </h5>
+
+                    {/* Radio Single */}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPackage(1)}
+                      className={`w-full p-3.5 rounded-xl border text-left flex items-center justify-between cursor-pointer transition-colors ${
+                        selectedPackage === 1
+                          ? "border-brand-terracotta bg-brand-terracotta/5 shadow-xs"
+                          : "border-brand-gold/15 hover:border-brand-gold/30"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                          selectedPackage === 1 ? "border-brand-terracotta" : "border-brand-muted-green"
+                        }`}>
+                          {selectedPackage === 1 && (
+                            <div className="w-2 h-2 rounded-full bg-brand-terracotta" />
+                          )}
                         </div>
+                        <span className="font-sans text-xs font-bold text-brand-green">1 Bottle</span>
                       </div>
-                    </div>
+                      <span className="font-sans text-xs text-brand-green font-bold">₹285</span>
+                    </button>
+
+                    {/* Radio Bundle */}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedPackage(2)}
+                      className={`w-full p-3.5 rounded-xl border text-left flex items-center justify-between relative cursor-pointer transition-colors ${
+                        selectedPackage === 2
+                          ? "border-brand-terracotta bg-brand-terracotta/5 shadow-xs"
+                          : "border-brand-gold/15 hover:border-brand-gold/30"
+                      }`}
+                    >
+                      <div className="absolute -top-2 right-4 bg-brand-terracotta text-brand-ivory font-sans text-[7px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full">
+                        BEST VALUE
+                      </div>
+                      <div className="flex items-center gap-2.5">
+                        <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                          selectedPackage === 2 ? "border-brand-terracotta" : "border-brand-muted-green"
+                        }`}>
+                          {selectedPackage === 2 && (
+                            <div className="w-2 h-2 rounded-full bg-brand-terracotta" />
+                          )}
+                        </div>
+                        <span className="font-sans text-xs font-bold text-brand-green">2 Bottles Bundle</span>
+                      </div>
+                      <span className="font-sans text-xs text-brand-green font-bold">₹499</span>
+                    </button>
                   </div>
 
                   {/* Form fields */}
@@ -249,7 +292,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Enter your full name"
-                        className="h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-gold"
+                        className="w-full h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-[16px] focus:outline-none focus:border-brand-gold"
                       />
                     </div>
 
@@ -268,7 +311,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                         value={formData.phone}
                         onChange={handleInputChange}
                         placeholder="Enter 10-digit mobile number"
-                        className="h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-gold"
+                        className="w-full h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-[16px] focus:outline-none focus:border-brand-gold"
                       />
                     </div>
 
@@ -286,13 +329,13 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                         value={formData.address}
                         onChange={handleInputChange}
                         placeholder="Flat/House No, Building, Street Address"
-                        className="p-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-gold resize-none"
+                        className="w-full p-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-[16px] focus:outline-none focus:border-brand-gold resize-none"
                       />
                     </div>
 
                     {/* City & State (Grid) */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex flex-col gap-1.5">
+                    <div className="grid grid-cols-2 gap-3.5">
+                      <div className="flex flex-col gap-1.5 min-w-0">
                         <label htmlFor="city" className="font-sans text-[10px] font-bold text-brand-green tracking-wider">
                           CITY
                         </label>
@@ -304,10 +347,10 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                           value={formData.city}
                           onChange={handleInputChange}
                           placeholder="City"
-                          className="h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-gold"
+                          className="w-full h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-[16px] focus:outline-none focus:border-brand-gold"
                         />
                       </div>
-                      <div className="flex flex-col gap-1.5">
+                      <div className="flex flex-col gap-1.5 min-w-0">
                         <label htmlFor="state" className="font-sans text-[10px] font-bold text-brand-green tracking-wider">
                           STATE
                         </label>
@@ -319,7 +362,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                           value={formData.state}
                           onChange={handleInputChange}
                           placeholder="State"
-                          className="h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-gold"
+                          className="w-full h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-[16px] focus:outline-none focus:border-brand-gold"
                         />
                       </div>
                     </div>
@@ -339,17 +382,102 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                         value={formData.pincode}
                         onChange={handleInputChange}
                         placeholder="6-digit pincode"
-                        className="h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-sm focus:outline-none focus:border-brand-gold"
+                        className="w-full h-12 px-4 bg-white border border-brand-gold/15 rounded-xl font-sans text-[16px] focus:outline-none focus:border-brand-gold"
                       />
                     </div>
                   </div>
 
-                  {/* Payment Reassurance */}
-                  <div className="p-4 bg-brand-green/5 border border-brand-gold/10 rounded-2xl flex gap-3 items-center">
-                    <ShieldCheck className="w-5 h-5 text-brand-gold flex-shrink-0" />
-                    <span className="font-sans text-xs font-bold text-brand-green">
-                      Payment Method: Cash on Delivery (COD) Available
-                    </span>
+                  {/* Payment Options Section */}
+                  <div className="space-y-2.5">
+                    <h5 className="font-display text-xs font-bold text-brand-green uppercase tracking-wider border-b border-brand-gold/10 pb-2 mb-2">
+                      Secure Payment Options
+                    </h5>
+
+                    {/* COD Option */}
+                    <label className="flex items-center justify-between p-3.5 bg-white border border-brand-gold/15 rounded-xl cursor-pointer hover:bg-brand-ivory/10 transition-colors">
+                      <div className="flex items-center gap-2.5">
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="cod"
+                          checked={paymentMethod === "cod"}
+                          onChange={() => setPaymentMethod("cod")}
+                          className="w-4 h-4 text-brand-terracotta border-brand-gold/20 focus:ring-brand-terracotta cursor-pointer"
+                        />
+                        <span className="font-sans text-xs font-bold text-brand-green">Cash on Delivery (COD)</span>
+                      </div>
+                      <span className="font-sans text-[9px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded">Active</span>
+                    </label>
+
+                    {/* UPI Option */}
+                    <label className="flex items-center justify-between p-3.5 bg-white border border-brand-gold/15 rounded-xl cursor-pointer hover:bg-brand-ivory/10 transition-colors">
+                      <div className="flex items-center gap-2.5">
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="upi"
+                          checked={paymentMethod === "upi"}
+                          onChange={() => setPaymentMethod("upi")}
+                          className="w-4 h-4 text-brand-terracotta border-brand-gold/20 focus:ring-brand-terracotta cursor-pointer"
+                        />
+                        <span className="font-sans text-xs font-bold text-brand-green">UPI (GPay / PhonePe / Paytm)</span>
+                      </div>
+                      <span className="font-sans text-[9px] text-brand-terracotta font-bold">Online Integration</span>
+                    </label>
+
+                    {/* Credit/Debit Card Option */}
+                    <label className="flex items-center justify-between p-3.5 bg-white border border-brand-gold/15 rounded-xl cursor-pointer hover:bg-brand-ivory/10 transition-colors">
+                      <div className="flex items-center gap-2.5">
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="card"
+                          checked={paymentMethod === "card"}
+                          onChange={() => setPaymentMethod("card")}
+                          className="w-4 h-4 text-brand-terracotta border-brand-gold/20 focus:ring-brand-terracotta cursor-pointer"
+                        />
+                        <span className="font-sans text-xs font-bold text-brand-green">Credit / Debit Card</span>
+                      </div>
+                      <span className="font-sans text-[9px] text-brand-terracotta font-bold">Online Integration</span>
+                    </label>
+
+                    {/* Net Banking Option */}
+                    <label className="flex items-center justify-between p-3.5 bg-white border border-brand-gold/15 rounded-xl cursor-pointer hover:bg-brand-ivory/10 transition-colors">
+                      <div className="flex items-center gap-2.5">
+                        <input
+                          type="radio"
+                          name="paymentMethod"
+                          value="netbanking"
+                          checked={paymentMethod === "netbanking"}
+                          onChange={() => setPaymentMethod("netbanking")}
+                          className="w-4 h-4 text-brand-terracotta border-brand-gold/20 focus:ring-brand-terracotta cursor-pointer"
+                        />
+                        <span className="font-sans text-xs font-bold text-brand-green">Net Banking</span>
+                      </div>
+                      <span className="font-sans text-[9px] text-brand-terracotta font-bold">Online Integration</span>
+                    </label>
+
+                    {paymentMethod !== "cod" && (
+                      <div className="p-3 bg-brand-terracotta/5 border border-brand-terracotta/15 rounded-xl text-[10px] sm:text-xs text-brand-terracotta leading-relaxed">
+                        <strong>Online payment integration:</strong> For demonstration purposes, actual online payment services are simulated. Please select Cash on Delivery to complete this demo checkout flow.
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Pricing summary */}
+                  <div className="bg-white border border-brand-gold/10 p-4 rounded-xl space-y-2 text-xs shadow-2xs">
+                    <div className="flex justify-between">
+                      <span className="font-sans text-brand-muted-green">Subtotal ({selectedPackage === 2 ? "2 Pcs" : "1 Pc"})</span>
+                      <span className="font-sans text-brand-green font-semibold">₹{productPrice}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-sans text-brand-muted-green">Delivery charge</span>
+                      <span className="font-sans text-brand-green font-semibold">₹80</span>
+                    </div>
+                    <div className="border-t border-brand-gold/10 pt-2 flex justify-between items-baseline font-bold">
+                      <span className="font-display text-xs text-brand-green uppercase tracking-wider">TOTAL</span>
+                      <span className="font-display text-base text-brand-terracotta">₹{totalPrice}</span>
+                    </div>
                   </div>
 
                   {/* Submit Button */}
@@ -357,9 +485,14 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full h-14 bg-brand-green text-brand-ivory hover:bg-brand-gold hover:text-brand-green rounded-full font-sans text-xs font-bold tracking-widest uppercase shadow-md transition-all disabled:opacity-50 flex items-center justify-center"
+                      className="w-full h-14 bg-brand-green text-brand-ivory hover:bg-brand-terracotta hover:text-brand-ivory rounded-full font-sans text-xs font-bold tracking-widest uppercase shadow-md transition-all disabled:opacity-50 flex items-center justify-center cursor-pointer"
                     >
-                      {loading ? "PLACING YOUR ORDER..." : `PLACE ORDER (₹${totalPrice})`}
+                      {loading 
+                        ? "PLACING YOUR ORDER..." 
+                        : paymentMethod === "cod"
+                          ? `PLACE COD ORDER (₹${totalPrice})`
+                          : "ONLINE PAYMENT INTEGRATION AVAILABLE"
+                      }
                     </button>
                   </div>
                 </form>

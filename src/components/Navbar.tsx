@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PRODUCT_CONFIG } from "@/config/product";
@@ -12,33 +12,57 @@ interface NavbarProps {
 export default function Navbar({ onOrderClick }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        setScrollProgress((window.scrollY / totalHeight) * 100);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 30);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Listen for Escape key to close mobile drawer
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const menuItems = [
-    { name: "Home", href: "#home" },
-    { name: "Product", href: "#product" },
-    { name: "Benefits", href: "#benefits" },
-    { name: "Our Formula", href: "#formula" },
-    { name: "How To Use", href: "#how-to-use" },
-    { name: "Reviews", href: "#reviews" },
+    { name: "HOME", href: "#home" },
+    { name: "PRODUCT", href: "#product" },
+    { name: "BENEFITS", href: "#benefits" },
+    { name: "OUR FORMULA", href: "#formula" },
+    { name: "HOW TO USE", href: "#how-to-use" },
+    { name: "REVIEWS", href: "#reviews" },
     { name: "FAQ", href: "#faq" },
   ];
 
-  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleScrollTo = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
     const element = document.querySelector(href);
@@ -50,21 +74,15 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
         behavior: "smooth",
       });
     }
-  };
+  }, []);
 
   return (
     <>
-      {/* Top progress bar */}
-      <div
-        className="fixed top-0 left-0 h-[3px] bg-brand-gold z-50 transition-all duration-100"
-        style={{ width: `${scrollProgress}%` }}
-      />
-
-      <nav
-        className={`fixed top-[3px] left-0 w-full z-40 transition-all duration-300 ${
+      <header
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 shadow-sm py-3"
-            : "bg-transparent py-5"
+            ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 shadow-xs py-2.5"
+            : "bg-brand-ivory/80 backdrop-blur-xs py-3.5 border-b border-brand-gold/10"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,92 +93,127 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
               <a
                 href="#home"
                 onClick={(e) => handleScrollTo(e, "#home")}
-                className="font-sans text-lg md:text-xl font-black tracking-[0.2em] text-brand-green flex items-center gap-0.5"
+                className="font-sans text-lg md:text-xl font-black tracking-[0.2em] text-brand-green flex items-center gap-0.5 select-none"
               >
                 {PRODUCT_CONFIG.brandName.toUpperCase()}
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
               </a>
             </div>
 
-            {/* Center: Navigation Menu links */}
-            <div className="hidden md:flex space-x-6 items-center">
+            {/* Center: Desktop Navigation Menu links */}
+            <nav className="hidden lg:flex space-x-6 items-center" aria-label="Desktop Navigation">
               {menuItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleScrollTo(e, item.href)}
-                  className="text-brand-charcoal/70 hover:text-brand-green font-sans text-[11px] font-bold tracking-widest uppercase transition-colors py-2"
+                  className="text-brand-charcoal/80 hover:text-brand-green font-sans text-[11px] font-bold tracking-widest uppercase transition-colors py-2"
                 >
                   {item.name}
                 </a>
               ))}
-            </div>
+            </nav>
 
-            {/* Right: CTA button */}
-            <div className="hidden md:flex items-center">
+            {/* Right: Desktop CTA button */}
+            <div className="hidden lg:flex items-center">
               <button
                 onClick={onOrderClick}
-                className="inline-flex items-center gap-2 bg-brand-green text-brand-ivory hover:bg-brand-gold hover:text-brand-green px-5 py-2.5 rounded-full font-sans text-[10px] font-bold tracking-widest uppercase transition-all duration-300 group shadow-xs"
+                className="inline-flex items-center gap-2 bg-brand-green text-brand-ivory hover:bg-brand-terracotta active:scale-97 px-5 py-2.5 rounded-full font-sans text-[10px] font-bold tracking-widest uppercase transition-all duration-300 shadow-xs cursor-pointer touch-target"
               >
                 ORDER NOW
-                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight className="w-3 h-3" />
               </button>
             </div>
 
-            {/* Mobile hamburger menu button */}
-            <div className="md:hidden">
+            {/* Mobile Menu Button (Min 44x44px touch target) */}
+            <div className="flex items-center lg:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-brand-green hover:text-brand-gold focus:outline-none p-1.5"
-                aria-label="Toggle Menu"
+                className="w-11 h-11 flex items-center justify-center text-brand-green active:bg-brand-gold/10 rounded-full focus:outline-none cursor-pointer"
+                aria-label={isOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
+                aria-expanded={isOpen}
               >
-                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
+
           </div>
         </div>
+      </header>
 
-        {/* Mobile Menu Panel */}
-        <AnimatePresence>
-          {isOpen && (
+      {/* Full-Width Mobile Navigation Drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-50 lg:hidden flex flex-col">
+            {/* Backdrop */}
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25 }}
-              className="md:hidden bg-brand-ivory border-t border-brand-gold/10 overflow-hidden shadow-lg"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsOpen(false)}
+              className="absolute inset-0 bg-brand-charcoal/40 backdrop-blur-xs"
+            />
+
+            {/* Content Sheet */}
+            <motion.div
+              initial={{ opacity: 0, y: "-100%" }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: "-100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 300 }}
+              className="relative w-full bg-brand-ivory border-b border-brand-gold/20 shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto"
             >
-              <div className="px-4 pt-2 pb-6 space-y-3 flex flex-col">
+              {/* Drawer Header */}
+              <div className="flex justify-between items-center px-5 py-4 border-b border-brand-gold/10">
+                <span className="font-sans text-lg font-black tracking-[0.2em] text-brand-green flex items-center gap-0.5">
+                  {PRODUCT_CONFIG.brandName.toUpperCase()}
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
+                </span>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="w-11 h-11 flex items-center justify-center text-brand-green rounded-full active:bg-brand-gold/10 cursor-pointer"
+                  aria-label="Close Menu"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+
+              {/* Drawer Nav Items */}
+              <div className="px-6 py-6 space-y-2 flex flex-col flex-1">
                 {menuItems.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
                     onClick={(e) => handleScrollTo(e, item.href)}
-                    className="text-brand-charcoal text-xs font-bold uppercase tracking-widest py-2.5 px-3 hover:bg-brand-gold/5 rounded-lg transition-colors"
+                    className="text-brand-green text-sm font-extrabold uppercase tracking-widest py-3 px-4 active:bg-brand-gold/15 rounded-xl transition-colors border-b border-brand-gold/5 flex items-center justify-between"
                   >
-                    {item.name}
+                    <span>{item.name}</span>
+                    <ArrowRight className="w-4 h-4 text-brand-terracotta opacity-60" />
                   </a>
                 ))}
-                
-                <div className="pt-2 border-t border-brand-gold/10 px-3">
-                  <button
-                    onClick={() => {
-                      setIsOpen(false);
-                      onOrderClick();
-                    }}
-                    className="flex w-full items-center justify-center gap-2 bg-brand-green text-brand-ivory py-3 rounded-full text-center font-sans text-xs font-bold tracking-widest uppercase shadow-md"
-                  >
-                    ORDER NOW
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
+              </div>
+
+              {/* Drawer Bottom CTA */}
+              <div className="p-6 border-t border-brand-gold/15 bg-brand-bg-secondary/40 sticky bottom-0">
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    onOrderClick();
+                  }}
+                  className="flex w-full items-center justify-center gap-2 bg-brand-green text-brand-ivory active:bg-brand-terracotta py-4 px-6 rounded-full text-center font-sans text-xs font-black tracking-widest uppercase shadow-md cursor-pointer touch-target h-[48px]"
+                >
+                  ORDER NOW
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Spacer */}
-      <div className="h-14 md:h-16" />
+      <div className="h-16 lg:h-20" />
     </>
   );
 }
+

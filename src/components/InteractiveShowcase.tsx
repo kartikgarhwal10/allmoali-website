@@ -56,18 +56,18 @@ export default function InteractiveShowcase() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-brand-green text-brand-ivory border-t border-brand-gold/10 overflow-hidden relative">
+    <section className="py-12 sm:py-16 md:py-24 bg-brand-green text-brand-ivory border-t border-brand-gold/10 overflow-hidden relative">
       {/* Decorative glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-gold/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-brand-gold/5 blur-2xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <span className="font-sans text-xs uppercase tracking-widest text-brand-gold font-bold mb-3 block">
+        <div className="text-center mb-10 sm:mb-16 max-w-3xl mx-auto">
+          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
             INTERACTIVE EXPERIENCE
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold leading-tight">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight">
             Designed for Your Senses
           </h2>
           <div className="w-16 h-0.5 bg-brand-gold mx-auto mt-4" />

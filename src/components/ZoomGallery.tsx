@@ -19,9 +19,9 @@ export default function ZoomGallery({ isOpen, onClose, initialIndex = 0 }: ZoomG
 
   const galleryImages = [
     {
-      src: "/images/product_bottle.jpg",
+      src: "/images/product_bottle_only.jpg",
       title: "Product Front View",
-      description: "Original 50ml green glass dropper bottle.",
+      description: "Original 100ml green glass dropper bottle.",
     },
     {
       src: "/images/oil_texture.jpg",
@@ -34,12 +34,12 @@ export default function ZoomGallery({ isOpen, onClose, initialIndex = 0 }: ZoomG
       description: "A comfortable personal care massage routine.",
     },
     {
-      src: "/images/product_bottle.jpg",
+      src: "/images/product_box.jpg",
       title: "Product Back & Specifications",
-      description: "Label details, regulatory text, and warnings.",
+      description: "Label details, regulatory text, and warnings on the outer packaging.",
     },
     {
-      src: "/images/product_bottle.jpg",
+      src: "/images/product_box_bottle.jpg",
       title: "Ingredients & Efficacy Details",
       description: "Factual composition lists and active extracts.",
     },

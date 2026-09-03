@@ -17,10 +17,16 @@ export interface StepItem {
 }
 
 export interface ReviewItem {
+  id: string | number;
+  name: string;
+  location?: string;
   rating: number;
-  author: string;
   text: string;
-  isDemo: boolean;
+  date?: string;
+  verified?: boolean;
+  demo?: boolean;
+  avatar: string;
+  image?: string;
 }
 
 export interface FaqItem {
@@ -145,13 +151,67 @@ export const PRODUCT_CONFIG = {
     }
   ] as StepItem[],
 
-  // V2 Customer Reviews (Clearly marked demo content)
+  // V2 Customer Reviews (Demo content configured for premium display)
   reviews: [
     {
+      id: 1,
+      name: "Rajesh Kumar",
+      location: "Jaipur, Rajasthan",
       rating: 5,
-      author: "Demo Reviewer",
-      text: "The lightweight texture makes it easy to use as part of my regular massage routine.",
-      isDemo: true
+      text: "Oil ka texture kaafi light hai. Massage karne ke baad chipchipa feel nahi hota. Daily routine mein use karna easy lagta hai.",
+      verified: false,
+      demo: true,
+      avatar: "RK"
+    },
+    {
+      id: 2,
+      name: "Amit Sharma",
+      location: "Indore, Madhya Pradesh",
+      rating: 5,
+      text: "Gym ke baad massage ke liye use kiya. Texture light hai aur skin par heavy feel nahi hota. Fragrance bhi pleasant hai.",
+      verified: false,
+      demo: true,
+      avatar: "AS"
+    },
+    {
+      id: 3,
+      name: "Sunita Sharma",
+      location: "Lucknow, Uttar Pradesh",
+      rating: 5,
+      text: "Mere papa ke liye massage routine mein use kar rahe hain. Oil easily apply ho jata hai aur zyada greasy feel nahi hota.",
+      verified: false,
+      demo: true,
+      avatar: "SS"
+    },
+    {
+      id: 4,
+      name: "Anjali Verma",
+      location: "Delhi",
+      rating: 5,
+      text: "Absorb hone mein zyada time nahi lagta. Regular massage ke liye convenient product laga.",
+      verified: false,
+      demo: true,
+      avatar: "AV"
+    },
+    {
+      id: 5,
+      name: "Priya Gupta",
+      location: "Mumbai, Maharashtra",
+      rating: 5,
+      text: "Packaging premium hai aur oil ka texture lightweight hai. Massage ke baad uncomfortable sticky feeling nahi rehti.",
+      verified: false,
+      demo: true,
+      avatar: "PG"
+    },
+    {
+      id: 6,
+      name: "Rahul Verma",
+      location: "Ahmedabad, Gujarat",
+      rating: 5,
+      text: "Long day ke baad massage routine mein use karna achha lagta hai. Fragrance kaafi soothing hai.",
+      verified: false,
+      demo: true,
+      avatar: "RV"
     }
   ] as ReviewItem[],
 
@@ -159,8 +219,11 @@ export const PRODUCT_CONFIG = {
   productDetailsSpecs: [
     { label: "Product", value: "Joint & Muscular Pain Oil" },
     { label: "Form", value: "Topical Oil" },
-    { label: "MRP", value: "₹493" },
-    { label: "Offer", value: "42% OFF" },
+    { label: "Single Bottle", value: "₹285 (+ ₹80 delivery)" },
+    { label: "2 Bottles Bundle", value: "₹499 (+ ₹80 delivery) — BEST VALUE" },
+    { label: "Delivery Charge", value: "₹80" },
+    { label: "MRP (Single)", value: "₹493" },
+    { label: "Offer (Single)", value: "42% OFF" },
     { label: "Net Quantity", value: "[TO BE CONFIRMED]" },
     { label: "Ingredients", value: "[TO BE CONFIRMED]" },
     { label: "Shelf Life", value: "[TO BE CONFIRMED]" },

@@ -7,25 +7,34 @@ import { PRODUCT_CONFIG } from "@/config/product";
 import { trackEvent } from "@/utils/analytics";
 
 interface MobileStickyCTAProps {
-  onOrderClick: () => void;
+  selectedPackage: 1 | 2;
+  onOrderClick: (pkg: 1 | 2) => void;
   isDrawerOpen: boolean;
 }
 
-export default function MobileStickyCTA({ onOrderClick, isDrawerOpen }: MobileStickyCTAProps) {
+export default function MobileStickyCTA({ selectedPackage, onOrderClick, isDrawerOpen }: MobileStickyCTAProps) {
   const [scrollActive, setScrollActive] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      // Toggle sticky CTA bar visibility on scroll
-      setScrollActive(window.scrollY > 200);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollActive(window.scrollY > 180);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const whatsappUrl = `https://wa.me/${PRODUCT_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    PRODUCT_CONFIG.whatsappMessage
+    selectedPackage === 2
+      ? "Hi, I want to order the Allmoali 2 Bottles Bundle (Best Value) for ₹499. Please share the details."
+      : "Hi, I want to order 1 Bottle of Allmoali Joint & Muscular Pain Oil for ₹285. Please share the details."
   )}`;
 
   const isVisible = scrollActive && !isDrawerOpen;
@@ -43,15 +52,28 @@ export default function MobileStickyCTA({ onOrderClick, isDrawerOpen }: MobileSt
         >
           {/* Left Side: Price Tag */}
           <div className="flex flex-col text-left">
-            <span className="font-sans text-[8px] font-black uppercase text-brand-gold tracking-widest leading-none">Total Price</span>
-            <div className="flex items-baseline gap-1 mt-0.5">
-              <span className="font-display text-xl font-bold text-brand-green">
-                ₹{PRODUCT_CONFIG.sellingPrice}
-              </span>
-              <span className="font-sans text-[9px] text-brand-muted-green/60 line-through">
-                ₹{PRODUCT_CONFIG.mrp}
-              </span>
-            </div>
+            {selectedPackage === 2 ? (
+              <>
+                <span className="font-sans text-[8px] font-black uppercase text-brand-terracotta tracking-widest leading-none">2 PCS · BEST VALUE</span>
+                <div className="flex items-baseline gap-1 mt-0.5">
+                  <span className="font-display text-xl font-bold text-brand-green">
+                    ₹499
+                  </span>
+                </div>
+              </>
+            ) : (
+              <>
+                <span className="font-sans text-[8px] font-black uppercase text-brand-gold tracking-widest leading-none">1 BOTTLE</span>
+                <div className="flex items-baseline gap-1 mt-0.5">
+                  <span className="font-display text-xl font-bold text-brand-green">
+                    ₹285
+                  </span>
+                  <span className="font-sans text-[9px] text-brand-muted-green/60 line-through">
+                    ₹493
+                  </span>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Right Side: Flex actions */}
@@ -60,13 +82,13 @@ export default function MobileStickyCTA({ onOrderClick, isDrawerOpen }: MobileSt
             <button
               onClick={(e) => {
                 e.preventDefault();
-                trackEvent("ClickOrder", { location: "mobile_sticky_cta" });
-                onOrderClick();
+                trackEvent("ClickOrder", { location: "mobile_sticky_cta", package: selectedPackage === 2 ? "2 Bottles" : "1 Bottle" });
+                onOrderClick(selectedPackage);
               }}
-              className="flex items-center justify-center gap-1.5 bg-brand-green text-brand-ivory py-3 px-5 rounded-full font-sans text-[10px] font-black uppercase tracking-wider shadow-sm active:scale-97 transition-all h-[44px]"
+              className="flex items-center justify-center gap-1.5 bg-brand-green text-brand-ivory hover:bg-brand-terracotta py-3 px-5 rounded-full font-sans text-[10px] font-black uppercase tracking-wider shadow-sm active:scale-97 transition-all h-[44px] cursor-pointer"
             >
               <ShoppingCart className="w-3.5 h-3.5" />
-              ORDER NOW
+              {selectedPackage === 2 ? "GET 2 FOR ₹499" : "ORDER NOW"}
             </button>
 
             {/* WhatsApp button */}
@@ -75,7 +97,7 @@ export default function MobileStickyCTA({ onOrderClick, isDrawerOpen }: MobileSt
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent("WhatsAppClick", { location: "mobile_sticky_cta" })}
-              className="flex items-center justify-center gap-1.5 bg-emerald-600 text-white py-3 px-5 rounded-full font-sans text-[10px] font-black uppercase tracking-wider shadow-sm active:scale-97 transition-all h-[44px]"
+              className="flex items-center justify-center gap-1.5 bg-emerald-600 text-white py-3 px-4 rounded-full font-sans text-[10px] font-black uppercase tracking-wider shadow-sm active:scale-97 transition-all h-[44px]"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               WHATSAPP

@@ -58,27 +58,27 @@ export default function Footer() {
               className="font-display text-2xl font-bold tracking-widest text-brand-green flex items-center gap-0.5 mb-4"
             >
               {PRODUCT_CONFIG.brandName.toUpperCase()}
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta animate-pulse"></span>
             </a>
             <p className="font-sans text-xs sm:text-sm text-brand-muted-green leading-relaxed max-w-sm mb-6 font-semibold">
               Traditional inspiration. <br /> Modern everyday care.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-brand-green/5 flex items-center justify-center border border-brand-gold/10 hover:bg-brand-green hover:text-brand-ivory transition-colors text-brand-green"
+                className="w-11 h-11 rounded-full bg-brand-green/5 flex items-center justify-center border border-brand-gold/10 active:bg-brand-terracotta active:text-brand-ivory transition-all text-brand-green cursor-pointer touch-target"
                 aria-label="WhatsApp Support"
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-5 h-5" />
               </a>
               <a
                 href={`mailto:${PRODUCT_CONFIG.email}`}
-                className="w-9 h-9 rounded-full bg-brand-green/5 flex items-center justify-center border border-brand-gold/10 hover:bg-brand-green hover:text-brand-ivory transition-colors text-brand-green"
+                className="w-11 h-11 rounded-full bg-brand-green/5 flex items-center justify-center border border-brand-gold/10 active:bg-brand-terracotta active:text-brand-ivory transition-all text-brand-green cursor-pointer touch-target"
                 aria-label="Email Support"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -92,9 +92,10 @@ export default function Footer() {
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <a
+                    key={link.name}
                     href={link.href}
                     onClick={(e) => handleScrollTo(e, link.href)}
-                    className="font-sans text-xs text-brand-muted-green hover:text-brand-green font-semibold py-1 block transition-colors"
+                    className="font-sans text-xs text-brand-muted-green hover:text-brand-terracotta font-semibold py-1 block transition-colors cursor-pointer"
                   >
                     {link.name}
                   </a>
@@ -111,12 +112,16 @@ export default function Footer() {
             <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.name}>
-                  <span
-                    className="font-sans text-xs text-brand-muted-green/60 cursor-not-allowed block py-1"
-                    title="Policy links will be activated before launch"
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      alert(`${link.name} will be fully activated before launch.`);
+                    }}
+                    className="font-sans text-xs text-brand-muted-green/60 hover:text-brand-terracotta py-1 block transition-colors cursor-pointer"
                   >
-                    {link.name} (Launch soon)
-                  </span>
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -128,10 +133,10 @@ export default function Footer() {
             <div className="border-b border-brand-gold/10 pb-3">
               <button
                 onClick={() => setActiveAccordion(activeAccordion === "nav" ? null : "nav")}
-                className="w-full flex justify-between items-center text-left py-2 font-display text-xs font-bold text-brand-green uppercase tracking-wider"
+                className="w-full flex justify-between items-center text-left py-2 font-display text-xs font-bold text-brand-green uppercase tracking-wider cursor-pointer"
               >
                 <span>Navigation</span>
-                {activeAccordion === "nav" ? <ChevronUp className="w-3.5 h-3.5 text-brand-gold" /> : <ChevronDown className="w-3.5 h-3.5 text-brand-gold" />}
+                {activeAccordion === "nav" ? <ChevronUp className="w-3.5 h-3.5 text-brand-terracotta" /> : <ChevronDown className="w-3.5 h-3.5 text-brand-terracotta" />}
               </button>
               {activeAccordion === "nav" && (
                 <ul className="grid grid-cols-2 gap-y-3.5 gap-x-6 text-left pt-3 px-1">
@@ -140,7 +145,7 @@ export default function Footer() {
                       <a
                         href={link.href}
                         onClick={(e) => handleScrollTo(e, link.href)}
-                        className="font-sans text-xs text-brand-muted-green hover:text-brand-green font-bold py-1 block transition-colors"
+                        className="font-sans text-xs text-brand-muted-green hover:text-brand-terracotta font-bold py-1 block transition-colors cursor-pointer"
                       >
                         {link.name}
                       </a>
@@ -154,21 +159,25 @@ export default function Footer() {
             <div className="border-b border-brand-gold/10 pb-3">
               <button
                 onClick={() => setActiveAccordion(activeAccordion === "legal" ? null : "legal")}
-                className="w-full flex justify-between items-center text-left py-2 font-display text-xs font-bold text-brand-green uppercase tracking-wider"
+                className="w-full flex justify-between items-center text-left py-2 font-display text-xs font-bold text-brand-green uppercase tracking-wider cursor-pointer"
               >
                 <span>Legal Info</span>
-                {activeAccordion === "legal" ? <ChevronUp className="w-3.5 h-3.5 text-brand-gold" /> : <ChevronDown className="w-3.5 h-3.5 text-brand-gold" />}
+                {activeAccordion === "legal" ? <ChevronUp className="w-3.5 h-3.5 text-brand-terracotta" /> : <ChevronDown className="w-3.5 h-3.5 text-brand-terracotta" />}
               </button>
               {activeAccordion === "legal" && (
                 <ul className="space-y-3 pt-3 px-1 text-left">
                   {legalLinks.map((link) => (
                     <li key={link.name}>
-                      <span
-                        className="font-sans text-xs text-brand-muted-green/60 cursor-not-allowed block py-1"
-                        title="Policy links will be activated before launch"
+                      <a
+                        href={link.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          alert(`${link.name} will be fully activated before launch.`);
+                        }}
+                        className="font-sans text-xs text-brand-muted-green/60 hover:text-brand-terracotta py-1 block transition-colors cursor-pointer"
                       >
-                        {link.name} (Launch soon)
-                      </span>
+                        {link.name}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -179,12 +188,15 @@ export default function Footer() {
         </div>
 
         {/* Lower footer */}
-        <div className="pt-8 text-center flex flex-col items-center gap-4">
+        <div className="pt-8 text-center flex flex-col items-center gap-6">
           <p className="font-sans text-[10px] text-brand-muted-green/60">
             © {currentYear} {PRODUCT_CONFIG.brandName}. 50 Years of Formula Heritage. Made for Everyday Care.
           </p>
-          <div className="w-full max-w-4xl border border-brand-gold/15 bg-white/40 p-4 rounded-xl shadow-xs">
-            <p className="font-sans text-[9px] leading-relaxed text-brand-muted-green/75 italic">
+          <div className="w-full max-w-4xl border border-brand-gold/15 bg-white/40 p-4 rounded-xl shadow-xs text-left flex gap-3 items-start">
+            <div className="w-5 h-5 rounded-full bg-brand-terracotta/10 flex items-center justify-center text-brand-terracotta flex-shrink-0 mt-0.5">
+              <span className="text-[10px] font-bold">i</span>
+            </div>
+            <p className="font-sans text-[10px] leading-relaxed text-brand-muted-green">
               <strong>Demo Disclaimer:</strong> {PRODUCT_CONFIG.demoDisclaimer}
             </p>
           </div>

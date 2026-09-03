@@ -3,6 +3,7 @@
 @theme {
   --color-brand-green: #173B2F;
   --color-brand-gold: #B99655;
+  --color-brand-terracotta: #C25E3E;
   --color-brand-ivory: #F7F3EA;
   --color-brand-bg-secondary: #EFE9DC;
   --color-brand-charcoal: #1D211F;
@@ -74,7 +75,22 @@ html {
 body {
   background-color: #F7F3EA; /* brand-ivory */
   color: #1D211F; /* brand-charcoal */
-  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Touch targets and mobile interaction optimization */
+button, 
+a, 
+input, 
+select, 
+textarea {
+  touch-action: manipulation;
+}
+
+/* Minimum 44px touch target utility */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
 }
 
 /* Custom premium scrollbar styling */
