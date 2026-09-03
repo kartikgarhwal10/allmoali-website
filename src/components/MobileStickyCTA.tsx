@@ -34,7 +34,7 @@ export default function MobileStickyCTA({ selectedPackage, onOrderClick, isDrawe
   const whatsappUrl = `https://wa.me/${PRODUCT_CONFIG.whatsappNumber}?text=${encodeURIComponent(
     selectedPackage === 2
       ? "Hi, I want to order the Allmoali 2 Bottles Bundle (Best Value) for ₹499. Please share the details."
-      : "Hi, I want to order 1 Bottle of Allmoali Joint & Muscular Pain Oil for ₹285. Please share the details."
+      : "Hi, I want to order 1 Bottle of Allmoali Joint & Muscular Pain Oil for ₹286. Please share the details."
   )}`;
 
   const isVisible = scrollActive && !isDrawerOpen;
@@ -66,7 +66,7 @@ export default function MobileStickyCTA({ selectedPackage, onOrderClick, isDrawe
                 <span className="font-sans text-[8px] font-black uppercase text-brand-gold tracking-widest leading-none">1 BOTTLE</span>
                 <div className="flex items-baseline gap-1 mt-0.5">
                   <span className="font-display text-xl font-bold text-brand-green">
-                    ₹285
+                    ₹286
                   </span>
                   <span className="font-sans text-[9px] text-brand-muted-green/60 line-through">
                     ₹493

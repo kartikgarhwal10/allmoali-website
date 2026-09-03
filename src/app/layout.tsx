@@ -25,31 +25,34 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Allmoali | Joint & Muscular Pain Oil",
+  title: "Allmoali Joint & Muscular Pain Oil | Natural Ayurvedic Massage Care",
   description:
-    "Discover Allmoali Joint & Muscular Pain Oil, inspired by a 50-year-old Ayurvedic formula with a lightweight, fast-absorbing, non-sticky experience.",
+    "Allmoali Joint & Muscular Pain Oil — barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh massage oil with fast absorption, non-sticky feel and deep penetration.",
   keywords: [
     "Ayurvedic pain oil",
     "joint pain relief",
     "muscular pain oil",
     "non-sticky massage oil",
     "Allmoali pain oil",
-    "natural muscle rub",
+    "barson purane Ayurvedic formula",
+    "12 jadi-butiyan oil",
+    "deep penetration pain oil",
+    "no side effect massage oil",
   ],
   authors: [{ name: "Allmoali" }],
   openGraph: {
-    title: "Allmoali | Joint & Muscular Pain Oil",
+    title: "Allmoali Joint & Muscular Pain Oil | Natural Ayurvedic Massage Care",
     description:
-      "A fast-absorbing, non-sticky topical oil inspired by a 50-year-old Ayurvedic formula, crafted for your everyday joint and muscular care routine.",
+      "Allmoali Joint & Muscular Pain Oil — barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh massage oil with fast absorption, non-sticky feel and deep penetration.",
     type: "website",
     locale: "en_IN",
     siteName: "Allmoali",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Allmoali | Joint & Muscular Pain Oil",
+    title: "Allmoali Joint & Muscular Pain Oil | Natural Ayurvedic Massage Care",
     description:
-      "A fast-absorbing, non-sticky topical oil inspired by a 50-year-old Ayurvedic formula, crafted for your everyday joint and muscular care routine.",
+      "Allmoali Joint & Muscular Pain Oil — barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh massage oil with fast absorption, non-sticky feel and deep penetration.",
   },
 };
 

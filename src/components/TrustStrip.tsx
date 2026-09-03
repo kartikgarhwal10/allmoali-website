@@ -6,20 +6,20 @@ import { Compass, Wind, Feather, CheckCircle } from "lucide-react";
 export default function TrustStrip() {
   const trustItems = [
     {
-      title: "50-Year Formula",
+      title: "Barson Purane Formula",
       icon: <Compass className="w-5 h-5 text-brand-gold" />,
     },
     {
-      title: "Fast Absorbing",
+      title: "12 Jadi-Butiyan",
+      icon: <CheckCircle className="w-5 h-5 text-brand-gold" />,
+    },
+    {
+      title: "Deep Penetration",
       icon: <Wind className="w-5 h-5 text-brand-gold" />,
     },
     {
-      title: "Non-Sticky",
+      title: "No Side Effect",
       icon: <Feather className="w-5 h-5 text-brand-gold" />,
-    },
-    {
-      title: "COD Available",
-      icon: <CheckCircle className="w-5 h-5 text-brand-gold" />,
     },
   ];
 

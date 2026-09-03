@@ -86,7 +86,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
     trackEvent("InitiateCheckout", {
       package: selectedPackage === 2 ? "2 Bottles Bundle" : "1 Bottle",
       quantity: selectedPackage === 2 ? 2 : 1,
-      value: selectedPackage === 2 ? 499 : 285,
+      value: selectedPackage === 2 ? 499 : 286,
       currency: "INR",
     });
 
@@ -96,7 +96,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
       trackEvent("Purchase", {
         package: selectedPackage === 2 ? "2 Bottles Bundle" : "1 Bottle",
         quantity: selectedPackage === 2 ? 2 : 1,
-        value: selectedPackage === 2 ? 499 : 285,
+        value: selectedPackage === 2 ? 499 : 286,
         currency: "INR",
         transaction_id: "demo-" + Math.floor(Math.random() * 1000000),
       });
@@ -104,7 +104,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
   };
 
   // Pricing calculations
-  const productPrice = selectedPackage === 2 ? 499 : 285;
+  const productPrice = selectedPackage === 2 ? 499 : 286;
   const deliveryCharge = 80;
   const totalPrice = productPrice + deliveryCharge;
 
@@ -242,7 +242,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                         </div>
                         <span className="font-sans text-xs font-bold text-brand-green">1 Bottle</span>
                       </div>
-                      <span className="font-sans text-xs text-brand-green font-bold">₹285</span>
+                      <span className="font-sans text-xs text-brand-green font-bold">₹286</span>
                     </button>
 
                     {/* Radio Bundle */}

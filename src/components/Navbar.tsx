@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PRODUCT_CONFIG } from "@/config/product";
@@ -81,22 +82,29 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 shadow-xs py-2.5"
-            : "bg-brand-ivory/80 backdrop-blur-xs py-3.5 border-b border-brand-gold/10"
+            ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 shadow-xs py-2"
+            : "bg-brand-ivory/80 backdrop-blur-xs py-3 border-b border-brand-gold/10"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-10">
+          <div className="flex justify-between items-center h-12">
             
-            {/* Left: Brand Logo */}
+            {/* Left: Official Brand Logo Image */}
             <div className="flex-shrink-0">
               <a
                 href="#home"
                 onClick={(e) => handleScrollTo(e, "#home")}
-                className="font-sans text-lg md:text-xl font-black tracking-[0.2em] text-brand-green flex items-center gap-0.5 select-none"
+                className="flex items-center select-none py-1 group"
+                aria-label="Allmoali Home"
               >
-                {PRODUCT_CONFIG.brandName.toUpperCase()}
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
+                <Image
+                  src="/images/allmoali_logo.png"
+                  alt="Allmoali — The Universal Trust"
+                  width={180}
+                  height={56}
+                  className="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                  priority
+                />
               </a>
             </div>
 
@@ -164,11 +172,20 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
               className="relative w-full bg-brand-ivory border-b border-brand-gold/20 shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto"
             >
               {/* Drawer Header */}
-              <div className="flex justify-between items-center px-5 py-4 border-b border-brand-gold/10">
-                <span className="font-sans text-lg font-black tracking-[0.2em] text-brand-green flex items-center gap-0.5">
-                  {PRODUCT_CONFIG.brandName.toUpperCase()}
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
-                </span>
+              <div className="flex justify-between items-center px-5 py-3 border-b border-brand-gold/10">
+                <a
+                  href="#home"
+                  onClick={(e) => handleScrollTo(e, "#home")}
+                  className="flex items-center select-none"
+                >
+                  <Image
+                    src="/images/allmoali_logo.png"
+                    alt="Allmoali — The Universal Trust"
+                    width={150}
+                    height={48}
+                    className="h-8 w-auto object-contain"
+                  />
+                </a>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="w-11 h-11 flex items-center justify-center text-brand-green rounded-full active:bg-brand-gold/10 cursor-pointer"

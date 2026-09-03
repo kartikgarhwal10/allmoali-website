@@ -19,8 +19,8 @@ export default function BrandStory() {
         </div>
 
         {/* Body Text */}
-        <p className="font-sans text-sm sm:text-base leading-relaxed text-brand-ivory/90 max-w-2xl mx-auto">
-          Allmoali brings traditional Ayurvedic inspiration into a convenient format designed for modern everyday routines. We aim to make personal care accessible and straightforward, honoring heritage formulations while adapting to active, modern lives.
+        <p className="font-sans text-sm sm:text-base leading-relaxed text-brand-ivory/90 max-w-2xl mx-auto font-medium">
+          Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh Allmoali Joint & Muscular Pain Oil brings traditional Ayurvedic care into a convenient format designed for modern everyday routines.
         </p>
 
       </div>

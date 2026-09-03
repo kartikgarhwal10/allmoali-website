@@ -37,11 +37,11 @@ export default function ProductDetails() {
       specs: [
         { label: "MRP (Single)", value: "₹493" },
         { label: "Offer (Single)", value: "42% OFF" },
-        { label: "Single Bottle Price", value: "₹285 (+ ₹80 delivery)" },
+        { label: "Single Bottle Price", value: "₹286 (+ ₹80 delivery)" },
         { label: "2 Bottles Bundle", value: "₹499 (+ ₹80 delivery) — BEST VALUE" },
         { label: "Delivery Charge", value: "₹80" },
-        { label: "Shelf Life", value: "[TO BE CONFIRMED]" },
-        { label: "Storage", value: "[TO BE CONFIRMED]" },
+        { label: "Formula Heritage", value: "Barson Purane Ayurvedic Formula" },
+        { label: "Key Ingredients", value: "12 Ayurvedic Jadi-Butiyan" },
       ]
     }
   ];

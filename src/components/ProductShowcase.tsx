@@ -79,25 +79,32 @@ export default function ProductShowcase({ onOrderClick, onGalleryClick }: Produc
             <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-brand-green leading-tight mb-4 sm:mb-6">
               Made for Your Everyday Massage Routine
             </h2>
-            <p className="text-brand-muted-green font-sans text-sm sm:text-lg leading-relaxed mb-6 sm:mb-8">
-              Lightweight, fast-absorbing oil with a non-sticky feel and a pleasant fragrance. Formulated for everyday self-care, massage, and muscle fatigue care.
+            <p className="text-brand-muted-green font-sans text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 font-medium">
+              Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh Allmoali Joint & Muscular Pain Oil — crafted for fast absorption, non-sticky feel, and deep penetration during massage.
             </p>
 
-            {/* Quick check checklist */}
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-3 font-sans text-xs sm:text-sm font-bold text-brand-green">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0" />
-                Lightweight structure for friction-free glide
-              </li>
-              <li className="flex items-center gap-3 font-sans text-xs sm:text-sm font-bold text-brand-green">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0" />
-                Designed to absorb quickly under light massage
-              </li>
-              <li className="flex items-center gap-3 font-sans text-xs sm:text-sm font-bold text-brand-green">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0" />
-                Soothing aroma for a refreshing massage routine
-              </li>
-            </ul>
+            {/* 4 Key Benefits Callouts Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
+              <div className="p-3.5 rounded-2xl bg-white border border-brand-gold/15 shadow-2xs">
+                <span className="font-sans text-[10px] font-black text-brand-gold uppercase tracking-wider block mb-1">01 • FAST ABSORBING</span>
+                <p className="font-sans text-xs text-brand-green font-bold">Quickly absorbs during massage for smooth application.</p>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-white border border-brand-gold/15 shadow-2xs">
+                <span className="font-sans text-[10px] font-black text-brand-gold uppercase tracking-wider block mb-1">02 • NON-STICKY</span>
+                <p className="font-sans text-xs text-brand-green font-bold">Non-greasy finish without leaving an oily residue.</p>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-white border border-brand-gold/15 shadow-2xs">
+                <span className="font-sans text-[10px] font-black text-brand-gold uppercase tracking-wider block mb-1">03 • DEEP PENETRATION</span>
+                <p className="font-sans text-xs text-brand-green font-bold">Advanced formulation designed for deep penetration during massage.</p>
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-white border border-brand-gold/15 shadow-2xs">
+                <span className="font-sans text-[10px] font-black text-brand-gold uppercase tracking-wider block mb-1">04 • PLEASANT AROMA</span>
+                <p className="font-sans text-xs text-brand-green font-bold">Pleasant relaxing fragrance for a soothing daily ritual.</p>
+              </div>
+            </div>
 
             {/* CTA action */}
             <div className="pt-2">

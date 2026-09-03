@@ -18,34 +18,37 @@ export default function UseCases() {
         {/* Header */}
         <div className="max-w-3xl mx-auto mb-10 sm:mb-16">
           <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
-            APPLICATION MOMENTS
+            TARGETED EVERYDAY CARE
           </span>
-          <h2 className="font-display text-2xl sm:text-4xl font-bold text-brand-green leading-tight">
-            Made for Everyday Moments
+          <h2 className="font-display text-2xl sm:text-4xl font-bold text-brand-green leading-tight uppercase">
+            WHERE ALLMOALI FITS INTO YOUR ROUTINE
           </h2>
+          <p className="font-sans text-xs sm:text-sm text-brand-muted-green mt-3 max-w-xl mx-auto font-medium">
+            Specially beneficial for massage care around the knees, back, elbows and shoulders, including arthritis-related and muscular discomfort.
+          </p>
           <div className="w-16 h-0.5 bg-brand-gold mx-auto mt-4" />
         </div>
 
         {/* Use Cases Cards Grid */}
-        <div className="flex overflow-x-auto md:grid md:grid-cols-3 snap-x snap-mandatory gap-6 md:gap-8 text-left no-scrollbar pb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-left">
           {PRODUCT_CONFIG.useCases.map((useCase, idx) => (
             <div
               key={idx}
-              className="snap-start min-w-[285px] xs:min-w-[320px] md:min-w-0 p-8 rounded-3xl bg-white border border-brand-gold/15 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between flex-shrink-0 md:flex-shrink"
+              className="p-6 rounded-3xl bg-white border border-brand-gold/15 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-brand-gold flex items-center justify-center mb-6 flex-shrink-0 shadow-sm">
-                  {icons[idx] || <Heart className="w-5 h-5 text-brand-green" />}
+                <div className="w-10 h-10 rounded-xl bg-brand-green/5 border border-brand-green/10 flex items-center justify-center mb-5 flex-shrink-0">
+                  {icons[idx % icons.length]}
                 </div>
-                <h3 className="font-display text-lg font-bold text-brand-green mb-3 uppercase tracking-wide">
+                <h3 className="font-display text-base font-bold text-brand-green mb-2.5 uppercase tracking-wide">
                   {useCase.title}
                 </h3>
-                <p className="font-sans text-xs sm:text-sm leading-relaxed text-brand-muted-green">
+                <p className="font-sans text-xs sm:text-sm leading-relaxed text-brand-muted-green font-medium">
                   {useCase.description}
                 </p>
               </div>
-              <div className="mt-8 text-[10px] font-sans uppercase font-bold tracking-widest text-brand-gold">
-                Self-Care Routine
+              <div className="mt-6 pt-3 border-t border-brand-gold/10 text-[10px] font-sans uppercase font-extrabold tracking-widest text-brand-gold">
+                {useCase.highlight || "Targeted Care"}
               </div>
             </div>
           ))}

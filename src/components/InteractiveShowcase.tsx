@@ -8,8 +8,8 @@ import { Compass, Flame, Feather, Compass as AromaIcon } from "lucide-react"; //
 export default function InteractiveShowcase() {
   const callouts = [
     {
-      title: "50-YEAR FORMULA",
-      desc: "Inspired by a traditional Ayurvedic recipe perfected over five decades.",
+      title: "12 JADI-BUTIYAN",
+      desc: "Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh.",
       icon: <Compass className="w-5 h-5 text-brand-gold" />,
       align: "left", // Left side on desktop
       hoverOffset: 8, // Translate right on hover
@@ -29,8 +29,8 @@ export default function InteractiveShowcase() {
       hoverOffset: -8, // Translate left on hover
     },
     {
-      title: "PLEASANT AROMA",
-      desc: "A soft, relaxing aroma that enhances your daily wellness ritual.",
+      title: "DEEP PENETRATION",
+      desc: "Advanced formulation designed for deep penetration during gentle massage.",
       icon: <AromaIcon className="w-5 h-5 text-brand-gold" />,
       align: "right", // Right side on desktop
       hoverOffset: -8,

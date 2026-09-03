@@ -153,7 +153,7 @@ export default function Hero({ onOrderClick }: HeroProps) {
                   )}
                 </AnimatePresence>
 
-                {/* Floating highlights settle badge */}
+                {/* Floating highlights settle badges for 4 key benefits */}
                 <AnimatePresence>
                   {activeFrame === 3 && (
                     <motion.div
@@ -161,17 +161,31 @@ export default function Hero({ onOrderClick }: HeroProps) {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.4 }}
                     >
-                      <div className="absolute top-[8%] left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
-                        <span className="font-sans text-[9px] font-extrabold text-brand-green uppercase tracking-wider">
-                          50-Year Formula
-                        </span>
-                      </div>
-                      
-                      <div className="absolute bottom-[8%] right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
+                      <div className="absolute top-[6%] left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
                         <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
                         <span className="font-sans text-[9px] font-extrabold text-brand-green uppercase tracking-wider">
                           Fast Absorbing
+                        </span>
+                      </div>
+                      
+                      <div className="absolute top-[6%] right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
+                        <span className="font-sans text-[9px] font-extrabold text-brand-green uppercase tracking-wider">
+                          Non-Sticky
+                        </span>
+                      </div>
+
+                      <div className="absolute bottom-[6%] left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
+                        <span className="font-sans text-[9px] font-extrabold text-brand-green uppercase tracking-wider">
+                          Deep Penetration
+                        </span>
+                      </div>
+
+                      <div className="absolute bottom-[6%] right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
+                        <span className="font-sans text-[9px] font-extrabold text-brand-green uppercase tracking-wider">
+                          Pleasant Aroma
                         </span>
                       </div>
                     </motion.div>
@@ -191,7 +205,7 @@ export default function Hero({ onOrderClick }: HeroProps) {
               className="mb-2 sm:mb-3"
             >
               <span className="inline-block font-sans text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-brand-terracotta">
-                EVERYDAY MASSAGE CARE
+                NATURAL AYURVEDIC MASSAGE CARE
               </span>
             </motion.div>
 
@@ -211,20 +225,31 @@ export default function Hero({ onOrderClick }: HeroProps) {
               initial={showAnimation ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={textTransitions.benefits}
-              className="text-brand-charcoal font-sans text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 mb-3"
+              className="text-brand-charcoal font-sans text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 mb-3 font-medium"
             >
-              Traditional Ayurvedic-inspired massage care, made convenient for everyday use.
+              Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh.
             </motion.p>
 
             {/* 4. Benefits pill */}
-            <motion.p
+            <motion.div
               initial={showAnimation ? { opacity: 0, y: 8 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={textTransitions.benefits}
-              className="text-brand-muted-green font-sans text-[11px] sm:text-xs tracking-widest font-black uppercase mb-6"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6"
             >
-              50-YEAR FORMULA · FAST ABSORBING · NON-STICKY
-            </motion.p>
+              <span className="bg-brand-green/5 border border-brand-green/15 text-brand-green font-sans text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+                FAST ABSORBING
+              </span>
+              <span className="bg-brand-green/5 border border-brand-green/15 text-brand-green font-sans text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+                NON-STICKY
+              </span>
+              <span className="bg-brand-green/5 border border-brand-green/15 text-brand-green font-sans text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+                DEEP PENETRATION
+              </span>
+              <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 font-sans text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+                ✓ NO SIDE EFFECT
+              </span>
+            </motion.div>
 
             {/* 5. Price & Offer */}
             <motion.div
@@ -249,7 +274,7 @@ export default function Hero({ onOrderClick }: HeroProps) {
               </span>
             </motion.div>
 
-            {/* 6. CTA Button */}
+            {/* 6. CTA Buttons (Primary: Order Now, Secondary: Order on WhatsApp) */}
             <motion.div
               initial={showAnimation ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
@@ -262,11 +287,21 @@ export default function Hero({ onOrderClick }: HeroProps) {
                   trackEvent("ClickOrder", { location: "hero_cta" });
                   onOrderClick();
                 }}
-                className="flex items-center justify-center gap-2 bg-brand-green text-brand-ivory active:bg-brand-terracotta py-4 px-10 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-md w-full sm:w-auto text-center cursor-pointer touch-target h-[48px]"
+                className="flex items-center justify-center gap-2 bg-brand-green text-brand-ivory active:bg-brand-terracotta py-4 px-9 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-md w-full sm:w-auto text-center cursor-pointer touch-target h-[48px]"
               >
                 <ShoppingBag className="w-4 h-4" />
                 ORDER NOW
               </button>
+
+              <a
+                href={`https://wa.me/${PRODUCT_CONFIG.whatsappNumber}?text=${encodeURIComponent(PRODUCT_CONFIG.whatsappMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("WhatsAppClick", { location: "hero_cta" })}
+                className="flex items-center justify-center gap-2 bg-emerald-600 active:bg-emerald-700 text-white py-4 px-8 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-md w-full sm:w-auto text-center touch-target h-[48px]"
+              >
+                ORDER ON WHATSAPP
+              </a>
             </motion.div>
 
             {/* Trust and COD support */}
@@ -278,9 +313,9 @@ export default function Hero({ onOrderClick }: HeroProps) {
             >
               <span className="text-brand-green font-bold">✓ COD Available</span>
               <span>•</span>
-              <span>✓ UPI / Cards</span>
+              <span className="text-emerald-700 font-bold">✓ Chemical-Free</span>
               <span>•</span>
-              <span className="text-brand-terracotta">✓ Fast Delivery</span>
+              <span className="text-brand-terracotta font-bold">✓ Fast Delivery</span>
             </motion.div>
           </div>
 

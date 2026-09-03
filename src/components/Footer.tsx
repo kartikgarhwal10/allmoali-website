@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { MessageSquare, Mail, ChevronDown, ChevronUp } from "lucide-react";
 import { PRODUCT_CONFIG } from "@/config/product";
 
@@ -55,10 +56,16 @@ export default function Footer() {
             <a
               href="#home"
               onClick={(e) => handleScrollTo(e, "#home")}
-              className="font-display text-2xl font-bold tracking-widest text-brand-green flex items-center gap-0.5 mb-4"
+              className="flex items-center select-none mb-4 group"
+              aria-label="Allmoali Home"
             >
-              {PRODUCT_CONFIG.brandName.toUpperCase()}
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta animate-pulse"></span>
+              <Image
+                src="/images/allmoali_logo.png"
+                alt="Allmoali — The Universal Trust"
+                width={190}
+                height={60}
+                className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              />
             </a>
             <p className="font-sans text-xs sm:text-sm text-brand-muted-green leading-relaxed max-w-sm mb-6 font-semibold">
               Traditional inspiration. <br /> Modern everyday care.
@@ -190,7 +197,7 @@ export default function Footer() {
         {/* Lower footer */}
         <div className="pt-8 text-center flex flex-col items-center gap-6">
           <p className="font-sans text-[10px] text-brand-muted-green/60">
-            © {currentYear} {PRODUCT_CONFIG.brandName}. 50 Years of Formula Heritage. Made for Everyday Care.
+            © {currentYear} {PRODUCT_CONFIG.brandName}. Barson Purane Ayurvedic Formula. Made for Everyday Care.
           </p>
           <div className="w-full max-w-4xl border border-brand-gold/15 bg-white/40 p-4 rounded-xl shadow-xs text-left flex gap-3 items-start">
             <div className="w-5 h-5 rounded-full bg-brand-terracotta/10 flex items-center justify-center text-brand-terracotta flex-shrink-0 mt-0.5">

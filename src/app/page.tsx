@@ -7,6 +7,7 @@ import Hero from "@/components/Hero";
 import TrustStrip from "@/components/TrustStrip";
 import ProductShowcase from "@/components/ProductShowcase";
 import CareSection from "@/components/CareSection";
+import PainkillerPositioning from "@/components/PainkillerPositioning";
 import StorySection from "@/components/StorySection";
 import WhyAllmoali from "@/components/WhyAllmoali";
 import WhatsInside from "@/components/WhatsInside";
@@ -86,7 +87,10 @@ export default function Home() {
         {/* 6. A LITTLE CARE GOES A LONG WAY */}
         <CareSection />
 
-        {/* 7. 50-YEAR FORMULA STORY */}
+        {/* 6.5 PAINKILLER ALTERNATIVE POSITIONING */}
+        <PainkillerPositioning />
+
+        {/* 7. 12 JADI-BUTIYAN FORMULA STORY */}
         <StorySection />
 
         {/* 8. WHY ALLMOALI */}

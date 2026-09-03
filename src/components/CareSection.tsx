@@ -22,26 +22,29 @@ export default function CareSection() {
           >
             {/* Section Eyebrow */}
             <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.2em] text-brand-terracotta font-black block">
-              EVERYDAY TOPICAL MASSAGE CARE
+              NATURAL AYURVEDIC CARE
             </span>
+
+            {/* Prominent Badge */}
+            <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-2 rounded-full font-sans text-xs font-black uppercase tracking-wider">
+              <span>✓</span>
+              <span>NATURAL AYURVEDIC CHEMICAL-FREE OIL</span>
+            </div>
 
             {/* Premium Large Editorial Quote */}
             <div className="border-l-2 border-brand-terracotta/40 pl-4 sm:pl-6 py-1">
-              <blockquote className="font-serif text-lg sm:text-2xl lg:text-3xl italic text-brand-green leading-relaxed font-light">
-                "Not every moment of discomfort needs to become a complicated routine. Sometimes, a few drops, a gentle massage and a moment of care are all you are looking for."
+              <blockquote className="font-serif text-lg sm:text-2xl lg:text-3xl italic text-brand-green leading-relaxed font-semibold">
+                &ldquo;Chemical wale upayon par nirbhar rahne ki bajay, natural Ayurvedic care ko apni routine ka hissa banayein.&rdquo;
               </blockquote>
-              <cite className="font-sans text-[10px] sm:text-xs uppercase tracking-widest text-brand-muted-green font-bold block mt-3 not-italic">
-                — Allmoali is made for that everyday ritual.
-              </cite>
             </div>
 
             {/* Educational Copy block */}
             <div className="space-y-3 sm:space-y-4 pt-4 border-t border-brand-gold/10">
               <h3 className="font-display text-lg sm:text-2xl font-bold text-brand-green leading-tight">
-                Sometimes, everyday care starts with a simple massage.
+                Chemical wale upayon par nirbhar rahne ki bajay natural Ayurvedic chemical-free tel ka sahara lein.
               </h3>
-              <p className="text-brand-charcoal font-sans text-xs sm:text-base leading-relaxed">
-                For everyday aches and muscle discomfort, many people include topical massage as part of their self-care routine. Allmoali is designed as a convenient massage oil for those moments when you want to apply, massage and carry on with your day.
+              <p className="text-brand-charcoal font-sans text-xs sm:text-base leading-relaxed font-medium">
+                Everyday joint and muscular discomfort ke liye chemical-based solutions par nirbhar rahne ke bajaya, 12 jadi-butiyon se samriddh Allmoali Ayurvedic oil ko gentle massage routine ka hissa banayein.
               </p>
             </div>
 
