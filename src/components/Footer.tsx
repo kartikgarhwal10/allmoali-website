@@ -62,9 +62,9 @@ export default function Footer() {
               <Image
                 src="/images/allmoali_logo.png"
                 alt="Allmoali — The Universal Trust"
-                width={190}
-                height={60}
-                className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                width={240}
+                height={80}
+                className="h-14 sm:h-16 w-auto object-contain transition-transform group-hover:scale-[1.02]"
               />
             </a>
             <p className="font-sans text-xs sm:text-sm text-brand-muted-green leading-relaxed max-w-sm mb-6 font-semibold">

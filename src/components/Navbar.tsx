@@ -87,7 +87,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-12">
+          <div className="flex justify-between items-center h-16 sm:h-20">
             
             {/* Left: Official Brand Logo Image */}
             <div className="flex-shrink-0">
@@ -100,9 +100,9 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
                 <Image
                   src="/images/allmoali_logo.png"
                   alt="Allmoali — The Universal Trust"
-                  width={180}
-                  height={56}
-                  className="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                  width={240}
+                  height={80}
+                  className="h-12 sm:h-15 lg:h-17 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                   priority
                 />
               </a>
@@ -181,9 +181,9 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
                   <Image
                     src="/images/allmoali_logo.png"
                     alt="Allmoali — The Universal Trust"
-                    width={150}
-                    height={48}
-                    className="h-8 w-auto object-contain"
+                    width={200}
+                    height={64}
+                    className="h-11 sm:h-13 w-auto object-contain"
                   />
                 </a>
                 <button
@@ -229,7 +229,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
       </AnimatePresence>
 
       {/* Spacer */}
-      <div className="h-16 lg:h-20" />
+      <div className="h-20 sm:h-24 lg:h-26" />
     </>
   );
 }
