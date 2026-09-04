@@ -15,8 +15,8 @@ export default function LifestyleSection({ onOrderClick }: LifestyleSectionProps
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/lifestyle_massage.jpg"
-          alt="Ayurvedic self care routine massage"
+          src="/images/lifestyle_model.jpg"
+          alt="ALLMOALI Ayurvedic Joint & Muscular Pain Oil massage routine"
           fill
           sizes="100vw"
           className="object-cover opacity-35"
@@ -34,14 +34,14 @@ export default function LifestyleSection({ onOrderClick }: LifestyleSectionProps
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-3 block">
+          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-extrabold mb-3 block">
             EVERYDAY MASSAGE RITUAL
           </span>
           <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-3 max-w-2xl mx-auto">
-            Make Massage Part of Your Routine
+            Make ALLMOALI Part of Your Daily Routine
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-brand-ivory/80 leading-relaxed max-w-lg mx-auto mb-6 sm:mb-8">
-            A simple, convenient way to add a massage ritual to your everyday routine.
+          <p className="font-sans text-xs sm:text-sm text-brand-ivory/90 leading-relaxed max-w-lg mx-auto mb-6 sm:mb-8 font-medium">
+            &ldquo;Roz ki massage routine mein ALLMOALI ko shamil karein.&rdquo; A simple, natural way to care for your joints and muscles every day.
           </p>
 
           <div className="flex justify-center">
@@ -50,10 +50,10 @@ export default function LifestyleSection({ onOrderClick }: LifestyleSectionProps
                 e.preventDefault();
                 onOrderClick();
               }}
-              className="inline-flex items-center gap-2 bg-brand-gold text-brand-green active:bg-brand-ivory border border-transparent py-3.5 px-8 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-md group touch-target h-[48px] cursor-pointer"
+              className="inline-flex items-center gap-2 bg-brand-terracotta text-white active:bg-[#a94e31] py-4 px-9 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-lg group touch-target h-[48px] cursor-pointer"
             >
-              ORDER NOW
-              <ArrowRight className="w-3.5 h-3.5" />
+              ORDER NOW — ₹286
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </motion.div>

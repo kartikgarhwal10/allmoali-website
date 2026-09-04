@@ -41,22 +41,22 @@ export default function CareSection() {
             {/* Educational Copy block */}
             <div className="space-y-3 sm:space-y-4 pt-4 border-t border-brand-gold/10">
               <h3 className="font-display text-lg sm:text-2xl font-bold text-brand-green leading-tight">
-                Chemical wale upayon par nirbhar rahne ki bajay natural Ayurvedic chemical-free tel ka sahara lein.
+                Embrace Natural Ayurvedic Care for Your Joints & Muscles
               </h3>
               <p className="text-brand-charcoal font-sans text-xs sm:text-base leading-relaxed font-medium">
-                Everyday joint and muscular discomfort ke liye chemical-based solutions par nirbhar rahne ke bajaya, 12 jadi-butiyon se samriddh Allmoali Ayurvedic oil ko gentle massage routine ka hissa banayein.
+                For everyday joint and muscular discomfort, make ALLMOALI Joint & Muscular Pain Oil a key part of your daily self-care massage routine.
               </p>
             </div>
 
-            {/* Medical Disclaimer Disclaimer notice */}
+            {/* Medical Disclaimer notice */}
             <div className="p-4 bg-white/60 rounded-xl border border-brand-gold/10 shadow-2xs">
               <p className="text-brand-muted-green font-sans text-[11px] leading-relaxed">
-                Medicines and pain-relief tablets should always be used according to the advice of a qualified healthcare professional.
+                Medicines and prescribed pain-relief treatments should always be managed according to the advice of a qualified healthcare professional.
               </p>
             </div>
           </motion.div>
 
-          {/* Right Column: Premium Realistic Product Presentation */}
+          {/* Right Column: Product Presentation */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -67,8 +67,8 @@ export default function CareSection() {
             <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-brand-gold/15 shadow-[0_15px_40px_rgba(47,67,54,0.05)] bg-white p-3 sm:p-4">
               <div className="relative w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden bg-brand-ivory">
                 <Image
-                  src="/images/product_bottle_only.jpg"
-                  alt="Allmoali Joint & Muscular Pain Oil Product Bottle"
+                  src="/images/product_hero_bottle.jpg"
+                  alt="ALLMOALI Joint & Muscular Pain Oil Product Bottle"
                   fill
                   sizes="(max-width: 768px) 90vw, 400px"
                   className="object-cover hover:scale-[1.02] transition-transform duration-700"
@@ -80,10 +80,10 @@ export default function CareSection() {
 
         </div>
 
-        {/* Bottom Small Label Accent */}
+        {/* Bottom Label Accent without Est. 2026 */}
         <div className="mt-16 pt-8 border-t border-brand-gold/10 flex justify-between items-center text-[10px] font-bold tracking-widest text-brand-muted-green/60 uppercase">
-          <span>ALLMOALI NATURAL HERITAGE</span>
-          <span>EST. 2026</span>
+          <span>ALLMOALI NATURAL AYURVEDIC HERITAGE</span>
+          <span>100 ML · AYURVEDIC PROPRIETARY MEDICINE</span>
         </div>
 
       </div>

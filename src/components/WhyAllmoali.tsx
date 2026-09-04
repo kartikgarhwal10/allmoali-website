@@ -9,12 +9,12 @@ export default function WhyAllmoali() {
     {
       id: "01",
       title: "NATURAL AYURVEDIC FORMULA",
-      description: "Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh.",
+      description: "Based on a time-honoured Ayurvedic formula, enriched with 12 Ayurvedic herbs.",
       icon: <Compass className="w-5 h-5 text-brand-terracotta" />,
     },
     {
       id: "02",
-      title: "12 AYURVEDIC JADI-BUTIYAN",
+      title: "12 AYURVEDIC HERBS",
       description: "Rich botanical formulation crafted from 12 traditional natural herbs.",
       icon: <Sparkles className="w-5 h-5 text-brand-terracotta" />,
     },

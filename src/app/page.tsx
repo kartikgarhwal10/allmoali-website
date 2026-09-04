@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import RootCauseAction from "@/components/RootCauseAction";
 import TrustStrip from "@/components/TrustStrip";
 import ProductShowcase from "@/components/ProductShowcase";
 import CareSection from "@/components/CareSection";
@@ -74,6 +75,9 @@ export default function Home() {
       <main className="flex-1 w-full">
         {/* 3. HERO SECTION */}
         <Hero onOrderClick={() => openDrawer(selectedPackage)} />
+
+        {/* 3.5 ROOT-CAUSE ACTION SECTION */}
+        <RootCauseAction />
 
         {/* 4. TRUST STRIP */}
         <TrustStrip />

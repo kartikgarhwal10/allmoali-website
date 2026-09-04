@@ -74,23 +74,20 @@ export default function Hero({ onOrderClick }: HeroProps) {
   return (
     <section
       id="home"
-      className="relative min-h-[85vh] flex items-center justify-center pt-4 pb-12 lg:pt-16 lg:pb-24 bg-brand-ivory overflow-hidden"
+      className="relative min-h-[85vh] flex items-center justify-center pt-2 pb-12 lg:pt-10 lg:pb-20 bg-brand-ivory overflow-hidden"
     >
-      {/* Subtle Background Glows */}
-      <div className="absolute top-1/4 left-0 w-72 h-72 rounded-full bg-brand-gold/5 blur-3xl pointer-events-none -translate-x-1/2" />
-      <div className="absolute bottom-1/4 right-0 w-72 h-72 rounded-full bg-brand-green/5 blur-3xl pointer-events-none translate-x-1/2" />
+      {/* Background Glows */}
+      <div className="absolute top-1/4 left-0 w-80 h-80 rounded-full bg-brand-gold/8 blur-3xl pointer-events-none -translate-x-1/2" />
+      <div className="absolute bottom-1/4 right-0 w-80 h-80 rounded-full bg-brand-terracotta/8 blur-3xl pointer-events-none translate-x-1/2" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
-          {/* Mobile Order #1: Product Showcase Animation Container */}
-          <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center items-center relative pt-2 pb-4 lg:py-6">
-            <div className="relative w-[86vw] max-w-[420px] lg:w-full lg:max-w-[540px] aspect-[4/4.2] sm:aspect-[4/4] mx-auto flex items-center justify-center">
+          {/* Mobile Order #1: Product Photography Gallery Container */}
+          <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center items-center relative pt-2 pb-4 lg:py-4">
+            <div className="relative w-[88vw] max-w-[440px] lg:w-full lg:max-w-[520px] aspect-[4/4.3] sm:aspect-[4/4] mx-auto flex items-center justify-center">
               <div 
-                className="w-full h-full relative rounded-[28px] lg:rounded-[36px] border border-brand-gold/20 overflow-hidden shadow-[0_16px_40px_rgba(23,59,47,0.06)] bg-brand-ivory"
-                style={{ 
-                  backgroundImage: "radial-gradient(circle at center, rgba(255,255,255,0.85) 0%, rgba(247,243,234,0.95) 100%)" 
-                }}
+                className="w-full h-full relative rounded-[28px] lg:rounded-[36px] border border-brand-gold/25 overflow-hidden shadow-[0_16px_40px_rgba(23,59,47,0.08)] bg-white"
               >
                 <AnimatePresence mode="wait">
                   {activeFrame === 1 && (
@@ -100,13 +97,13 @@ export default function Hero({ onOrderClick }: HeroProps) {
                       initial="initial"
                       animate="animate"
                       exit="exit"
-                      className="absolute inset-0 w-full h-full p-3"
+                      className="absolute inset-0 w-full h-full p-2"
                     >
                       <Image
-                        src="/images/product_box.jpg"
-                        alt="Allmoali Joint & Muscular Pain Oil Product Box"
+                        src="/images/product_hero_bottle.jpg"
+                        alt="ALLMOALI Joint & Muscular Pain Oil Hero Bottle"
                         fill
-                        sizes="(max-width: 640px) 86vw, (max-width: 1024px) 420px, 540px"
+                        sizes="(max-width: 640px) 88vw, (max-width: 1024px) 440px, 520px"
                         className="object-contain rounded-[24px] lg:rounded-[32px]"
                         priority
                       />
@@ -120,13 +117,13 @@ export default function Hero({ onOrderClick }: HeroProps) {
                       initial="initial"
                       animate="animate"
                       exit="exit"
-                      className="absolute inset-0 w-full h-full p-3"
+                      className="absolute inset-0 w-full h-full p-2"
                     >
                       <Image
-                        src="/images/product_bottle_only.jpg"
-                        alt="Allmoali Joint & Muscular Pain Oil Bottle"
+                        src="/images/product_bundle_pack2.jpg"
+                        alt="ALLMOALI Joint & Muscular Pain Oil Pack of 2 Bundle"
                         fill
-                        sizes="(max-width: 640px) 86vw, (max-width: 1024px) 420px, 540px"
+                        sizes="(max-width: 640px) 88vw, (max-width: 1024px) 440px, 520px"
                         className="object-contain rounded-[24px] lg:rounded-[32px]"
                         priority
                       />
@@ -139,13 +136,13 @@ export default function Hero({ onOrderClick }: HeroProps) {
                       variants={frame3Variants}
                       initial="initial"
                       animate="animate"
-                      className="absolute inset-0 w-full h-full p-3"
+                      className="absolute inset-0 w-full h-full p-2"
                     >
                       <Image
-                        src="/images/product_box_bottle.jpg"
-                        alt="Allmoali Joint & Muscular Pain Oil Box and Bottle"
+                        src="/images/product_hero_bottle.jpg"
+                        alt="ALLMOALI Joint & Muscular Pain Oil"
                         fill
-                        sizes="(max-width: 640px) 86vw, (max-width: 1024px) 420px, 540px"
+                        sizes="(max-width: 640px) 88vw, (max-width: 1024px) 440px, 520px"
                         className="object-contain rounded-[24px] lg:rounded-[32px]"
                         priority
                       />
@@ -153,113 +150,97 @@ export default function Hero({ onOrderClick }: HeroProps) {
                   )}
                 </AnimatePresence>
 
-                {/* Floating highlights settle badges for 4 key benefits */}
-                <AnimatePresence>
-                  {activeFrame === 3 && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3, duration: 0.4 }}
-                    >
-                      <div className="absolute top-[6%] left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
-                        <span className="font-sans text-[9px] font-extrabold text-brand-green uppercase tracking-wider">
-                          Fast Absorbing
-                        </span>
-                      </div>
-                      
-                      <div className="absolute top-[6%] right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
-                        <span className="font-sans text-[9px] font-extrabold text-brand-green uppercase tracking-wider">
-                          Non-Sticky
-                        </span>
-                      </div>
-
-                      <div className="absolute bottom-[6%] left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
-                        <span className="font-sans text-[9px] font-extrabold text-brand-green uppercase tracking-wider">
-                          Deep Penetration
-                        </span>
-                      </div>
-
-                      <div className="absolute bottom-[6%] right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full border border-brand-gold/20 shadow-xs flex items-center gap-1.5 pointer-events-none select-none">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-terracotta" />
-                        <span className="font-sans text-[9px] font-extrabold text-brand-green uppercase tracking-wider">
-                          Pleasant Aroma
-                        </span>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* Floating benefit pill badges */}
+                <div className="absolute bottom-[4%] left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-brand-gold/25 shadow-xs flex items-center gap-2 pointer-events-none select-none w-auto whitespace-nowrap">
+                  <span className="w-2 h-2 rounded-full bg-brand-terracotta" />
+                  <span className="font-sans text-[10px] font-black text-brand-green uppercase tracking-wider">
+                    Net Quantity: {PRODUCT_CONFIG.netQuantity}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Mobile Order #2: Copy, Pricing, and CTAs */}
           <div className="lg:col-span-7 flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 min-w-0">
-            {/* 1. Eyebrow */}
+            
+            {/* 1. ALLMOALI BRAND NAME VISIBILITY HIGHLIGHT */}
             <motion.div
               initial={showAnimation ? { opacity: 0, y: 8 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={textTransitions.eyebrow}
-              className="mb-2 sm:mb-3"
+              className="mb-2"
             >
-              <span className="inline-block font-sans text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-brand-terracotta">
-                NATURAL AYURVEDIC MASSAGE CARE
-              </span>
+              <div className="inline-flex items-center gap-2 bg-brand-green/8 border border-brand-green/20 px-3.5 py-1.5 rounded-full">
+                <span className="font-display text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-brand-green">
+                  ALLMOALI
+                </span>
+                <span className="text-brand-terracotta font-bold text-xs">•</span>
+                <span className="font-sans text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-brand-terracotta">
+                  NATURAL AYURVEDIC CARE
+                </span>
+              </div>
             </motion.div>
 
-            {/* 2. Joint & Muscular Pain Oil Headline (using Clamp) */}
+            {/* 2. Product Name Headline */}
             <motion.h1
               initial={showAnimation ? { opacity: 0, y: 12 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={textTransitions.headline}
-              className="font-display font-extrabold text-brand-green leading-[1.15] mb-4 tracking-tight"
-              style={{ fontSize: "clamp(2.1rem, 7.5vw, 3.75rem)" }}
+              className="font-display font-extrabold text-brand-green leading-[1.12] mb-3 tracking-tight"
+              style={{ fontSize: "clamp(2.2rem, 7.5vw, 3.8rem)" }}
             >
               Joint & Muscular Pain Oil
             </motion.h1>
 
-            {/* 3. Supporting Copy */}
-            <motion.p
+            {/* 3. ROOT-CAUSE ACTION EARLY MENTION */}
+            <motion.div
               initial={showAnimation ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={textTransitions.benefits}
-              className="text-brand-charcoal font-sans text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 mb-3 font-medium"
+              className="bg-white/90 border border-brand-gold/25 p-4 rounded-2xl mb-4 text-left shadow-2xs max-w-xl mx-auto lg:mx-0"
             >
-              Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh.
-            </motion.p>
+              <span className="font-sans text-[10px] font-black uppercase tracking-widest text-brand-terracotta block mb-1">
+                ROOT-CAUSE ACTION
+              </span>
+              <p className="font-sans text-xs sm:text-sm leading-relaxed text-brand-charcoal font-semibold">
+                Most oils only create a cooling or warming feeling on the skin. <span className="text-brand-green font-bold">ALLMOALI</span> oil targets inflammation pathways and supports joint health long-term.
+              </p>
+            </motion.div>
 
-            {/* 4. Benefits pill */}
+            {/* 4. 4 Key Benefit Callout Pills */}
             <motion.div
               initial={showAnimation ? { opacity: 0, y: 8 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={textTransitions.benefits}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-5"
             >
-              <span className="bg-brand-green/5 border border-brand-green/15 text-brand-green font-sans text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+              <span className="bg-brand-green/8 border border-brand-green/20 text-brand-green font-sans text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
                 FAST ABSORBING
               </span>
-              <span className="bg-brand-green/5 border border-brand-green/15 text-brand-green font-sans text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-                NON-STICKY
+              <span className="bg-brand-green/8 border border-brand-green/20 text-brand-green font-sans text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                NON-GREASY
               </span>
-              <span className="bg-brand-green/5 border border-brand-green/15 text-brand-green font-sans text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+              <span className="bg-brand-green/8 border border-brand-green/20 text-brand-green font-sans text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
                 DEEP PENETRATION
               </span>
-              <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 font-sans text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+              <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 font-sans text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                12 AYURVEDIC HERBS
+              </span>
+              <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 font-sans text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
                 ✓ NO SIDE EFFECT
               </span>
             </motion.div>
 
-            {/* 5. Price & Offer */}
+            {/* 5. Clear Price & Offer Breakdown (₹286 + Delivery ₹80 Discounted to ₹0) */}
             <motion.div
               initial={showAnimation ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={textTransitions.price}
-              className="flex items-center justify-center lg:justify-start gap-4 mb-6"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-6"
             >
               <div className="flex flex-col text-left">
-                <span className="text-[9px] uppercase tracking-widest text-brand-muted-green font-extrabold">Special Price</span>
+                <span className="text-[9px] uppercase tracking-widest text-brand-muted-green font-extrabold">Special Offer Price</span>
                 <div className="flex items-baseline gap-2.5">
                   <span className="text-3xl sm:text-4xl font-display font-extrabold text-brand-green">
                     ₹{PRODUCT_CONFIG.sellingPrice}
@@ -269,17 +250,23 @@ export default function Hero({ onOrderClick }: HeroProps) {
                   </span>
                 </div>
               </div>
-              <span className="bg-brand-terracotta text-brand-ivory font-sans text-[10px] font-black px-3 py-1.5 rounded-md uppercase tracking-wider shadow-2xs">
-                {PRODUCT_CONFIG.discount}% OFF
-              </span>
+
+              <div className="flex flex-col items-start bg-brand-terracotta/10 border border-brand-terracotta/25 px-3 py-1.5 rounded-xl">
+                <span className="text-[9px] uppercase tracking-wider text-brand-terracotta font-black">
+                  42% OFF · <span className="line-through text-gray-400">₹80 Delivery</span> FREE DELIVERY
+                </span>
+                <span className="text-[10px] font-bold text-emerald-700">
+                  You Pay: ₹{PRODUCT_CONFIG.sellingPrice} Only
+                </span>
+              </div>
             </motion.div>
 
-            {/* 6. CTA Buttons (Primary: Order Now, Secondary: Order on WhatsApp) */}
+            {/* 6. CTA Buttons (Client Accent Color on Primary CTA) */}
             <motion.div
               initial={showAnimation ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={textTransitions.ctas}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-6 w-full"
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-5 w-full"
             >
               <button
                 onClick={(e) => {
@@ -287,10 +274,10 @@ export default function Hero({ onOrderClick }: HeroProps) {
                   trackEvent("ClickOrder", { location: "hero_cta" });
                   onOrderClick();
                 }}
-                className="flex items-center justify-center gap-2 bg-brand-green text-brand-ivory active:bg-brand-terracotta py-4 px-9 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-md w-full sm:w-auto text-center cursor-pointer touch-target h-[48px]"
+                className="flex items-center justify-center gap-2 bg-brand-terracotta text-white hover:bg-[#a94e31] active:scale-97 py-4 px-9 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-lg w-full sm:w-auto text-center cursor-pointer touch-target h-[48px]"
               >
                 <ShoppingBag className="w-4 h-4" />
-                ORDER NOW
+                ORDER NOW — ₹286
               </button>
 
               <a
@@ -304,19 +291,20 @@ export default function Hero({ onOrderClick }: HeroProps) {
               </a>
             </motion.div>
 
-            {/* Trust and COD support */}
+            {/* Trust Badges */}
             <motion.div
               initial={showAnimation ? { opacity: 0 } : { opacity: 1 }}
               animate={{ opacity: 1 }}
               transition={textTransitions.trust}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 text-left border-t border-brand-gold/15 pt-5 font-sans text-[11px] font-bold text-brand-muted-green"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 text-left border-t border-brand-gold/15 pt-4 font-sans text-[11px] font-bold text-brand-muted-green"
             >
-              <span className="text-brand-green font-bold">✓ COD Available</span>
+              <span className="text-brand-green font-bold">✓ Cash on Delivery Available</span>
               <span>•</span>
-              <span className="text-emerald-700 font-bold">✓ Chemical-Free</span>
+              <span className="text-emerald-700 font-bold">✓ 100% Ayurvedic Formula</span>
               <span>•</span>
-              <span className="text-brand-terracotta font-bold">✓ Fast Delivery</span>
+              <span className="text-brand-terracotta font-bold">✓ Free Delivery</span>
             </motion.div>
+
           </div>
 
         </div>

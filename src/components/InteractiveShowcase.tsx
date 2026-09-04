@@ -8,8 +8,8 @@ import { Compass, Flame, Feather, Compass as AromaIcon } from "lucide-react"; //
 export default function InteractiveShowcase() {
   const callouts = [
     {
-      title: "12 JADI-BUTIYAN",
-      desc: "Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh.",
+      title: "12 AYURVEDIC HERBS",
+      desc: "Based on a time-honoured Ayurvedic formula, enriched with 12 Ayurvedic herbs.",
       icon: <Compass className="w-5 h-5 text-brand-gold" />,
       align: "left", // Left side on desktop
       hoverOffset: 8, // Translate right on hover
@@ -109,7 +109,7 @@ export default function InteractiveShowcase() {
               <div className="absolute inset-0 bg-radial from-brand-gold/15 to-transparent scale-110 blur-xl rounded-full" />
               <div className="w-full h-full relative p-3 bg-linear-to-b from-brand-gold/10 to-transparent border border-brand-gold/20 rounded-[32px] shadow-2xl flex items-center justify-center animate-float">
                 <Image
-                  src="/images/product_bottle_only.jpg"
+                  src="/images/product_hero_bottle.jpg"
                   alt="Allmoali pain oil bottle center display"
                   fill
                   sizes="320px"

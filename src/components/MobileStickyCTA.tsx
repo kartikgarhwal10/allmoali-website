@@ -85,10 +85,10 @@ export default function MobileStickyCTA({ selectedPackage, onOrderClick, isDrawe
                 trackEvent("ClickOrder", { location: "mobile_sticky_cta", package: selectedPackage === 2 ? "2 Bottles" : "1 Bottle" });
                 onOrderClick(selectedPackage);
               }}
-              className="flex items-center justify-center gap-1.5 bg-brand-green text-brand-ivory hover:bg-brand-terracotta py-3 px-5 rounded-full font-sans text-[10px] font-black uppercase tracking-wider shadow-sm active:scale-97 transition-all h-[44px] cursor-pointer"
+              className="flex items-center justify-center gap-1.5 bg-brand-terracotta text-white active:bg-[#a94e31] py-3 px-5 rounded-full font-sans text-[10px] font-black uppercase tracking-wider shadow-md active:scale-97 transition-all h-[44px] cursor-pointer"
             >
               <ShoppingCart className="w-3.5 h-3.5" />
-              {selectedPackage === 2 ? "GET 2 FOR ₹499" : "ORDER NOW"}
+              {selectedPackage === 2 ? "GET 2 FOR ₹499" : "ORDER NOW — ₹286"}
             </button>
 
             {/* WhatsApp button */}

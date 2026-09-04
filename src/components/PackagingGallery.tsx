@@ -12,34 +12,28 @@ interface PackagingGalleryProps {
 export default function PackagingGallery({ onGalleryClick }: PackagingGalleryProps) {
   const items = [
     {
-      title: "Front View",
-      desc: "Authentic green glass bottle designed to protect natural oils.",
-      src: "/images/product_bottle_only.jpg",
+      title: "Hero Bottle",
+      desc: "Original 100ml amber bottle designed to protect natural botanical oils.",
+      src: "/images/product_hero_bottle.jpg",
       idx: 0,
     },
     {
-      title: "Texture",
-      desc: "Close-up showcasing lightweight golden droplets.",
-      src: "/images/oil_texture.jpg",
+      title: "Box & Bottle Set",
+      desc: "Authentic outer packaging detailing active extracts and usage directions.",
+      src: "/images/product_box_bottle.jpg",
       idx: 1,
     },
     {
-      title: "Directions",
-      desc: "Easy, simple massage instructions printed clearly for reference.",
-      src: "/images/lifestyle_massage.jpg",
+      title: "2 PCS Bundle",
+      desc: "Pack of 2 bundle offer for double care in your daily massage routine.",
+      src: "/images/product_bundle_pack2.jpg",
       idx: 2,
     },
     {
-      title: "Back View",
-      desc: "Contains manufacturing facts, licensing, and brand details.",
-      src: "/images/product_box.jpg",
+      title: "Everyday Lifestyle",
+      desc: "Gentle self-care massage routine for everyday joint and muscular wellness.",
+      src: "/images/lifestyle_model.jpg",
       idx: 3,
-    },
-    {
-      title: "Ingredients",
-      desc: "Factual composition list detailing natural botanical heritage.",
-      src: "/images/product_box_bottle.jpg",
-      idx: 4,
     },
   ];
 
@@ -49,17 +43,17 @@ export default function PackagingGallery({ onGalleryClick }: PackagingGalleryPro
         
         {/* Header */}
         <div className="text-center mb-10 sm:mb-16 max-w-3xl mx-auto">
-          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
-            PACKAGING DETAILS
+          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-terracotta font-extrabold mb-2 block">
+            PRODUCT PRESENTATION
           </span>
           <h2 className="font-display text-2xl sm:text-4xl font-bold text-brand-green leading-tight">
-            Take a closer look.
+            Take a Closer Look at ALLMOALI
           </h2>
-          <div className="w-16 h-0.5 bg-brand-gold mx-auto mt-4" />
+          <div className="w-16 h-0.5 bg-brand-terracotta mx-auto mt-4" />
         </div>
 
-        {/* Grid layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6">
+        {/* Rebalanced 4-Column Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 max-w-6xl mx-auto">
           {items.map((item, index) => (
             <motion.div
               key={index}
@@ -68,17 +62,17 @@ export default function PackagingGallery({ onGalleryClick }: PackagingGalleryPro
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               onClick={() => onGalleryClick(item.idx)}
-              className="group cursor-zoom-in flex flex-col justify-between h-full p-4 sm:p-5 rounded-3xl bg-white border border-brand-gold/15 shadow-xs hover:border-brand-gold/45 hover:shadow-md transition-all duration-300 touch-target"
+              className="group cursor-zoom-in flex flex-col justify-between h-full p-4 sm:p-5 rounded-3xl bg-white border border-brand-gold/15 shadow-xs hover:border-brand-terracotta/40 hover:shadow-md transition-all duration-300 touch-target"
             >
               <div>
                 {/* Image Frame */}
-                <div className="relative aspect-square rounded-2xl overflow-hidden bg-brand-green/5 border border-brand-gold/10 p-2 mb-4 sm:mb-5">
+                <div className="relative aspect-square rounded-2xl overflow-hidden bg-white border border-brand-gold/10 p-2 mb-4 sm:mb-5">
                   <Image
                     src={item.src}
-                    alt={`Allmoali packaging ${item.title}`}
+                    alt={`ALLMOALI packaging ${item.title}`}
                     fill
-                    sizes="(max-width: 768px) 90vw, 200px"
-                    className="object-cover rounded-xl group-hover:scale-102 transition-transform duration-500"
+                    sizes="(max-width: 768px) 90vw, 260px"
+                    className="object-contain rounded-xl group-hover:scale-103 transition-transform duration-500"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
@@ -89,16 +83,16 @@ export default function PackagingGallery({ onGalleryClick }: PackagingGalleryPro
                 </div>
                 
                 {/* Text Content */}
-                <h3 className="font-display text-base font-bold text-brand-green uppercase tracking-wide mb-2">
+                <h3 className="font-display text-base font-bold text-brand-green uppercase tracking-wide mb-2 text-left">
                   {item.title}
                 </h3>
-                <p className="font-sans text-xs leading-relaxed text-brand-muted-green">
+                <p className="font-sans text-xs leading-relaxed text-brand-muted-green text-left font-medium">
                   {item.desc}
                 </p>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-brand-gold/5 flex justify-between items-center text-[10px] font-sans uppercase font-bold text-brand-gold tracking-widest">
-                <span>View Details</span>
+              <div className="mt-5 pt-3 border-t border-brand-gold/10 flex justify-between items-center text-[10px] font-sans uppercase font-black text-brand-terracotta tracking-widest">
+                <span>View Fullscreen</span>
                 <span>➔</span>
               </div>
             </motion.div>

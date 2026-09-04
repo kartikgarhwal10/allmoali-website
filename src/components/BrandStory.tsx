@@ -13,14 +13,14 @@ export default function BrandStory() {
             ABOUT ALLMOALI
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold leading-tight">
-            The Story Behind Allmoali
+            Rooted in Ayurvedic Heritage
           </h2>
           <div className="w-16 h-0.5 bg-brand-gold mx-auto mt-4" />
         </div>
 
         {/* Body Text */}
         <p className="font-sans text-sm sm:text-base leading-relaxed text-brand-ivory/90 max-w-2xl mx-auto font-medium">
-          Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh Allmoali Joint & Muscular Pain Oil brings traditional Ayurvedic care into a convenient format designed for modern everyday routines.
+          Rooted in a time-honoured Ayurvedic formula and enriched with 12 Ayurvedic herbs, ALLMOALI Joint & Muscular Pain Oil delivers traditional Ayurvedic care in a convenient format designed for modern everyday routines.
         </p>
 
       </div>

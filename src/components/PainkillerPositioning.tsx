@@ -80,7 +80,7 @@ export default function PainkillerPositioning() {
                 NATURAL AYURVEDIC MASSAGE CARE
               </h3>
               <p className="font-sans text-xs sm:text-sm text-brand-ivory/90 leading-relaxed font-medium">
-                Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh chemical-free topical massage oil for deep penetration & no side effects.
+                Based on a time-honoured Ayurvedic formula, enriched with 12 Ayurvedic herbs, chemical-free topical massage oil for deep penetration & no side effects.
               </p>
             </div>
           </motion.div>

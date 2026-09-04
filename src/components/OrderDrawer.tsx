@@ -106,7 +106,8 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
   // Pricing calculations
   const productPrice = selectedPackage === 2 ? 499 : 286;
   const deliveryCharge = 80;
-  const totalPrice = productPrice + deliveryCharge;
+  const deliveryDiscount = 80;
+  const totalPrice = productPrice;
 
   const motionProps = isMobile
     ? {
@@ -465,18 +466,22 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                   </div>
 
                   {/* Pricing summary */}
-                  <div className="bg-white border border-brand-gold/10 p-4 rounded-xl space-y-2 text-xs shadow-2xs">
+                  <div className="bg-white border border-brand-gold/15 p-4 rounded-xl space-y-2 text-xs shadow-2xs">
                     <div className="flex justify-between">
-                      <span className="font-sans text-brand-muted-green">Subtotal ({selectedPackage === 2 ? "2 Pcs" : "1 Pc"})</span>
+                      <span className="font-sans text-brand-muted-green font-medium">Subtotal ({selectedPackage === 2 ? "2 PCS" : "1 PC"})</span>
                       <span className="font-sans text-brand-green font-semibold">₹{productPrice}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="font-sans text-brand-muted-green">Delivery charge</span>
-                      <span className="font-sans text-brand-green font-semibold">₹80</span>
+                      <span className="font-sans text-brand-muted-green font-medium">Delivery charge</span>
+                      <span className="font-sans text-gray-400 line-through">₹80</span>
+                    </div>
+                    <div className="flex justify-between text-emerald-700">
+                      <span className="font-sans font-bold">Delivery Offer Discount</span>
+                      <span className="font-sans font-bold">-₹80 (FREE)</span>
                     </div>
                     <div className="border-t border-brand-gold/10 pt-2 flex justify-between items-baseline font-bold">
-                      <span className="font-display text-xs text-brand-green uppercase tracking-wider">TOTAL</span>
-                      <span className="font-display text-base text-brand-terracotta">₹{totalPrice}</span>
+                      <span className="font-display text-xs text-brand-green uppercase tracking-wider">TOTAL PAYABLE</span>
+                      <span className="font-display text-lg text-brand-terracotta">₹{totalPrice}</span>
                     </div>
                   </div>
 
@@ -485,12 +490,12 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full h-14 bg-brand-green text-brand-ivory hover:bg-brand-terracotta hover:text-brand-ivory rounded-full font-sans text-xs font-bold tracking-widest uppercase shadow-md transition-all disabled:opacity-50 flex items-center justify-center cursor-pointer"
+                      className="w-full h-14 bg-brand-terracotta text-white hover:bg-[#a94e31] rounded-full font-sans text-xs font-black tracking-widest uppercase shadow-md transition-all disabled:opacity-50 flex items-center justify-center cursor-pointer"
                     >
                       {loading 
                         ? "PLACING YOUR ORDER..." 
                         : paymentMethod === "cod"
-                          ? `PLACE COD ORDER (₹${totalPrice})`
+                          ? `PLACE COD ORDER — ₹${totalPrice}`
                           : "ONLINE PAYMENT INTEGRATION AVAILABLE"
                       }
                     </button>

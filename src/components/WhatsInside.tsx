@@ -1,60 +1,90 @@
 "use client";
 
 import React from "react";
-import { Info } from "lucide-react";
+import Image from "next/image";
+import { Leaf, Sparkles, ShieldCheck } from "lucide-react";
 import { PRODUCT_CONFIG } from "@/config/product";
 
 export default function WhatsInside() {
-  const hasIngredients = PRODUCT_CONFIG.ingredientsList && PRODUCT_CONFIG.ingredientsList.length > 0;
-
   return (
-    <section className="py-12 sm:py-16 md:py-24 bg-brand-green text-brand-ivory border-t border-brand-gold/10 relative overflow-hidden">
-      {/* Subtle Background Accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-brand-gold/5 blur-3xl pointer-events-none" />
+    <section id="ingredients" className="py-12 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/15 relative overflow-hidden">
+      {/* Background Ornaments */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-brand-green/8 rounded-full blur-3xl pointer-events-none translate-x-1/2" />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
-        {/* Header */}
-        <div className="mb-8 sm:mb-12">
-          <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
-            FORMULA INGREDIENTS
-          </span>
-          <h2 className="font-display text-2xl sm:text-4xl font-bold leading-tight">
-            What&apos;s Inside
+        {/* Section Header */}
+        <div className="mb-8 sm:mb-12 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 bg-brand-green/8 border border-brand-green/15 px-3.5 py-1 rounded-full mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-brand-terracotta" />
+            <span className="font-sans text-[11px] sm:text-xs font-black uppercase tracking-[0.2em] text-brand-green">
+              100% NATURAL | SAFE | EFFECTIVE
+            </span>
+          </div>
+
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-green leading-tight">
+            POWERFUL AYURVEDIC INGREDIENTS
           </h2>
-          <div className="w-16 h-0.5 bg-brand-gold mx-auto mt-4" />
+          
+          <p className="font-sans text-sm sm:text-base text-brand-muted-green font-semibold mt-3 max-w-2xl mx-auto">
+            {PRODUCT_CONFIG.ingredientsDisclaimer}
+          </p>
+
+          <div className="w-20 h-1 bg-brand-terracotta mx-auto mt-4 rounded-full" />
         </div>
 
-        {hasIngredients ? (
-          /* When real ingredients are supplied */
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {PRODUCT_CONFIG.ingredientsList.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl bg-white/5 border border-white/10 text-left flex gap-4 items-start"
-              >
-                <div>
-                  <h3 className="font-display text-base font-bold text-white mb-2 leading-tight">
-                    {item.name}
-                  </h3>
-                  <p className="font-sans text-xs leading-relaxed text-brand-ivory/70">
-                    {item.description}
-                  </p>
+        {/* 1. Client Supplied Ingredient Visual Showcase */}
+        <div className="max-w-5xl mx-auto bg-white rounded-3xl p-3 sm:p-6 border border-brand-gold/25 shadow-lg mb-12 overflow-hidden">
+          <div className="relative w-full aspect-[16/10.5] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-brand-ivory/50">
+            <Image
+              src="/images/ayurvedic_ingredients.jpg"
+              alt="Powerful Ayurvedic Ingredients — Allmoali Joint & Muscular Pain Oil"
+              fill
+              sizes="(max-width: 768px) 96vw, (max-width: 1200px) 90vw, 1100px"
+              className="object-contain rounded-xl"
+              priority
+            />
+          </div>
+          <div className="mt-4 pt-4 border-t border-brand-gold/15 flex flex-wrap items-center justify-center gap-4 text-xs font-sans font-bold text-brand-green">
+            <span className="flex items-center gap-1.5"><Leaf className="w-4 h-4 text-emerald-600" /> AYURVEDIC & 100% NATURAL</span>
+            <span>•</span>
+            <span className="flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-brand-gold" /> ENRICHED WITH NATURAL HERBS</span>
+            <span>•</span>
+            <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-brand-terracotta" /> SAFE, EFFECTIVE & NON-GREASY</span>
+          </div>
+        </div>
+
+        {/* 2. Interactive Herb Breakdown Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 max-w-6xl mx-auto text-left">
+          {PRODUCT_CONFIG.ingredientsList.map((herb, idx) => (
+            <div
+              key={idx}
+              className="p-5 rounded-2xl bg-white border border-brand-gold/15 shadow-2xs hover:border-brand-terracotta/40 hover:shadow-xs transition-all flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-display text-sm font-extrabold text-brand-green uppercase tracking-wide">
+                    {herb.name}
+                  </span>
+                  <span className="bg-brand-terracotta/10 text-brand-terracotta font-sans text-[10px] font-extrabold px-2 py-0.5 rounded-full">
+                    {herb.form}
+                  </span>
                 </div>
+                
+                <div className="flex items-center gap-3 font-sans text-[11px] text-brand-muted-green font-bold mb-3 border-b border-brand-gold/10 pb-2">
+                  <span>Part: {herb.part}</span>
+                  <span>•</span>
+                  <span>Qty: {herb.quantity}</span>
+                </div>
+
+                <p className="font-sans text-xs text-brand-charcoal/80 leading-relaxed font-medium">
+                  {herb.description}
+                </p>
               </div>
-            ))}
-          </div>
-        ) : (
-          /* If ingredients are unavailable */
-          <div className="p-8 rounded-2xl bg-white/5 border border-brand-gold/15 flex flex-col items-center justify-center text-center max-w-xl mx-auto shadow-sm">
-            <div className="w-10 h-10 rounded-full bg-brand-gold/10 flex items-center justify-center mb-4 text-brand-gold border border-brand-gold/20">
-              <Info className="w-5 h-5" />
             </div>
-            <p className="font-sans text-xs sm:text-sm text-brand-ivory/95 leading-relaxed font-medium">
-              {PRODUCT_CONFIG.ingredientsDisclaimer}
-            </p>
-          </div>
-        )}
+          ))}
+        </div>
 
       </div>
     </section>

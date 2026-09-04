@@ -55,10 +55,9 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
 
   const menuItems = [
     { name: "HOME", href: "#home" },
-    { name: "PRODUCT", href: "#product" },
     { name: "BENEFITS", href: "#benefits" },
-    { name: "OUR FORMULA", href: "#formula" },
-    { name: "HOW TO USE", href: "#how-to-use" },
+    { name: "INGREDIENTS", href: "#ingredients" },
+    { name: "OUR STORY", href: "#story" },
     { name: "REVIEWS", href: "#reviews" },
     { name: "FAQ", href: "#faq" },
   ];
@@ -83,58 +82,64 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
           scrolled
             ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 shadow-xs py-2"
-            : "bg-brand-ivory/80 backdrop-blur-xs py-3 border-b border-brand-gold/10"
+            : "bg-brand-ivory/85 backdrop-blur-xs py-3 border-b border-brand-gold/10"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
             
-            {/* Left: Official Brand Logo Image */}
+            {/* Left: Official Brand Logo Image - Strong Visual Presence */}
             <div className="flex-shrink-0">
               <a
                 href="#home"
                 onClick={(e) => handleScrollTo(e, "#home")}
                 className="flex items-center select-none py-1 group"
-                aria-label="Allmoali Home"
+                aria-label="ALLMOALI Home"
               >
                 <Image
                   src="/images/allmoali_logo.png"
-                  alt="Allmoali — The Universal Trust"
-                  width={240}
-                  height={80}
-                  className="h-12 sm:h-15 lg:h-17 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                  alt="ALLMOALI — The Universal Trust"
+                  width={280}
+                  height={90}
+                  className="h-13 sm:h-16 lg:h-18 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                   priority
                 />
               </a>
             </div>
 
             {/* Center: Desktop Navigation Menu links */}
-            <nav className="hidden lg:flex space-x-6 items-center" aria-label="Desktop Navigation">
+            <nav className="hidden lg:flex space-x-7 items-center" aria-label="Desktop Navigation">
               {menuItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleScrollTo(e, item.href)}
-                  className="text-brand-charcoal/80 hover:text-brand-green font-sans text-[11px] font-bold tracking-widest uppercase transition-colors py-2"
+                  className="text-brand-charcoal/85 hover:text-brand-terracotta font-sans text-[11px] font-extrabold tracking-widest uppercase transition-colors py-2"
                 >
                   {item.name}
                 </a>
               ))}
             </nav>
 
-            {/* Right: Desktop CTA button */}
+            {/* Right: Desktop CTA button with Client Accent Color */}
             <div className="hidden lg:flex items-center">
               <button
                 onClick={onOrderClick}
-                className="inline-flex items-center gap-2 bg-brand-green text-brand-ivory hover:bg-brand-terracotta active:scale-97 px-5 py-2.5 rounded-full font-sans text-[10px] font-bold tracking-widest uppercase transition-all duration-300 shadow-xs cursor-pointer touch-target"
+                className="inline-flex items-center gap-2 bg-brand-terracotta text-white hover:bg-[#a94e31] active:scale-97 px-6 py-2.5 rounded-full font-sans text-[11px] font-black tracking-widest uppercase transition-all duration-300 shadow-md cursor-pointer touch-target"
               >
                 ORDER NOW
-                <ArrowRight className="w-3 h-3" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            {/* Mobile Menu Button (Min 44x44px touch target) */}
-            <div className="flex items-center lg:hidden">
+            {/* Mobile Menu Button & Mobile Order CTA */}
+            <div className="flex items-center gap-2 lg:hidden">
+              <button
+                onClick={onOrderClick}
+                className="bg-brand-terracotta text-white px-3.5 py-1.5 rounded-full font-sans text-[10px] font-black tracking-wider uppercase shadow-xs cursor-pointer touch-target flex items-center gap-1"
+              >
+                ORDER NOW
+              </button>
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-11 h-11 flex items-center justify-center text-brand-green active:bg-brand-gold/10 rounded-full focus:outline-none cursor-pointer"
@@ -180,10 +185,10 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
                 >
                   <Image
                     src="/images/allmoali_logo.png"
-                    alt="Allmoali — The Universal Trust"
-                    width={200}
-                    height={64}
-                    className="h-11 sm:h-13 w-auto object-contain"
+                    alt="ALLMOALI — The Universal Trust"
+                    width={220}
+                    height={70}
+                    className="h-12 sm:h-14 w-auto object-contain"
                   />
                 </a>
                 <button
@@ -217,7 +222,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
                     setIsOpen(false);
                     onOrderClick();
                   }}
-                  className="flex w-full items-center justify-center gap-2 bg-brand-green text-brand-ivory active:bg-brand-terracotta py-4 px-6 rounded-full text-center font-sans text-xs font-black tracking-widest uppercase shadow-md cursor-pointer touch-target h-[48px]"
+                  className="flex w-full items-center justify-center gap-2 bg-brand-terracotta text-white active:bg-[#a94e31] py-4 px-6 rounded-full text-center font-sans text-xs font-black tracking-widest uppercase shadow-md cursor-pointer touch-target h-[48px]"
                 >
                   ORDER NOW
                   <ArrowRight className="w-4 h-4" />

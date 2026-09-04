@@ -40,13 +40,15 @@ export default function FinalCTA() {
           </h2>
 
           {/* Product Label */}
-          <p className="font-sans text-xs sm:text-base text-brand-ivory/95 font-bold uppercase tracking-widest max-w-md mx-auto mb-2 sm:mb-3">
-            Allmoali Joint & Muscular Pain Oil
+          <p className="font-sans text-xs sm:text-base text-brand-gold font-black uppercase tracking-widest max-w-md mx-auto mb-2 sm:mb-3">
+            ALLMOALI Joint & Muscular Pain Oil
           </p>
 
           {/* Core Offer Badges */}
-          <div className="flex justify-center gap-3.5 text-xs font-bold text-brand-terracotta uppercase tracking-widest mb-8 sm:mb-10">
+          <div className="flex justify-center gap-3 text-xs font-bold text-emerald-400 uppercase tracking-widest mb-8 sm:mb-10">
             <span>42% OFF</span>
+            <span>•</span>
+            <span>Free Delivery</span>
             <span>•</span>
             <span>COD Available</span>
           </div>
@@ -56,10 +58,10 @@ export default function FinalCTA() {
             <a
               href="#order"
               onClick={(e) => handleScrollTo(e, "#order")}
-              className="flex w-full sm:w-auto items-center justify-center gap-2.5 bg-brand-terracotta text-brand-ivory active:bg-brand-green border border-transparent py-3.5 px-8 rounded-full font-sans text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-200 shadow-lg text-center cursor-pointer touch-target h-[48px]"
+              className="flex w-full sm:w-auto items-center justify-center gap-2.5 bg-brand-terracotta text-white active:bg-[#a94e31] py-4 px-9 rounded-full font-sans text-xs sm:text-sm font-black tracking-widest uppercase transition-all duration-200 shadow-lg text-center cursor-pointer touch-target h-[48px]"
             >
               <ShoppingBag className="w-4 h-4" />
-              ORDER NOW
+              ORDER NOW — ₹286
             </a>
             <a
               href={whatsappUrl}

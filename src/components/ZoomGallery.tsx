@@ -19,29 +19,29 @@ export default function ZoomGallery({ isOpen, onClose, initialIndex = 0 }: ZoomG
 
   const galleryImages = [
     {
-      src: "/images/product_bottle_only.jpg",
-      title: "Product Front View",
-      description: "Original 100ml green glass dropper bottle.",
-    },
-    {
-      src: "/images/oil_texture.jpg",
-      title: "Close-Up (Texture)",
-      description: "Macro shot showcasing lightweight golden droplets.",
-    },
-    {
-      src: "/images/lifestyle_massage.jpg",
-      title: "Usage (Massage)",
-      description: "A comfortable personal care massage routine.",
-    },
-    {
-      src: "/images/product_box.jpg",
-      title: "Product Back & Specifications",
-      description: "Label details, regulatory text, and warnings on the outer packaging.",
+      src: "/images/product_hero_bottle.jpg",
+      title: "ALLMOALI Joint & Muscular Pain Oil",
+      description: "Original 100ml amber bottle with gold cap.",
     },
     {
       src: "/images/product_box_bottle.jpg",
-      title: "Ingredients & Efficacy Details",
-      description: "Factual composition lists and active extracts.",
+      title: "Box & Bottle Set",
+      description: "Outer packaging with clear Ayurvedic instructions and composition.",
+    },
+    {
+      src: "/images/product_bundle_pack2.jpg",
+      title: "2 PCS Bundle Offer",
+      description: "Pack of 2 bundle for double care in your daily routine.",
+    },
+    {
+      src: "/images/lifestyle_model.jpg",
+      title: "Gentle Massage Self-Care",
+      description: "Designed for comfortable everyday joint & muscular wellness.",
+    },
+    {
+      src: "/images/ayurvedic_ingredients.jpg",
+      title: "12 Ayurvedic Herbs Visual Breakdown",
+      description: "Enriched with Alsi, Kapoor, Pudina, Nirgundi, Salai, Haldi, Guggal & more.",
     },
   ];
 

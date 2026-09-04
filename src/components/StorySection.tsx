@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { PRODUCT_CONFIG } from "@/config/product";
 
 
 export default function StorySection() {
@@ -21,53 +22,61 @@ export default function StorySection() {
   };
 
   return (
-    <section id="formula" className="py-12 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/10 overflow-hidden">
+    <section id="story" className="py-16 sm:py-20 md:py-28 bg-brand-ivory border-t border-brand-gold/15 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Editorial Story Frame */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center"
+          className="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-12 border border-brand-gold/20 shadow-[0_12px_40px_rgba(23,59,47,0.05)] relative"
         >
-          {/* Left Column: Outline 12 */}
-          <motion.div
-            variants={itemVariants}
-            className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left relative"
-          >
-            <div className="relative select-none pointer-events-none">
-              <span className="text-stroke-gold text-[100px] xs:text-[140px] sm:text-[180px] lg:text-[220px] font-serif font-black leading-none opacity-85 block select-none">
-                12
-              </span>
-              <div className="absolute top-1/2 left-1/2 lg:left-0 transform -translate-x-1/2 -translate-y-1/2 lg:translate-x-0 w-28 h-28 bg-brand-gold/10 rounded-full blur-xl -z-10" />
-            </div>
-            <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-black -mt-2 mb-4">
-              AYURVEDIC JADI-BUTIYAN
+          {/* Eyebrow */}
+          <motion.div variants={itemVariants} className="text-center mb-6">
+            <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.25em] text-brand-terracotta font-extrabold block">
+              THE STORY BEHIND
             </span>
+            <div className="w-12 h-0.5 bg-brand-terracotta mx-auto mt-2" />
           </motion.div>
 
-          {/* Right Column: Content */}
-          <motion.div variants={itemVariants} className="lg:col-span-7 flex flex-col text-left min-w-0">
-            <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
-              THE ALLMOALI FORMULA
+          {/* Key Typography Highlights */}
+          <motion.div variants={itemVariants} className="text-center my-6 space-y-2">
+            <p className="font-serif text-2xl sm:text-4xl italic text-brand-green font-bold leading-tight">
+              &ldquo;Most oils talk to the skin.&rdquo;
+            </p>
+            <p className="font-serif text-2xl sm:text-4xl italic text-brand-terracotta font-extrabold leading-tight">
+              &ldquo;This one goes where the pain actually lives.&rdquo;
+            </p>
+          </motion.div>
+
+          {/* Main Story Narrative */}
+          <motion.p 
+            variants={itemVariants} 
+            className="font-sans text-sm sm:text-lg text-brand-charcoal/90 leading-relaxed text-center font-medium max-w-2xl mx-auto my-6"
+          >
+            {PRODUCT_CONFIG.storyBody}
+          </motion.p>
+
+          {/* Heritage Pill Badges */}
+          <motion.div 
+            variants={itemVariants}
+            className="flex flex-wrap items-center justify-center gap-3 pt-6 border-t border-brand-gold/15"
+          >
+            <span className="bg-brand-ivory border border-brand-gold/20 text-brand-green font-sans text-xs font-bold px-4 py-2 rounded-full">
+              Rooted in a time-honoured Ayurvedic formula
             </span>
-            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-brand-green leading-tight mb-4 sm:mb-6">
-              12 Ayurvedic Jadi-Butiyon Ka Formula
-            </h2>
-            <p className="text-brand-muted-green font-sans text-sm sm:text-lg leading-relaxed mb-4 sm:mb-6 font-medium">
-              Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh Allmoali Joint & Muscular Pain Oil.
-            </p>
-            <p className="text-brand-muted-green font-sans text-xs sm:text-sm leading-relaxed border-l-2 border-brand-gold pl-4 py-2 bg-brand-gold/5 font-semibold">
-              Traditional Ayurvedic inspiration, presented in a convenient modern format. Designed for deep penetration and fast absorption in your everyday active routine.
-            </p>
+            <span className="bg-brand-ivory border border-brand-gold/20 text-brand-terracotta font-sans text-xs font-bold px-4 py-2 rounded-full">
+              Enriched with 12 Ayurvedic Herbs
+            </span>
           </motion.div>
 
         </motion.div>
 
-        {/* Minimal Timeline */}
-        <div className="mt-16 border-t border-dashed border-brand-gold/20 pt-12 relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 text-center">
+        {/* Traditional Heritage + Modern Application Pillars */}
+        <div className="mt-16 border-t border-dashed border-brand-gold/20 pt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-5xl mx-auto">
             
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -76,12 +85,12 @@ export default function StorySection() {
               transition={{ delay: 0.1 }}
               className="flex flex-col items-center px-4"
             >
-              <div className="w-8 h-8 rounded-full bg-brand-green text-brand-gold flex items-center justify-center font-sans text-xs font-bold mb-4">
-                1
+              <div className="w-10 h-10 rounded-full bg-brand-green text-brand-gold flex items-center justify-center font-sans text-xs font-extrabold mb-4 shadow-xs">
+                01
               </div>
-              <h5 className="font-display text-base font-bold text-brand-green mb-1.5">AYURVEDIC INSPIRATION</h5>
-              <p className="font-sans text-xs leading-relaxed text-brand-muted-green max-w-xs">
-                Barson purane Ayurvedic formula se prerit formulation using 12 natural jadi-butiyan.
+              <h4 className="font-display text-base font-bold text-brand-green mb-1.5">TIME-HONOURED FORMULA</h4>
+              <p className="font-sans text-xs leading-relaxed text-brand-muted-green">
+                Rooted in a time-honoured Ayurvedic formula carefully refined over generations for genuine care.
               </p>
             </motion.div>
 
@@ -92,12 +101,12 @@ export default function StorySection() {
               transition={{ delay: 0.2 }}
               className="flex flex-col items-center px-4"
             >
-              <div className="w-8 h-8 rounded-full bg-brand-green text-brand-gold flex items-center justify-center font-sans text-xs font-bold mb-4">
-                2
+              <div className="w-10 h-10 rounded-full bg-brand-green text-brand-gold flex items-center justify-center font-sans text-xs font-extrabold mb-4 shadow-xs">
+                02
               </div>
-              <h5 className="font-display text-base font-bold text-brand-green mb-1.5">12 JADI-BUTIYAN</h5>
-              <p className="font-sans text-xs leading-relaxed text-brand-muted-green max-w-xs">
-                Rich in 12 traditional botanical extracts for targeted joint and muscular care.
+              <h4 className="font-display text-base font-bold text-brand-green mb-1.5">12 AYURVEDIC HERBS</h4>
+              <p className="font-sans text-xs leading-relaxed text-brand-muted-green">
+                Enriched with 12 Ayurvedic Herbs blended in precise proportions for targeted joint & muscular support.
               </p>
             </motion.div>
 
@@ -108,12 +117,12 @@ export default function StorySection() {
               transition={{ delay: 0.3 }}
               className="flex flex-col items-center px-4"
             >
-              <div className="w-8 h-8 rounded-full bg-brand-green text-brand-gold flex items-center justify-center font-sans text-xs font-bold mb-4">
-                3
+              <div className="w-10 h-10 rounded-full bg-brand-green text-brand-gold flex items-center justify-center font-sans text-xs font-extrabold mb-4 shadow-xs">
+                03
               </div>
-              <h5 className="font-display text-base font-bold text-brand-green mb-1.5">MODERN APPLICATION</h5>
-              <p className="font-sans text-xs leading-relaxed text-brand-muted-green max-w-xs">
-                Refined into a lightweight, fast-absorbing oil for frictionless application and deep penetration.
+              <h4 className="font-display text-base font-bold text-brand-green mb-1.5">MODERN D2C EXPERIENCE</h4>
+              <p className="font-sans text-xs leading-relaxed text-brand-muted-green">
+                Crafted into a lightweight, fast-absorbing oil ideal for frictionless daily massage routines.
               </p>
             </motion.div>
 

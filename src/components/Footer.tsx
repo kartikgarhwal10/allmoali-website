@@ -56,19 +56,27 @@ export default function Footer() {
             <a
               href="#home"
               onClick={(e) => handleScrollTo(e, "#home")}
-              className="flex items-center select-none mb-4 group"
-              aria-label="Allmoali Home"
+              className="flex items-center select-none mb-3 group"
+              aria-label="ALLMOALI Home"
             >
               <Image
                 src="/images/allmoali_logo.png"
-                alt="Allmoali — The Universal Trust"
-                width={240}
-                height={80}
+                alt="ALLMOALI — The Universal Trust"
+                width={260}
+                height={85}
                 className="h-14 sm:h-16 w-auto object-contain transition-transform group-hover:scale-[1.02]"
               />
             </a>
-            <p className="font-sans text-xs sm:text-sm text-brand-muted-green leading-relaxed max-w-sm mb-6 font-semibold">
-              Traditional inspiration. <br /> Modern everyday care.
+            <div className="text-center md:text-left mb-4">
+              <span className="font-display font-black text-sm text-brand-green uppercase tracking-wider block">
+                Joint & Muscular Pain Oil
+              </span>
+              <span className="font-sans text-xs text-brand-terracotta font-extrabold uppercase tracking-widest block mt-0.5">
+                Natural Ayurvedic Care · Net Quantity: {PRODUCT_CONFIG.netQuantity}
+              </span>
+            </div>
+            <p className="font-sans text-xs text-brand-muted-green leading-relaxed max-w-sm mb-6 font-semibold">
+              Rooted in a time-honoured Ayurvedic formula, enriched with 12 Ayurvedic herbs for everyday joint & muscular care.
             </p>
             <div className="flex gap-3">
               <a
@@ -196,8 +204,8 @@ export default function Footer() {
 
         {/* Lower footer */}
         <div className="pt-8 text-center flex flex-col items-center gap-6">
-          <p className="font-sans text-[10px] text-brand-muted-green/60">
-            © {currentYear} {PRODUCT_CONFIG.brandName}. Barson Purane Ayurvedic Formula. Made for Everyday Care.
+          <p className="font-sans text-[10px] font-semibold text-brand-muted-green">
+            © {currentYear} {PRODUCT_CONFIG.brandName}. Time-Honoured Ayurvedic Formula · 12 Ayurvedic Herbs · Net Quantity: {PRODUCT_CONFIG.netQuantity}.
           </p>
           <div className="w-full max-w-4xl border border-brand-gold/15 bg-white/40 p-4 rounded-xl shadow-xs text-left flex gap-3 items-start">
             <div className="w-5 h-5 rounded-full bg-brand-terracotta/10 flex items-center justify-center text-brand-terracotta flex-shrink-0 mt-0.5">

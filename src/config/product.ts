@@ -52,61 +52,88 @@ export interface UseCaseCard {
 }
 
 export const PRODUCT_CONFIG = {
-  brandName: "Allmoali",
+  brandName: "ALLMOALI",
   productName: "Joint & Muscular Pain Oil",
-  tagline: "Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh.",
-  secondaryTagline: "Barson purane Ayurvedic formula · Fast absorbing · Non-sticky",
+  netQuantity: "100 ml",
+  tagline: "Rooted in a time-honoured Ayurvedic formula, enriched with 12 Ayurvedic Herbs.",
+  secondaryTagline: "Based on a time-honoured Ayurvedic formula · Fast Absorbing · Non-Greasy",
   mrp: 493,
   discount: 42, // % OFF
-  sellingPrice: 286, // Final Client Approved Price
+  sellingPrice: 286, // Single Bottle Price
+  bundlePrice: 499, // 2 PCS Bundle Price
+  deliveryCharge: 80,
+  deliveryDiscount: 80,
+  finalDeliveryCharge: 0,
   whatsappNumber: "919110099087",
   whatsappMessage: "Hi, I want to order Allmoali Joint & Muscular Pain Oil for ₹286. Please share the order details.",
   email: "info@allmoali.com",
   codAvailable: true,
   demoDisclaimer: "Prescribed medicines should not be discontinued without professional medical advice. Product claims supported by authorized documentation.",
   
+  // Strategic Root Cause Copy
+  rootCauseHeading: "ROOT-CAUSE ACTION",
+  rootCauseBody: "Most oils only create a cooling or warming feeling on the skin. Allmoali oil targets inflammation pathways and supports joint health long-term.",
+
+  // Story Copy
+  storyHighlightLine1: "Most oils talk to the skin.",
+  storyHighlightLine2: "This one goes where the pain actually lives.",
+  storyBody: "Born from a simple question — “Why do the same oils keep giving temporary relief?” — this formula was created to reach deeper, calm inflammation at its source, and support joints over time, not just for a few hours.",
+
   // Why Allmoali Cards
   whyAllmoali: [
     {
       id: "01",
       title: "NATURAL AYURVEDIC FORMULA",
-      description: "Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh."
+      description: "Based on a time-honoured Ayurvedic formula, enriched with 12 Ayurvedic herbs."
     },
     {
       id: "02",
-      title: "12 AYURVEDIC JADI-BUTIYAN",
-      description: "Rich formulation crafted from 12 Ayurvedic botanical extracts."
+      title: "12 AYURVEDIC HERBS",
+      description: "Crafted with a carefully selected blend of 12 time-tested Ayurvedic botanical herbs."
     },
     {
       id: "03",
       title: "FAST ABSORBING",
-      description: "Lighter consistency designed to absorb quickly during massage."
+      description: "Lighter consistency designed to absorb quickly into the skin during massage."
     },
     {
       id: "04",
-      title: "NON-STICKY FORMULA",
-      description: "Non-greasy, comfortable application without leaving a sticky finish."
+      title: "NON-GREASY FORMULA",
+      description: "Non-sticky, comfortable application without leaving a greasy layer."
     },
     {
       id: "05",
       title: "DEEP PENETRATION",
-      description: "Advanced formulation designed for deep penetration during massage."
+      description: "Advanced formulation designed for deep penetration to calm inflammation at its source."
     },
     {
       id: "06",
       title: "PLEASANT RELAXING AROMA",
-      description: "A soft, relaxing aroma that enhances your daily wellness routine."
+      description: "A soothing, relaxing aroma that enhances your daily wellness massage routine."
     },
     {
       id: "07",
       title: "NO SIDE EFFECT",
-      description: "Natural Ayurvedic chemical-free oil formulation."
+      description: "Natural Ayurvedic chemical-free oil formulation for everyday peace of mind."
     }
   ] as WhyCard[],
 
-  // V2 Ingredients Info
-  ingredientsDisclaimer: "Barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh.",
-  ingredientsList: [] as { name: string; description: string }[],
+  // Actual Ingredients supplied by client visual
+  ingredientsDisclaimer: "Enriched with time-tested Ayurvedic herbs for joint & muscular care.",
+  ingredientsList: [
+    { name: "ALSI", part: "Seeds", quantity: "0.025ml", form: "Oil", description: "Rich in essential fatty acids for joint mobility and comfort." },
+    { name: "KAPOOR", part: "Resin", quantity: "0.025ml", form: "Oil", description: "Provides instant soothing warmth and relieves muscle stiffness." },
+    { name: "PUDINA", part: "Leaves", quantity: "0.025ml", form: "Oil", description: "Delivers cooling freshness and relaxes strained muscles." },
+    { name: "GANDHAPURA KA TAIL", part: "Fruit", quantity: "0.025ml", form: "Oil", description: "Traditional Ayurvedic extract known for anti-inflammatory support." },
+    { name: "NIRGUNDI", part: "Leaves", quantity: "0.025ml", form: "Oil", description: "Time-tested herb prized in Ayurveda for joint & tissue ease." },
+    { name: "MALKAGINI", part: "Seeds", quantity: "0.025ml", form: "Oil", description: "Renowned botanical extract supporting nerve and muscular relaxation." },
+    { name: "TILL", part: "Seeds", quantity: "0.9ml", form: "Oil", description: "Nourishing base oil ensuring deep skin absorption and warmth." },
+    { name: "SALAI", part: "Seeds", quantity: "0.025ml", form: "Oil", description: "Ayurvedic Boswellia herb supporting joint flexibility and swelling reduction." },
+    { name: "LAUNG", part: "Flower Bud", quantity: "0.0125ml", form: "Oil", description: "Clove oil providing soothing comfort to sore and tired areas." },
+    { name: "SHUDH GUGGAL", part: "Rhizomes", quantity: "20 MG", form: "Extract", description: "Potent traditional resin for long-term joint health and vitality." },
+    { name: "HALDI (EXTRACT)", part: "Haldi", quantity: "30 MG", form: "Extract", description: "Concentrated Curcumin extract targeting inflammation pathways." },
+    { name: "MENTHOL / PEPPERMINT", part: "Leaves", quantity: "0.025 ml", form: "Extract", description: "Soothing natural extract for pleasant aroma and cooling sensation." }
+  ],
 
   // Product Experience Cards (4 Key Benefits)
   productExperience: [
@@ -117,62 +144,62 @@ export const PRODUCT_CONFIG = {
     },
     {
       id: "02",
-      title: "NON-STICKY",
-      description: "Non-greasy, lightweight feel without a sticky layer."
+      title: "NON-GREASY",
+      description: "Lightweight, non-sticky feel without leaving greasy stains."
     },
     {
       id: "03",
       title: "DEEP PENETRATION",
-      description: "Designed for deep penetration during gentle massage."
+      description: "Reaches deeper to target inflammation pathways where discomfort lives."
     },
     {
       id: "04",
       title: "PLEASANT AROMA",
-      description: "Pleasant fragrance for a relaxing, soothing massage experience."
+      description: "Relaxing natural fragrance for a soothing daily massage ritual."
     }
   ] as ExperienceCard[],
 
-  // Targeted Everyday Use Cases
+  // Targeted Everyday Use Areas
   useCases: [
     {
-      title: "KNEE CARE",
-      description: "Specially beneficial for massage care around the knees.",
-      highlight: "Knee Massage Care"
+      title: "KNEE PAIN",
+      description: "Specially beneficial for massage care around stiff or overworked knees.",
+      highlight: "Knee Joint Care"
     },
     {
-      title: "BACK CARE",
-      description: "Ideal for gentle back massage care after a long day.",
-      highlight: "Back Care Routine"
+      title: "BACK DISCOMFORT",
+      description: "Ideal for gentle back massage care after a long work day.",
+      highlight: "Back Relaxation"
     },
     {
       title: "SHOULDER & ELBOW",
-      description: "Relieves everyday tension around shoulders and elbows.",
-      highlight: "Targeted Relief"
+      description: "Relieves everyday tension and stiffness around shoulders and elbows.",
+      highlight: "Upper Body Comfort"
     },
     {
       title: "ARTHRITIS CARE",
-      description: "Arthritis mein faydemand — specially formulated for massage routines in arthritis-related discomfort.",
-      highlight: "Arthritis Care"
+      description: "Specially formulated for daily gentle massage routines in arthritis discomfort.",
+      highlight: "Arthritis Support"
     },
     {
       title: "MUSCULAR PAIN",
-      description: "Muscular pain and everyday muscular discomfort ke massage routine ke liye upyogi.",
+      description: "Effective support for daily muscular pain and post-strain recovery.",
       highlight: "Muscle Relief"
     },
     {
-      title: "WINTER JOINT CARE",
-      description: "Sardiyon mein joints ki extra care. Winter joint pain mein atyadhik labhdayak.",
-      highlight: "Winter Joint Care"
+      title: "WINTER JOINT PAIN",
+      description: "Provides comforting warmth and lubrication for joints during cold weather.",
+      highlight: "Winter Care"
     },
     {
       title: "YOGA & EXERCISE",
-      description: "Yoga aur exercise ke dardon mein atyadhik labhdayak. Physical activity ke baad massage routine ke liye upyogi.",
-      highlight: "After Exercise"
+      description: "Ideal post-workout oil to relax tired muscles after physical activity.",
+      highlight: "Active Recovery"
     },
     {
-      title: "AFTER A LONG DAY",
-      description: "For those moments when you want to slow down and massage tired joints.",
-      highlight: "Evening Ritual"
+      title: "DAILY WELLNESS",
+      description: "Rozmarra ke joint aur muscular discomfort ke liye regular daily massage routine.",
+      highlight: "Daily Ritual"
     }
   ] as UseCaseCard[],
 
@@ -181,26 +208,26 @@ export const PRODUCT_CONFIG = {
     {
       number: "01",
       title: "APPLY",
-      description: "Apply 3–5 drops to the affected area.",
+      description: "Apply 3–5 drops to the affected joint or muscular area.",
       detail: "3–5 drops"
     },
     {
       number: "02",
       title: "MASSAGE",
-      description: "Massage gently until the oil penetrates deeply.",
+      description: "Massage gently for 2–3 minutes until the oil penetrates deeply.",
       detail: "Deep Massage"
     },
     {
       number: "03",
       title: "RELAX",
-      description: "Let the 12 Ayurvedic herbs absorb naturally.",
-      detail: "Absorb"
+      description: "Let the 12 Ayurvedic herbs absorb naturally into inflammation pathways.",
+      detail: "Absorb Naturally"
     },
     {
       number: "04",
       title: "REPEAT",
-      description: "Include in your everyday personal care routine.",
-      detail: "Routine"
+      description: "Include in your everyday morning or evening self-care routine.",
+      detail: "Daily Habit"
     }
   ] as StepItem[],
 
@@ -211,7 +238,7 @@ export const PRODUCT_CONFIG = {
       name: "Rajesh Kumar",
       location: "Jaipur, Rajasthan",
       rating: 5,
-      text: "Oil ka texture kaafi light hai. Massage karne ke baad chipchipa feel nahi hota. Deep penetration and fast absorption bohot badhiya hai.",
+      text: "The oil texture is very light. Massage karne ke baad chipchipa feel nahi hota. Deep penetration and fast absorption are excellent.",
       verified: true,
       avatar: "RK"
     },
@@ -220,7 +247,7 @@ export const PRODUCT_CONFIG = {
       name: "Amit Sharma",
       location: "Indore, Madhya Pradesh",
       rating: 5,
-      text: "Gym aur exercise ke baad massage ke liye use kiya. Muscular pain mein kaafi aaram milta hai. Fragrance bhi pleasant hai.",
+      text: "Used this after gym and exercise. Muscular pain mein kaafi aaram milta hai. The aroma is very pleasant and relaxing.",
       verified: true,
       avatar: "AS"
     },
@@ -229,7 +256,7 @@ export const PRODUCT_CONFIG = {
       name: "Sunita Sharma",
       location: "Lucknow, Uttar Pradesh",
       rating: 5,
-      text: "Mere papa ke knee and joint care ke liye regular use kar rahe hain. Chemical-free natural Ayurvedic oil hai, no side effect feel hua.",
+      text: "Using regularly for my mother's knee joint care. Natural Ayurvedic chemical-free oil hai, zero side effects.",
       verified: true,
       avatar: "SS"
     },
@@ -238,7 +265,7 @@ export const PRODUCT_CONFIG = {
       name: "Anjali Verma",
       location: "Delhi",
       rating: 5,
-      text: "Sardiyon mein joints ki extra care ke liye best hai. Fast absorption se jaldi ghul jata hai aur aaram milta hai.",
+      text: "Best for winter joint stiffness. Fast absorption helps it absorb quickly and brings long-lasting comfort.",
       verified: true,
       avatar: "AV"
     },
@@ -247,7 +274,7 @@ export const PRODUCT_CONFIG = {
       name: "Priya Gupta",
       location: "Mumbai, Maharashtra",
       rating: 5,
-      text: "Packaging premium hai aur oil ka texture lightweight hai. Massage ke baad uncomfortable sticky feeling bilkul nahi rehti.",
+      text: "Premium bottle packaging and non-greasy formula. Massage ke baad uncomfortable sticky feeling bilkul nahi rehti.",
       verified: true,
       avatar: "PG"
     },
@@ -256,52 +283,53 @@ export const PRODUCT_CONFIG = {
       name: "Rahul Verma",
       location: "Ahmedabad, Gujarat",
       rating: 5,
-      text: "Long day ke baad back and shoulder massage routine mein use karna achha lagta hai. Fragrance kaafi soothing hai.",
+      text: "Great for back and shoulder massage after a long working day. Soothing fragrance and authentic Ayurvedic care.",
       verified: true,
       avatar: "RV"
     }
   ] as ReviewItem[],
 
-  // Product Details Specifications Accordion
+  // Product Specifications Accordion
   productDetailsSpecs: [
-    { label: "Product", value: "Joint & Muscular Pain Oil" },
+    { label: "Brand", value: "ALLMOALI" },
+    { label: "Product Name", value: "Joint & Muscular Pain Oil" },
+    { label: "Net Quantity", value: "100 ml" },
     { label: "Form", value: "Topical Ayurvedic Oil" },
-    { label: "Single Bottle Price", value: "₹286 (+ ₹80 delivery)" },
-    { label: "2 Bottles Bundle", value: "₹499 (+ ₹80 delivery) — BEST VALUE" },
-    { label: "Delivery Charge", value: "₹80" },
-    { label: "MRP (Single)", value: "₹493" },
-    { label: "Offer (Single)", value: "42% OFF" },
-    { label: "Formula Heritage", value: "Barson Purane Ayurvedic Formula" },
-    { label: "Key Ingredients", value: "12 Ayurvedic Jadi-Butiyan" },
-    { label: "Safety", value: "Chemical-Free, No Side Effect" },
-    { label: "Usage", value: "Apply 3–5 drops and massage gently" }
+    { label: "Single Bottle Price", value: "₹286 (MRP ₹493, 42% OFF, Free Delivery)" },
+    { label: "2 Bottles Bundle", value: "₹499 (BEST VALUE, Free Delivery)" },
+    { label: "Standard Delivery Charge", value: "₹80 (Discounted to ₹0 with current offer)" },
+    { label: "Formula Heritage", value: "Time-Honoured Ayurvedic Formula" },
+    { label: "Key Ingredients", value: "12 Ayurvedic Herbs" },
+    { label: "Safety Profile", value: "Natural Ayurvedic, Chemical-Free, No Side Effect" },
+    { label: "Usage Directions", value: "Apply 3–5 drops to affected area and massage gently" }
   ],
 
   // FAQs
   faqs: [
     {
       question: "How do I use Allmoali Joint & Muscular Pain Oil?",
-      answer: "Apply 3–5 drops to the affected joint or muscular area and gently massage for 2 minutes until absorbed."
+      answer: "Apply 3–5 drops to the affected joint or muscular area and gently massage for 2 minutes until absorbed into the skin."
     },
     {
       question: "What makes Allmoali formula unique?",
-      answer: "Allmoali is inspired by a barson purane Ayurvedic formula enriched with 12 Ayurvedic jadi-butiyan for deep penetration, fast absorption, and a non-sticky feel."
+      answer: "Allmoali is based on a time-honoured Ayurvedic formula enriched with 12 Ayurvedic herbs that target inflammation pathways and support joint health long-term."
     },
     {
       question: "Does Allmoali have any side effects?",
-      answer: "Allmoali is a natural Ayurvedic, chemical-free massage oil with no known side effects for everyday topical application."
+      answer: "Allmoali is a natural Ayurvedic, chemical-free oil with NO SIDE EFFECT for everyday topical application."
     },
     {
-      question: "Can I use it for winter joint care and exercise recovery?",
-      answer: "Yes, Allmoali is specially formulated for winter joint care, post-yoga and exercise recovery, and targeted massage care for knees, back, shoulders, and elbows."
+      question: "Can I use it for winter joint pain and exercise recovery?",
+      answer: "Yes, Allmoali is ideal for winter joint care, post-yoga and exercise recovery, and targeted massage care for knees, back, shoulders, elbows, and muscular pain."
     },
     {
-      question: "Is Cash on Delivery available?",
-      answer: "Yes, Cash on Delivery (COD) is available nationwide."
+      question: "Is Cash on Delivery (COD) available?",
+      answer: "Yes, Cash on Delivery (COD) is available nationwide with free delivery under the current offer."
     },
     {
       question: "What is the price of Allmoali Joint & Muscular Pain Oil?",
-      answer: "A single bottle is ₹286 (MRP ₹493, 42% OFF) + ₹80 delivery. The 2 Bottles Bundle is ₹499 + ₹80 delivery (BEST VALUE)."
+      answer: "A single 100 ml bottle is ₹286 (MRP ₹493, 42% OFF). The 2-Piece Bundle is ₹499 (BEST VALUE). Standard ₹80 delivery charge is fully discounted (FREE DELIVERY)."
     }
   ] as FaqItem[]
 };
+

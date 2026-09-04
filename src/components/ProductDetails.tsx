@@ -10,38 +10,37 @@ export default function ProductDetails() {
   const specGroups = [
     {
       id: "product",
-      title: "Product & Form",
+      title: "Brand & Product Info",
       specs: [
-        { label: "Product", value: "Joint & Muscular Pain Oil" },
-        { label: "Form", value: "Topical Oil" },
-        { label: "Net Quantity", value: "[TO BE CONFIRMED]" },
+        { label: "Brand", value: PRODUCT_CONFIG.brandName },
+        { label: "Product Name", value: PRODUCT_CONFIG.productName },
+        { label: "Net Quantity", value: PRODUCT_CONFIG.netQuantity },
+        { label: "Form", value: "Topical Ayurvedic Oil" },
       ]
     },
     {
       id: "ingredients",
-      title: "Ingredients",
+      title: "Formula & Heritage",
       specs: [
-        { label: "Ingredients", value: "[TO BE CONFIRMED]" },
+        { label: "Formula Heritage", value: "Time-Honoured Ayurvedic Formula" },
+        { label: "Key Ingredients", value: "12 Ayurvedic Herbs" },
+        { label: "Safety Profile", value: "Natural Ayurvedic, Chemical-Free, No Side Effect" },
       ]
     },
     {
       id: "usage",
-      title: "Routine & Usage",
+      title: "Usage & Directions",
       specs: [
-        { label: "Usage", value: "[TO BE CONFIRMED FROM PACKAGING]" },
+        { label: "Usage Directions", value: "Apply 3–5 drops to affected area and massage gently for 2 minutes" },
       ]
     },
     {
       id: "delivery",
       title: "Pricing & Delivery",
       specs: [
-        { label: "MRP (Single)", value: "₹493" },
-        { label: "Offer (Single)", value: "42% OFF" },
-        { label: "Single Bottle Price", value: "₹286 (+ ₹80 delivery)" },
-        { label: "2 Bottles Bundle", value: "₹499 (+ ₹80 delivery) — BEST VALUE" },
-        { label: "Delivery Charge", value: "₹80" },
-        { label: "Formula Heritage", value: "Barson Purane Ayurvedic Formula" },
-        { label: "Key Ingredients", value: "12 Ayurvedic Jadi-Butiyan" },
+        { label: "Single Bottle Price", value: "₹286 (MRP ₹493, 42% OFF, Free Delivery)" },
+        { label: "2 PCS Bundle", value: "₹499 (BEST VALUE, Free Delivery)" },
+        { label: "Delivery Charge", value: "₹80 (Discounted to ₹0 with offer)" },
       ]
     }
   ];

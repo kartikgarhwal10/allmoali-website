@@ -25,34 +25,36 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Allmoali Joint & Muscular Pain Oil | Natural Ayurvedic Massage Care",
+  title: "Allmoali Joint & Muscular Pain Oil | Ayurvedic Joint & Muscular Care",
   description:
-    "Allmoali Joint & Muscular Pain Oil — barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh massage oil with fast absorption, non-sticky feel and deep penetration.",
+    "Discover Allmoali Joint & Muscular Pain Oil, rooted in a time-honoured Ayurvedic formula and enriched with 12 Ayurvedic herbs, designed for everyday joint and muscular care.",
   keywords: [
-    "Ayurvedic pain oil",
-    "joint pain relief",
-    "muscular pain oil",
-    "non-sticky massage oil",
+    "Allmoali",
     "Allmoali pain oil",
-    "barson purane Ayurvedic formula",
-    "12 jadi-butiyan oil",
-    "deep penetration pain oil",
-    "no side effect massage oil",
+    "Ayurvedic joint oil",
+    "muscular pain oil",
+    "12 Ayurvedic herbs",
+    "time-honoured Ayurvedic formula",
+    "knee pain oil",
+    "back pain oil",
+    "arthritis care oil",
+    "non-greasy joint oil",
+    "no side effect pain oil",
   ],
-  authors: [{ name: "Allmoali" }],
+  authors: [{ name: "ALLMOALI" }],
   openGraph: {
-    title: "Allmoali Joint & Muscular Pain Oil | Natural Ayurvedic Massage Care",
+    title: "Allmoali Joint & Muscular Pain Oil | Ayurvedic Joint & Muscular Care",
     description:
-      "Allmoali Joint & Muscular Pain Oil — barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh massage oil with fast absorption, non-sticky feel and deep penetration.",
+      "Discover Allmoali Joint & Muscular Pain Oil, rooted in a time-honoured Ayurvedic formula and enriched with 12 Ayurvedic herbs, designed for everyday joint and muscular care.",
     type: "website",
     locale: "en_IN",
-    siteName: "Allmoali",
+    siteName: "ALLMOALI",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Allmoali Joint & Muscular Pain Oil | Natural Ayurvedic Massage Care",
+    title: "Allmoali Joint & Muscular Pain Oil | Ayurvedic Joint & Muscular Care",
     description:
-      "Allmoali Joint & Muscular Pain Oil — barson purane Ayurvedic formula se prerit, 12 jadi-butiyon se samriddh massage oil with fast absorption, non-sticky feel and deep penetration.",
+      "Discover Allmoali Joint & Muscular Pain Oil, rooted in a time-honoured Ayurvedic formula and enriched with 12 Ayurvedic herbs, designed for everyday joint and muscular care.",
   },
 };
 
