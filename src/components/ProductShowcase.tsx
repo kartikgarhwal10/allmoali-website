@@ -10,13 +10,15 @@ interface ProductShowcaseProps {
 }
 
 export default function ProductShowcase({ onOrderClick, onGalleryClick }: ProductShowcaseProps) {
+  const [activeIdx, setActiveIdx] = React.useState(0);
+
   // Gallery thumbnails
   const thumbnails = [
-    { title: "Front", src: "/images/product_bottle.jpg" },
+    { title: "Bottle", src: "/images/product_bottle_only.jpg" },
     { title: "Texture", src: "/images/oil_texture.jpg" },
     { title: "Usage", src: "/images/lifestyle_massage.jpg" },
-    { title: "Back", src: "/images/product_bottle.jpg" },
-    { title: "Labels", src: "/images/product_bottle.jpg" },
+    { title: "Box", src: "/images/product_box.jpg" },
+    { title: "Set", src: "/images/product_box_bottle.jpg" },
   ];
 
   return (
@@ -29,16 +31,17 @@ export default function ProductShowcase({ onOrderClick, onGalleryClick }: Produc
           <div className="lg:col-span-6 flex flex-col gap-3.5">
             {/* Large Active Product Image */}
             <div
-              onClick={() => onGalleryClick(0)}
+              onClick={() => onGalleryClick(activeIdx)}
               className="relative w-full aspect-square rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-brand-gold/15 p-3 sm:p-4 shadow-md group cursor-zoom-in"
             >
               <Image
-                src="/images/product_bottle.jpg"
-                alt="Allmoali pain oil bottle packaging"
+                key={thumbnails[activeIdx].src}
+                src={thumbnails[activeIdx].src}
+                alt={`Allmoali product view ${thumbnails[activeIdx].title}`}
                 fill
                 sizes="(max-width: 768px) 92vw, 600px"
-                className="object-cover rounded-xl group-hover:scale-101 transition-transform duration-500"
-                loading="lazy"
+                className="object-contain rounded-xl group-hover:scale-101 transition-transform duration-500"
+                priority
               />
               <div className="absolute bottom-4 right-4 bg-black/60 text-white p-2.5 rounded-full backdrop-blur-md opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity">
                 <ZoomIn className="w-4 h-4" />
@@ -50,8 +53,12 @@ export default function ProductShowcase({ onOrderClick, onGalleryClick }: Produc
               {thumbnails.map((thumb, idx) => (
                 <button
                   key={idx}
-                  onClick={() => onGalleryClick(idx)}
-                  className="relative shrink-0 w-16 h-16 sm:w-auto sm:h-auto aspect-square rounded-xl overflow-hidden border border-brand-gold/15 bg-white shadow-xs focus:outline-none hover:border-brand-gold transition-colors group cursor-zoom-in touch-target"
+                  onClick={() => setActiveIdx(idx)}
+                  className={`relative shrink-0 w-16 h-16 sm:w-auto sm:h-auto aspect-square rounded-xl overflow-hidden transition-all group cursor-pointer touch-target ${
+                    activeIdx === idx
+                      ? "border-2 border-brand-green ring-2 ring-brand-green/20"
+                      : "border border-brand-gold/15 bg-white hover:border-brand-gold"
+                  }`}
                 >
                   <Image
                     src={thumb.src}
@@ -63,7 +70,9 @@ export default function ProductShowcase({ onOrderClick, onGalleryClick }: Produc
                   />
                   <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors" />
                   {/* Subtle label overlay */}
-                  <span className="absolute bottom-0 left-0 w-full text-center font-sans text-[8px] font-black uppercase text-brand-green bg-white/80 py-0.5">
+                  <span className={`absolute bottom-0 left-0 w-full text-center font-sans text-[8px] font-black uppercase py-0.5 ${
+                    activeIdx === idx ? "bg-brand-green text-white" : "bg-white/80 text-brand-green"
+                  }`}>
                     {thumb.title}
                   </span>
                 </button>

@@ -109,11 +109,11 @@ export default function InteractiveShowcase() {
               <div className="absolute inset-0 bg-radial from-brand-gold/15 to-transparent scale-110 blur-xl rounded-full" />
               <div className="w-full h-full relative p-3 bg-linear-to-b from-brand-gold/10 to-transparent border border-brand-gold/20 rounded-[32px] shadow-2xl flex items-center justify-center animate-float">
                 <Image
-                  src="/images/product_bottle.jpg"
+                  src="/images/product_bottle_only.jpg"
                   alt="Allmoali pain oil bottle center display"
                   fill
                   sizes="320px"
-                  className="object-cover rounded-[24px]"
+                  className="object-contain rounded-[24px]"
                 />
               </div>
             </div>
@@ -149,11 +149,11 @@ export default function InteractiveShowcase() {
             <div className="absolute inset-0 bg-radial from-brand-gold/15 to-transparent scale-110 blur-xl rounded-full" />
             <div className="w-full h-full relative p-3 bg-linear-to-b from-brand-gold/10 to-transparent border border-brand-gold/20 rounded-[28px] shadow-xl flex items-center justify-center animate-float">
               <Image
-                src="/images/product_bottle.jpg"
+                src="/images/product_bottle_only.jpg"
                 alt="Allmoali pain oil bottle center display"
                 fill
                 sizes="240px"
-                className="object-cover rounded-[20px]"
+                className="object-contain rounded-[20px]"
               />
             </div>
           </div>
