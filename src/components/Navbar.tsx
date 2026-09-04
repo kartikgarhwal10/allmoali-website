@@ -79,15 +79,14 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-          scrolled
-            ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 shadow-xs py-2"
-            : "bg-brand-ivory/85 backdrop-blur-xs py-3 border-b border-brand-gold/10"
-        }`}
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${scrolled
+          ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 shadow-xs py-2"
+          : "bg-brand-ivory/85 backdrop-blur-xs py-3 border-b border-brand-gold/10"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
-            
+
             {/* Left: Official Brand Logo Image - Strong Visual Presence */}
             <div className="flex-shrink-0">
               <a
@@ -101,7 +100,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
                   alt="ALLMOALI — The Universal Trust"
                   width={280}
                   height={90}
-                  className="h-13 sm:h-16 lg:h-18 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                  className="h-20 sm:h-22 lg:h-24 w-auto object-contain transition-transform group-hover:scale-[1.02]"
                   priority
                 />
               </a>
