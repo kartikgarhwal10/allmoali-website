@@ -15,18 +15,18 @@ export default function InteractiveShowcase() {
       hoverOffset: 8, // Translate right on hover
     },
     {
-      title: "FAST ABSORBING",
-      desc: "Lighter consistency designed to absorb quickly during massage.",
-      icon: <Flame className="w-5 h-5 text-brand-gold" />,
-      align: "left", // Left side on desktop
-      hoverOffset: 8,
-    },
-    {
       title: "NON-STICKY",
       desc: "Formulated for clean application without leaving a greasy layer.",
       icon: <Feather className="w-5 h-5 text-brand-gold" />,
       align: "right", // Right side on desktop
       hoverOffset: -8, // Translate left on hover
+    },
+    {
+      title: "FAST ABSORBING",
+      desc: "Lighter consistency designed to absorb quickly during massage.",
+      icon: <Flame className="w-5 h-5 text-brand-gold" />,
+      align: "left", // Left side on desktop
+      hoverOffset: 8,
     },
     {
       title: "DEEP PENETRATION",
@@ -63,7 +63,7 @@ export default function InteractiveShowcase() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-10 sm:mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-6 sm:mb-8 max-w-3xl mx-auto">
           <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-gold font-bold mb-2 block">
             INTERACTIVE EXPERIENCE
           </span>
@@ -143,27 +143,28 @@ export default function InteractiveShowcase() {
         </motion.div>
 
         {/* Mobile/Tablet Stacked Layout */}
-        <div className="lg:hidden flex flex-col gap-8 items-center">
+        <div className="lg:hidden flex flex-col items-center">
           {/* Bottle display */}
-          <div className="relative w-60 h-60 flex justify-center items-center mb-4">
+          <div className="relative w-[78vw] max-w-[340px] aspect-square flex justify-center items-center mb-7 sm:mb-9 mx-auto">
             <div className="absolute inset-0 bg-radial from-brand-gold/15 to-transparent scale-110 blur-xl rounded-full" />
             <div className="w-full h-full relative p-3 bg-linear-to-b from-brand-gold/10 to-transparent border border-brand-gold/20 rounded-[28px] shadow-xl flex items-center justify-center animate-float">
               <Image
-                src="/images/product_bottle_only.jpg"
+                src="/images/product_hero_bottle.jpg"
                 alt="Allmoali pain oil bottle center display"
                 fill
-                sizes="240px"
-                className="object-contain rounded-[20px]"
+                sizes="(max-width: 1023px) 78vw, 340px"
+                className="object-contain object-center rounded-[20px]"
+                priority
               />
             </div>
           </div>
 
           {/* Stacked Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 w-full max-w-2xl">
             {callouts.map((item, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-white/5 border border-brand-gold/10 flex flex-col items-center text-center gap-3"
+                className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-brand-gold/10 flex flex-col items-center text-center gap-3"
               >
                 <div className="w-10 h-10 rounded-xl bg-brand-gold/10 flex items-center justify-center text-brand-gold border border-brand-gold/20">
                   {item.icon}
