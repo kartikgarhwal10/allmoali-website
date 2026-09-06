@@ -81,7 +81,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Product",
               "name": `${PRODUCT_CONFIG.brandName} ${PRODUCT_CONFIG.productName}`,
-              "image": "/images/product_box_bottle.jpg",
+              "image": "/images/allmoali-box-bottle-white-bg.jpg",
               "description": metadata.description,
               "offers": {
                 "@type": "Offer",

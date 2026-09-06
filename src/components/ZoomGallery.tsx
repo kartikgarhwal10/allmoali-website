@@ -24,7 +24,7 @@ export default function ZoomGallery({ isOpen, onClose, initialIndex = 0 }: ZoomG
       description: "Original 100ml amber bottle with gold cap.",
     },
     {
-      src: "/images/product_box_bottle.jpg",
+      src: "/images/allmoali-box-bottle-white-bg.jpg",
       title: "Box & Bottle Set",
       description: "Outer packaging with clear Ayurvedic instructions and composition.",
     },
@@ -147,8 +147,8 @@ export default function ZoomGallery({ isOpen, onClose, initialIndex = 0 }: ZoomG
           </div>
 
           {/* Bottom Thumbnails navigation strip */}
-          <div className="p-4 bg-black/50 border-t border-white/10 flex justify-center items-center relative z-20">
-            <div className="flex gap-3 overflow-x-auto no-scrollbar max-w-full px-4">
+          <div className="p-3 sm:p-4 bg-black/50 border-t border-white/10 flex justify-center items-center relative z-20">
+            <div className="flex gap-2.5 overflow-x-auto no-scrollbar max-w-full px-2">
               {galleryImages.map((img, idx) => {
                 const isActive = currentIndex === idx;
                 return (
@@ -158,8 +158,8 @@ export default function ZoomGallery({ isOpen, onClose, initialIndex = 0 }: ZoomG
                       setIsZoomed(false);
                       setCurrentIndex(idx);
                     }}
-                    className={`relative w-14 h-14 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 focus:outline-none ${
-                      isActive ? "border-brand-gold scale-105" : "border-white/20 hover:border-white/40"
+                    className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 focus:outline-none cursor-pointer ${
+                      isActive ? "border-brand-gold scale-105 bg-white/10" : "border-white/20 hover:border-white/40 bg-black/40"
                     }`}
                   >
                     <Image
@@ -167,7 +167,7 @@ export default function ZoomGallery({ isOpen, onClose, initialIndex = 0 }: ZoomG
                       alt={img.title}
                       fill
                       sizes="60px"
-                      className="object-cover"
+                      className="object-contain p-0.5"
                     />
                     <div className={`absolute inset-0 transition-colors ${
                       isActive ? "bg-transparent" : "bg-black/40"

@@ -22,7 +22,7 @@ export default function StorySection() {
   };
 
   return (
-    <section id="story" className="py-16 sm:py-20 md:py-28 bg-brand-ivory border-t border-brand-gold/15 overflow-hidden">
+    <section id="story" className="py-10 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/15 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial Story Frame */}
@@ -31,7 +31,7 @@ export default function StorySection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-12 border border-brand-gold/20 shadow-[0_12px_40px_rgba(23,59,47,0.05)] relative"
+          className="max-w-4xl mx-auto bg-white rounded-3xl p-5 sm:p-10 border border-brand-gold/20 shadow-[0_12px_40px_rgba(23,59,47,0.05)] relative"
         >
           {/* Eyebrow */}
           <motion.div variants={itemVariants} className="text-center mb-6">

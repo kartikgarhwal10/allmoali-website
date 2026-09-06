@@ -62,16 +62,16 @@ export default function CareSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.9, ease: "easeOut" }}
-            className="lg:col-span-5 flex justify-center"
+            className="lg:col-span-5 flex justify-center items-center"
           >
-            <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-brand-gold/15 shadow-[0_15px_40px_rgba(47,67,54,0.05)] bg-white p-3 sm:p-4">
-              <div className="relative w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden bg-brand-ivory">
+            <div className="relative w-full max-w-[360px] sm:max-w-[400px] aspect-[682/1024] rounded-[28px] sm:rounded-[32px] overflow-hidden border border-brand-gold/15 shadow-[0_15px_40px_rgba(47,67,54,0.05)] bg-white p-2 sm:p-3">
+              <div className="relative w-full h-full rounded-[20px] sm:rounded-[24px] overflow-hidden bg-white">
                 <Image
                   src="/images/product_hero_bottle.jpg"
                   alt="ALLMOALI Joint & Muscular Pain Oil Product Bottle"
                   fill
                   sizes="(max-width: 768px) 90vw, 400px"
-                  className="object-cover hover:scale-[1.02] transition-transform duration-700"
+                  className="object-contain object-center hover:scale-[1.01] transition-transform duration-500"
                   loading="lazy"
                 />
               </div>

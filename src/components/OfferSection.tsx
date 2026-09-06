@@ -32,26 +32,26 @@ export default function OfferSection({ onOrderClick }: OfferSectionProps) {
   const finalPayable = selectedOption === 2 ? 499 : 286;
 
   return (
-    <section id="order" className="py-16 sm:py-20 bg-brand-ivory border-t border-brand-gold/10">
+    <section id="order" className="py-10 sm:py-16 bg-brand-ivory border-t border-brand-gold/10">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-8 sm:mb-14">
           <span className="font-sans text-xs uppercase tracking-[0.2em] text-brand-terracotta font-extrabold mb-3 block">
             LIMITED TIME OFFER
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-green leading-tight">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-brand-green leading-tight">
             Choose Your ALLMOALI Package
           </h2>
           <div className="w-16 h-0.5 bg-brand-terracotta mx-auto mt-4" />
         </div>
 
         {/* Pricing Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-stretch max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-12 items-stretch max-w-4xl mx-auto">
           
           {/* Left Column: Product Photo & Benefits list */}
-          <div className="md:col-span-5 flex flex-col justify-center items-center p-6 sm:p-8 bg-white rounded-3xl border border-brand-gold/15 shadow-xs">
-            <div className="relative w-48 h-48 sm:w-56 sm:h-56 aspect-square rounded-2xl overflow-hidden p-2 bg-white border border-brand-gold/15 shadow-xs mb-6">
+          <div className="md:col-span-5 flex flex-col justify-center items-center p-4 sm:p-8 bg-white rounded-3xl border border-brand-gold/15 shadow-xs">
+            <div className="relative w-44 h-44 sm:w-56 sm:h-56 aspect-square rounded-2xl overflow-hidden p-2 bg-white border border-brand-gold/15 shadow-xs mb-4 sm:mb-6">
               <Image
                 src={selectedOption === 2 ? "/images/product_bundle_pack2.jpg" : "/images/product_hero_bottle.jpg"}
                 alt="ALLMOALI Joint & Muscular Pain Oil package presentation"
@@ -74,7 +74,7 @@ export default function OfferSection({ onOrderClick }: OfferSectionProps) {
           </div>
 
           {/* Right Column: Premium Pricing Card */}
-          <div className="md:col-span-7 flex flex-col justify-between p-6 sm:p-10 bg-white rounded-3xl border border-brand-gold/15 shadow-md">
+          <div className="md:col-span-7 flex flex-col justify-between p-4 sm:p-8 lg:p-10 bg-white rounded-3xl border border-brand-gold/15 shadow-md">
             <div>
               {/* Product and Brand Info */}
               <div className="border-b border-brand-gold/10 pb-4 mb-6">

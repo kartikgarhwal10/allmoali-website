@@ -11,7 +11,7 @@ interface LifestyleSectionProps {
 
 export default function LifestyleSection({ onOrderClick }: LifestyleSectionProps) {
   return (
-    <section className="relative h-[55vh] md:h-[60vh] flex items-center justify-center overflow-hidden bg-brand-green">
+    <section className="relative min-h-[360px] sm:min-h-[420px] md:h-[500px] flex items-center justify-center overflow-hidden bg-brand-green py-12 sm:py-16">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -19,7 +19,7 @@ export default function LifestyleSection({ onOrderClick }: LifestyleSectionProps
           alt="ALLMOALI Ayurvedic Joint & Muscular Pain Oil massage routine"
           fill
           sizes="100vw"
-          className="object-cover opacity-35"
+          className="object-cover object-[center_25%] opacity-35"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-green via-brand-green/60 to-transparent" />

@@ -13,14 +13,14 @@ export default function PackagingGallery({ onGalleryClick }: PackagingGalleryPro
   const items = [
     {
       title: "Hero Bottle",
-      desc: "Original 100ml amber bottle designed to protect natural botanical oils.",
+      desc: "Original 100ml bottle designed to protect natural botanical oils.",
       src: "/images/product_hero_bottle.jpg",
       idx: 0,
     },
     {
       title: "Box & Bottle Set",
       desc: "Authentic outer packaging detailing active extracts and usage directions.",
-      src: "/images/product_box_bottle.jpg",
+      src: "/images/allmoali-box-bottle-white-bg.jpg",
       idx: 1,
     },
     {
@@ -40,7 +40,7 @@ export default function PackagingGallery({ onGalleryClick }: PackagingGalleryPro
   return (
     <section className="py-12 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        
+
         {/* Header */}
         <div className="text-center mb-10 sm:mb-16 max-w-3xl mx-auto">
           <span className="font-sans text-[11px] sm:text-xs uppercase tracking-widest text-brand-terracotta font-extrabold mb-2 block">
@@ -81,7 +81,7 @@ export default function PackagingGallery({ onGalleryClick }: PackagingGalleryPro
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Text Content */}
                 <h3 className="font-display text-base font-bold text-brand-green uppercase tracking-wide mb-2 text-left">
                   {item.title}

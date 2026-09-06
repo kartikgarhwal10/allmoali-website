@@ -80,19 +80,19 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
     <>
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${scrolled
-          ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 shadow-xs py-2"
-          : "bg-brand-ivory/85 backdrop-blur-xs py-3 border-b border-brand-gold/10"
+          ? "bg-brand-ivory/95 backdrop-blur-md border-b border-brand-gold/15 shadow-xs"
+          : "bg-brand-ivory/90 backdrop-blur-xs border-b border-brand-gold/10"
           }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 sm:h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
+          <div className="flex justify-between items-center h-[80px] lg:h-[96px]">
 
-            {/* Left: Official Brand Logo Image - Strong Visual Presence */}
-            <div className="flex-shrink-0">
+            {/* Left: Official Brand Logo Image - Exact Requested Responsive Sizing */}
+            <div className="flex-shrink-0 flex items-center">
               <a
                 href="#home"
                 onClick={(e) => handleScrollTo(e, "#home")}
-                className="flex items-center select-none py-1 group"
+                className="flex items-center select-none group"
                 aria-label="ALLMOALI Home"
               >
                 <Image
@@ -100,7 +100,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
                   alt="ALLMOALI — The Universal Trust"
                   width={280}
                   height={90}
-                  className="h-20 sm:h-22 lg:h-24 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                  className="h-26 sm:h-22 lg:h-24 w-auto object-contain transition-transform group-hover:scale-[1.02] shrink-0"
                   priority
                 />
               </a>
@@ -120,11 +120,11 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
               ))}
             </nav>
 
-            {/* Right: Desktop CTA button with Client Accent Color */}
+            {/* Right: Desktop CTA button */}
             <div className="hidden lg:flex items-center">
               <button
                 onClick={onOrderClick}
-                className="inline-flex items-center gap-2 bg-brand-terracotta text-white hover:bg-[#a94e31] active:scale-97 px-6 py-2.5 rounded-full font-sans text-[11px] font-black tracking-widest uppercase transition-all duration-300 shadow-md cursor-pointer touch-target"
+                className="inline-flex items-center gap-2 bg-brand-terracotta text-white hover:bg-[#a94e31] active:scale-97 px-6 py-2.5 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-300 shadow-md cursor-pointer touch-target h-[46px]"
               >
                 ORDER NOW
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -132,16 +132,16 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
             </div>
 
             {/* Mobile Menu Button & Mobile Order CTA */}
-            <div className="flex items-center gap-2 lg:hidden">
+            <div className="flex items-center gap-2 lg:hidden flex-shrink-0">
               <button
                 onClick={onOrderClick}
-                className="bg-brand-terracotta text-white px-3.5 py-1.5 rounded-full font-sans text-[10px] font-black tracking-wider uppercase shadow-xs cursor-pointer touch-target flex items-center gap-1"
+                className="bg-brand-terracotta text-white hover:bg-[#a94e31] active:scale-97 px-4 sm:px-5 rounded-full font-sans text-[13px] font-extrabold tracking-wider uppercase shadow-xs cursor-pointer flex items-center justify-center h-[44px] shrink-0"
               >
                 ORDER NOW
               </button>
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-11 h-11 flex items-center justify-center text-brand-green active:bg-brand-gold/10 rounded-full focus:outline-none cursor-pointer"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-brand-green active:bg-brand-gold/10 rounded-full focus:outline-none cursor-pointer shrink-0"
                 aria-label={isOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
                 aria-expanded={isOpen}
               >
@@ -176,7 +176,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
               className="relative w-full bg-brand-ivory border-b border-brand-gold/20 shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto"
             >
               {/* Drawer Header */}
-              <div className="flex justify-between items-center px-5 py-3 border-b border-brand-gold/10">
+              <div className="flex justify-between items-center px-5 h-[80px] border-b border-brand-gold/10">
                 <a
                   href="#home"
                   onClick={(e) => handleScrollTo(e, "#home")}
@@ -187,12 +187,12 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
                     alt="ALLMOALI — The Universal Trust"
                     width={220}
                     height={70}
-                    className="h-12 sm:h-14 w-auto object-contain"
+                    className="h-[52px] w-auto object-contain"
                   />
                 </a>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-11 h-11 flex items-center justify-center text-brand-green rounded-full active:bg-brand-gold/10 cursor-pointer"
+                  className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center text-brand-green rounded-full active:bg-brand-gold/10 cursor-pointer"
                   aria-label="Close Menu"
                 >
                   <X className="h-6 w-6" />
@@ -232,8 +232,8 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
         )}
       </AnimatePresence>
 
-      {/* Spacer */}
-      <div className="h-20 sm:h-24 lg:h-26" />
+      {/* Spacer matching exact navbar height */}
+      <div className="h-[80px] lg:h-[96px]" />
     </>
   );
 }

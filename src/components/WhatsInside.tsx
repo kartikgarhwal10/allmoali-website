@@ -36,17 +36,24 @@ export default function WhatsInside() {
 
         {/* 1. Client Supplied Ingredient Visual Showcase */}
         <div className="max-w-5xl mx-auto bg-white rounded-3xl p-3 sm:p-6 border border-brand-gold/25 shadow-lg mb-12 overflow-hidden">
-          <div className="relative w-full aspect-[16/10.5] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-brand-ivory/50">
-            <Image
-              src="/images/ayurvedic_ingredients.jpg"
-              alt="Powerful Ayurvedic Ingredients — Allmoali Joint & Muscular Pain Oil"
-              fill
-              sizes="(max-width: 768px) 96vw, (max-width: 1200px) 90vw, 1100px"
-              className="object-contain rounded-xl"
-              priority
-            />
+          <div className="w-full overflow-x-auto no-scrollbar rounded-2xl bg-brand-ivory/50 p-1">
+            <div className="relative min-w-[520px] sm:min-w-0 sm:w-full aspect-[16/10] rounded-xl overflow-hidden">
+              <Image
+                src="/images/ayurvedic_ingredients.jpg"
+                alt="Powerful Ayurvedic Ingredients — Allmoali Joint & Muscular Pain Oil"
+                fill
+                sizes="(max-width: 768px) 520px, (max-width: 1200px) 90vw, 1100px"
+                className="object-contain rounded-xl"
+                priority
+              />
+            </div>
           </div>
-          <div className="mt-4 pt-4 border-t border-brand-gold/15 flex flex-wrap items-center justify-center gap-4 text-xs font-sans font-bold text-brand-green">
+          <div className="mt-3 text-center sm:hidden">
+            <span className="font-sans text-[10px] text-brand-muted-green/80 font-bold uppercase tracking-wider">
+              👈 Scroll horizontally to view all ingredients in detail 👉
+            </span>
+          </div>
+          <div className="mt-4 pt-4 border-t border-brand-gold/15 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs font-sans font-bold text-brand-green">
             <span className="flex items-center gap-1.5"><Leaf className="w-4 h-4 text-emerald-600" /> AYURVEDIC & 100% NATURAL</span>
             <span>•</span>
             <span className="flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-brand-gold" /> ENRICHED WITH NATURAL HERBS</span>

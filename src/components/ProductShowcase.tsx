@@ -15,14 +15,14 @@ export default function ProductShowcase({ onOrderClick, onGalleryClick }: Produc
   // Client-supplied gallery thumbnails
   const thumbnails = [
     { title: "Bottle", src: "/images/product_hero_bottle.jpg" },
-    { title: "Set", src: "/images/product_box_bottle.jpg" },
+    { title: "Set", src: "/images/allmoali-box-bottle-white-bg.jpg" },
     { title: "2 PCS", src: "/images/product_bundle_pack2.jpg" },
     { title: "Lifestyle", src: "/images/lifestyle_model.jpg" },
     { title: "Herbs", src: "/images/ayurvedic_ingredients.jpg" },
   ];
 
   return (
-    <section id="benefits" className="py-12 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/10">
+    <section id="benefits" className="py-10 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
@@ -56,8 +56,8 @@ export default function ProductShowcase({ onOrderClick, onGalleryClick }: Produc
                   onClick={() => setActiveIdx(idx)}
                   className={`relative shrink-0 w-16 h-16 sm:w-auto sm:h-auto aspect-square rounded-xl overflow-hidden transition-all group cursor-pointer touch-target ${
                     activeIdx === idx
-                      ? "border-2 border-brand-terracotta ring-2 ring-brand-terracotta/20"
-                      : "border border-brand-gold/15 bg-white hover:border-brand-gold"
+                      ? "border-2 border-brand-terracotta ring-2 ring-brand-terracotta/20 bg-white"
+                      : "border border-brand-gold/15 bg-white/80 hover:border-brand-gold"
                   }`}
                 >
                   <Image
@@ -65,7 +65,7 @@ export default function ProductShowcase({ onOrderClick, onGalleryClick }: Produc
                     alt={`ALLMOALI product view ${thumb.title}`}
                     fill
                     sizes="80px"
-                    className="object-cover group-hover:scale-105 transition-transform"
+                    className="object-contain p-1 group-hover:scale-105 transition-transform"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors" />
