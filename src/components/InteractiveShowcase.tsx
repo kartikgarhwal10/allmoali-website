@@ -5,6 +5,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Compass, Flame, Feather, Compass as AromaIcon } from "lucide-react"; // Flame (absorbing), Feather (sticky), Compass/Wind (aroma)
 
+// Single unified image source used for both Desktop and Mobile
+const PRODUCT_CENTER_IMAGE = "/images/product_hero_bottle.jpg";
+
 export default function InteractiveShowcase() {
   const callouts = [
     {
@@ -109,7 +112,7 @@ export default function InteractiveShowcase() {
               <div className="absolute inset-0 bg-radial from-brand-gold/15 to-transparent scale-110 blur-xl rounded-full" />
               <div className="w-full h-full relative p-3 bg-linear-to-b from-brand-gold/10 to-transparent border border-brand-gold/20 rounded-[32px] shadow-2xl flex items-center justify-center animate-float">
                 <Image
-                  src="/images/product_hero_bottle.jpg"
+                  src={PRODUCT_CENTER_IMAGE}
                   alt="Allmoali pain oil bottle center display"
                   fill
                   sizes="320px"
@@ -144,16 +147,17 @@ export default function InteractiveShowcase() {
 
         {/* Mobile/Tablet Stacked Layout */}
         <div className="lg:hidden flex flex-col items-center">
-          {/* Bottle display */}
-          <div className="relative w-[78vw] max-w-[340px] aspect-square flex justify-center items-center mb-7 sm:mb-9 mx-auto">
-            <div className="absolute inset-0 bg-radial from-brand-gold/15 to-transparent scale-110 blur-xl rounded-full" />
-            <div className="w-full h-full relative p-3 bg-linear-to-b from-brand-gold/10 to-transparent border border-brand-gold/20 rounded-[28px] shadow-xl flex items-center justify-center animate-float">
+          {/* Bottle display - exact same image source as desktop */}
+          <div className="relative w-[min(85vw,360px)] mx-auto mb-7 sm:mb-9">
+            <div className="absolute inset-0 bg-radial from-brand-gold/15 to-transparent scale-110 blur-xl rounded-full pointer-events-none" />
+            <div className="relative p-3 bg-linear-to-b from-brand-gold/10 to-transparent border border-brand-gold/20 rounded-[28px] shadow-xl flex items-center justify-center animate-float">
               <Image
-                src="/images/product_hero_bottle.jpg"
+                src={PRODUCT_CENTER_IMAGE}
                 alt="Allmoali pain oil bottle center display"
-                fill
-                sizes="(max-width: 1023px) 78vw, 340px"
-                className="object-contain object-center rounded-[20px]"
+                width={682}
+                height={1024}
+                sizes="(max-width: 1023px) 85vw, 360px"
+                className="w-full h-auto object-contain object-center rounded-[20px]"
                 priority
               />
             </div>
