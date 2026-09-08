@@ -53,7 +53,10 @@ export default function ProductShowcase({ onOrderClick, onGalleryClick }: Produc
               {thumbnails.map((thumb, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setActiveIdx(idx)}
+                  onClick={() => {
+                    setActiveIdx(idx);
+                    onGalleryClick(idx);
+                  }}
                   className={`relative shrink-0 w-16 h-16 sm:w-auto sm:h-auto aspect-square rounded-xl overflow-hidden transition-all group cursor-pointer touch-target ${
                     activeIdx === idx
                       ? "border-2 border-brand-terracotta ring-2 ring-brand-terracotta/20 bg-white"

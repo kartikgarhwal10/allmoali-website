@@ -43,6 +43,7 @@ export default function Home() {
   
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState(0);
+  const [galleryCustomImages, setGalleryCustomImages] = useState<any[] | undefined>(undefined);
 
   useEffect(() => {
     // Track standard ViewContent page load event
@@ -59,8 +60,9 @@ export default function Home() {
     setIsDrawerOpen(true);
   };
 
-  const openGallery = (idx = 0) => {
+  const openGallery = (idx = 0, customImages?: any[]) => {
     setGalleryIndex(idx);
+    setGalleryCustomImages(customImages);
     setIsGalleryOpen(true);
   };
 
@@ -74,7 +76,10 @@ export default function Home() {
 
       <main className="flex-1 w-full">
         {/* 3. HERO SECTION */}
-        <Hero onOrderClick={() => openDrawer(selectedPackage)} />
+        <Hero
+          onOrderClick={() => openDrawer(selectedPackage)}
+          onGalleryClick={openGallery}
+        />
 
         {/* 3.5 ROOT-CAUSE ACTION SECTION */}
         <RootCauseAction />
@@ -101,7 +106,7 @@ export default function Home() {
         <WhyAllmoali />
 
         {/* 9. WHAT'S INSIDE */}
-        <WhatsInside />
+        <WhatsInside onGalleryClick={openGallery} />
 
         {/* 10. PRODUCT EXPERIENCE */}
         <ProductExperience />
@@ -165,10 +170,11 @@ export default function Home() {
       />
 
       <ZoomGallery
-        key={isGalleryOpen ? `gallery-${galleryIndex}` : "gallery-closed"}
+        key={isGalleryOpen ? `gallery-${galleryIndex}-${galleryCustomImages?.length || "def"}` : "gallery-closed"}
         isOpen={isGalleryOpen}
         onClose={() => setIsGalleryOpen(false)}
         initialIndex={galleryIndex}
+        customImages={galleryCustomImages}
       />
     </>
   );

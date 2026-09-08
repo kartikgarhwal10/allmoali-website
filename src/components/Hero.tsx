@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
+import { ShoppingBag, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { PRODUCT_CONFIG } from "@/config/product";
 import { trackEvent } from "@/utils/analytics";
 
 interface HeroProps {
   onOrderClick: () => void;
+  onGalleryClick?: (idx: number, images?: Array<{ src: string; title: string; description?: string }>) => void;
 }
 
 const HERO_IMAGES = [
@@ -34,7 +35,7 @@ const HERO_IMAGES = [
   },
 ];
 
-export default function Hero({ onOrderClick }: HeroProps) {
+export default function Hero({ onOrderClick, onGalleryClick }: HeroProps) {
   const [mounted, setMounted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -70,6 +71,17 @@ export default function Hero({ onOrderClick }: HeroProps) {
   const goToSlide = (index: number) => {
     setDirection(index > currentIndex ? 1 : -1);
     setCurrentIndex(index);
+  };
+
+  const handleImageClick = () => {
+    if (onGalleryClick) {
+      const heroGalleryImages = HERO_IMAGES.map((img) => ({
+        src: img.src,
+        title: img.alt,
+        description: "ALLMOALI Joint & Muscular Pain Oil Presentation",
+      }));
+      onGalleryClick(currentIndex, heroGalleryImages);
+    }
   };
 
   const showAnimation = mounted && shouldReduceMotion === false;
@@ -142,7 +154,8 @@ export default function Hero({ onOrderClick }: HeroProps) {
                           paginate(-1);
                         }
                       }}
-                      className="absolute inset-0 w-full h-full flex items-center justify-center"
+                      onTap={handleImageClick}
+                      className="absolute inset-0 w-full h-full flex items-center justify-center cursor-zoom-in group/heroimg"
                     >
                       <Image
                         src={HERO_IMAGES[currentIndex].src}
@@ -152,6 +165,9 @@ export default function Hero({ onOrderClick }: HeroProps) {
                         className="object-contain object-center rounded-2xl select-none pointer-events-none"
                         priority={currentIndex === 0}
                       />
+                      <div className="absolute bottom-4 right-4 bg-black/60 text-white p-2 rounded-full backdrop-blur-xs opacity-90 sm:opacity-0 group-hover/heroimg:opacity-100 transition-opacity z-10 pointer-events-none">
+                        <ZoomIn className="w-4 h-4" />
+                      </div>
                     </motion.div>
                   </AnimatePresence>
 

@@ -2,10 +2,14 @@
 
 import React from "react";
 import Image from "next/image";
-import { Leaf, Sparkles, ShieldCheck } from "lucide-react";
+import { Leaf, Sparkles, ShieldCheck, ZoomIn } from "lucide-react";
 import { PRODUCT_CONFIG } from "@/config/product";
 
-export default function WhatsInside() {
+interface WhatsInsideProps {
+  onGalleryClick?: (idx: number) => void;
+}
+
+export default function WhatsInside({ onGalleryClick }: WhatsInsideProps) {
   return (
     <section id="ingredients" className="py-12 sm:py-16 md:py-24 bg-brand-ivory border-t border-brand-gold/15 relative overflow-hidden">
       {/* Background Ornaments */}
@@ -37,15 +41,21 @@ export default function WhatsInside() {
         {/* 1. Client Supplied Ingredient Visual Showcase */}
         <div className="max-w-5xl mx-auto bg-white rounded-3xl p-3 sm:p-6 border border-brand-gold/25 shadow-lg mb-12 overflow-hidden">
           <div className="w-full overflow-x-auto no-scrollbar rounded-2xl bg-brand-ivory/50 p-1">
-            <div className="relative min-w-[520px] sm:min-w-0 sm:w-full aspect-[16/10] rounded-xl overflow-hidden">
+            <div
+              onClick={() => onGalleryClick && onGalleryClick(4)}
+              className="relative min-w-[520px] sm:min-w-0 sm:w-full aspect-[16/10] rounded-xl overflow-hidden cursor-zoom-in group"
+            >
               <Image
                 src="/images/ayurvedic_ingredients.jpg"
                 alt="Powerful Ayurvedic Ingredients — Allmoali Joint & Muscular Pain Oil"
                 fill
                 sizes="(max-width: 768px) 520px, (max-width: 1200px) 90vw, 1100px"
-                className="object-contain rounded-xl"
+                className="object-contain rounded-xl group-hover:scale-101 transition-transform duration-500"
                 priority
               />
+              <div className="absolute bottom-4 right-4 bg-black/60 text-white p-2.5 rounded-full backdrop-blur-md opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+                <ZoomIn className="w-4 h-4" />
+              </div>
             </div>
           </div>
           <div className="mt-3 text-center sm:hidden">
