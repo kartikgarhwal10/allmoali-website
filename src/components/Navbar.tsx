@@ -124,10 +124,10 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
             <div className="hidden lg:flex items-center">
               <button
                 onClick={onOrderClick}
-                className="inline-flex items-center gap-2 bg-brand-terracotta text-white hover:bg-[#a94e31] active:scale-97 px-6 py-2.5 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-300 shadow-md cursor-pointer touch-target h-[46px]"
+                className="inline-flex items-center gap-2 bg-[#C5FE01] text-[#16483A] hover:bg-[#b2e600] active:scale-97 px-6 py-2.5 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-300 shadow-md cursor-pointer touch-target h-[46px]"
               >
                 ORDER NOW
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#16483A]" />
               </button>
             </div>
 
@@ -135,7 +135,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
             <div className="flex items-center gap-2 lg:hidden flex-shrink-0">
               <button
                 onClick={onOrderClick}
-                className="bg-brand-terracotta text-white hover:bg-[#a94e31] active:scale-97 px-4 sm:px-5 rounded-full font-sans text-[13px] font-extrabold tracking-wider uppercase shadow-xs cursor-pointer flex items-center justify-center h-[44px] shrink-0"
+                className="bg-[#C5FE01] text-[#16483A] hover:bg-[#b2e600] active:scale-97 px-4 sm:px-5 rounded-full font-sans text-[13px] font-extrabold tracking-wider uppercase shadow-xs cursor-pointer flex items-center justify-center h-[44px] shrink-0"
               >
                 ORDER NOW
               </button>
@@ -221,10 +221,10 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
                     setIsOpen(false);
                     onOrderClick();
                   }}
-                  className="flex w-full items-center justify-center gap-2 bg-brand-terracotta text-white active:bg-[#a94e31] py-4 px-6 rounded-full text-center font-sans text-xs font-black tracking-widest uppercase shadow-md cursor-pointer touch-target h-[48px]"
+                  className="flex w-full items-center justify-center gap-2 bg-[#C5FE01] text-[#16483A] active:bg-[#b2e600] py-4 px-6 rounded-full text-center font-sans text-xs font-black tracking-widest uppercase shadow-md cursor-pointer touch-target h-[48px]"
                 >
                   ORDER NOW
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 text-[#16483A]" />
                 </button>
               </div>
             </motion.div>

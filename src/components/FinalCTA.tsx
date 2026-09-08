@@ -58,9 +58,9 @@ export default function FinalCTA() {
             <a
               href="#order"
               onClick={(e) => handleScrollTo(e, "#order")}
-              className="flex w-full sm:w-auto items-center justify-center gap-2.5 bg-brand-terracotta text-white active:bg-[#a94e31] py-4 px-9 rounded-full font-sans text-xs sm:text-sm font-black tracking-widest uppercase transition-all duration-200 shadow-lg text-center cursor-pointer touch-target h-[48px]"
+              className="flex w-full sm:w-auto items-center justify-center gap-2.5 bg-[#C5FE01] text-[#16483A] active:bg-[#b2e600] py-4 px-9 rounded-full font-sans text-xs sm:text-sm font-black tracking-widest uppercase transition-all duration-200 shadow-lg text-center cursor-pointer touch-target h-[48px]"
             >
-              <ShoppingBag className="w-4 h-4" />
+              <ShoppingBag className="w-4 h-4 text-[#16483A]" />
               ORDER NOW — ₹286
             </a>
             <a

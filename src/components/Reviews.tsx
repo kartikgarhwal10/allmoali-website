@@ -269,9 +269,9 @@ export default function Reviews() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={(e) => handleScrollTo(e, "#order")}
-              className="flex w-full sm:w-auto items-center justify-center gap-2 bg-brand-green text-brand-ivory hover:bg-brand-terracotta hover:text-brand-ivory py-4 px-10 rounded-full font-sans text-xs font-bold tracking-widest uppercase transition-all duration-300 shadow-md text-center cursor-pointer"
+              className="flex w-full sm:w-auto items-center justify-center gap-2 bg-[#C5FE01] text-[#16483A] hover:bg-[#b2e600] py-4 px-10 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-300 shadow-md text-center cursor-pointer"
             >
-              <ShoppingBag className="w-4 h-4" />
+              <ShoppingBag className="w-4 h-4 text-[#16483A]" />
               ORDER NOW
             </button>
             <a

@@ -50,10 +50,10 @@ export default function LifestyleSection({ onOrderClick }: LifestyleSectionProps
                 e.preventDefault();
                 onOrderClick();
               }}
-              className="inline-flex items-center gap-2 bg-brand-terracotta text-white active:bg-[#a94e31] py-4 px-9 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-lg group touch-target h-[48px] cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#C5FE01] text-[#16483A] active:bg-[#b2e600] py-4 px-9 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-lg group touch-target h-[48px] cursor-pointer"
             >
               ORDER NOW — ₹286
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-[#16483A]" />
             </button>
           </div>
         </motion.div>

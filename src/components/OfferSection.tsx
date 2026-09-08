@@ -175,9 +175,9 @@ export default function OfferSection({ onOrderClick }: OfferSectionProps) {
             <div className="flex flex-col gap-3">
               <button
                 onClick={handleOrder}
-                className="w-full flex items-center justify-center gap-2.5 bg-brand-terracotta text-white hover:bg-[#a94e31] active:scale-97 py-4 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-md cursor-pointer touch-target h-[48px]"
+                className="w-full flex items-center justify-center gap-2.5 bg-[#C5FE01] text-[#16483A] hover:bg-[#b2e600] active:scale-97 py-4 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-md cursor-pointer touch-target h-[48px]"
               >
-                <ShoppingBag className="w-4 h-4" />
+                <ShoppingBag className="w-4 h-4 text-[#16483A]" />
                 {selectedOption === 2 ? "GET 2 FOR ₹499" : "ORDER NOW — ₹286"}
               </button>
 

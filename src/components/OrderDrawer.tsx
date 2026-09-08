@@ -490,7 +490,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full h-14 bg-brand-terracotta text-white hover:bg-[#a94e31] rounded-full font-sans text-xs font-black tracking-widest uppercase shadow-md transition-all disabled:opacity-50 flex items-center justify-center cursor-pointer"
+                      className="w-full h-14 bg-[#C5FE01] text-[#16483A] hover:bg-[#b2e600] rounded-full font-sans text-xs font-black tracking-widest uppercase shadow-md transition-all disabled:opacity-50 flex items-center justify-center cursor-pointer"
                     >
                       {loading 
                         ? "PLACING YOUR ORDER..." 

@@ -33,6 +33,10 @@ const HERO_IMAGES = [
     src: "/images/hero_carousel_5.jpg",
     alt: "ALLMOALI vs Other Generic Pain Relief Oil Comparison",
   },
+  {
+    src: "/images/hero_carousel_6.jpg",
+    alt: "ALLMOALI Certifications - 100% Natural, Non GMO, Gluten Free, GMP Certified",
+  },
 ];
 
 export default function Hero({ onOrderClick, onGalleryClick }: HeroProps) {
@@ -330,9 +334,9 @@ export default function Hero({ onOrderClick, onGalleryClick }: HeroProps) {
                   trackEvent("ClickOrder", { location: "hero_cta" });
                   onOrderClick();
                 }}
-                className="flex items-center justify-center gap-2 bg-brand-terracotta text-white hover:bg-[#a94e31] active:scale-97 py-3.5 px-8 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-lg w-full sm:w-auto text-center cursor-pointer touch-target h-[48px]"
+                className="flex items-center justify-center gap-2 bg-[#C5FE01] text-[#16483A] hover:bg-[#b2e600] active:scale-97 py-3.5 px-8 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-200 shadow-lg w-full sm:w-auto text-center cursor-pointer touch-target h-[48px]"
               >
-                <ShoppingBag className="w-4 h-4" />
+                <ShoppingBag className="w-4 h-4 text-[#16483A]" />
                 ORDER NOW — ₹286
               </button>
 
