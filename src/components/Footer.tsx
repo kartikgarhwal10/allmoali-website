@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { MessageSquare, Mail, ChevronDown, ChevronUp } from "lucide-react";
 import { PRODUCT_CONFIG } from "@/config/product";
 
@@ -34,10 +35,12 @@ export default function Footer() {
   ];
 
   const legalLinks = [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms & Conditions", href: "#" },
-    { name: "Shipping Policy", href: "#" },
-    { name: "Refund Policy", href: "#" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Terms & Conditions", href: "/terms-and-conditions" },
+    { name: "Shipping Policy", href: "/shipping-policy" },
+    { name: "Refund / Return Policy", href: "/refund-policy" },
+    { name: "Grievance Redressal", href: "/grievance-redressal" },
+    { name: "Compliance Guidelines", href: "/marketing-compliance-guidelines" },
   ];
 
   const whatsappUrl = `https://wa.me/${PRODUCT_CONFIG.whatsappNumber}?text=${encodeURIComponent(
@@ -107,7 +110,6 @@ export default function Footer() {
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <a
-                    key={link.name}
                     href={link.href}
                     onClick={(e) => handleScrollTo(e, link.href)}
                     className="font-sans text-xs text-brand-muted-green hover:text-brand-terracotta font-semibold py-1 block transition-colors cursor-pointer"
@@ -122,21 +124,17 @@ export default function Footer() {
           {/* Legal / Policy column (Desktop) */}
           <div className="hidden md:flex md:col-span-4 flex-col items-start text-left">
             <h3 className="font-display text-sm font-bold text-brand-green uppercase tracking-wider mb-4">
-              LEGAL INFO
+              LEGAL & COMPLIANCE
             </h3>
             <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <Link
                     href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert(`${link.name} will be fully activated before launch.`);
-                    }}
-                    className="font-sans text-xs text-brand-muted-green/60 hover:text-brand-terracotta py-1 block transition-colors cursor-pointer"
+                    className="font-sans text-xs text-brand-muted-green hover:text-brand-terracotta font-medium py-1 block transition-colors cursor-pointer"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -183,16 +181,12 @@ export default function Footer() {
                 <ul className="space-y-3 pt-3 px-1 text-left">
                   {legalLinks.map((link) => (
                     <li key={link.name}>
-                      <a
+                      <Link
                         href={link.href}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          alert(`${link.name} will be fully activated before launch.`);
-                        }}
-                        className="font-sans text-xs text-brand-muted-green/60 hover:text-brand-terracotta py-1 block transition-colors cursor-pointer"
+                        className="font-sans text-xs text-brand-muted-green hover:text-brand-terracotta font-bold py-1 block transition-colors cursor-pointer"
                       >
                         {link.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -207,12 +201,12 @@ export default function Footer() {
           <p className="font-sans text-[10px] font-semibold text-brand-muted-green">
             © {currentYear} {PRODUCT_CONFIG.brandName}. Time-Honoured Ayurvedic Formula · 12 Ayurvedic Herbs · Net Quantity: {PRODUCT_CONFIG.netQuantity}.
           </p>
-          <div className="w-full max-w-4xl border border-brand-gold/15 bg-white/40 p-4 rounded-xl shadow-xs text-left flex gap-3 items-start">
-            <div className="w-5 h-5 rounded-full bg-brand-terracotta/10 flex items-center justify-center text-brand-terracotta flex-shrink-0 mt-0.5">
-              <span className="text-[10px] font-bold">i</span>
+          <div className="w-full max-w-4xl border border-brand-gold/15 bg-white/60 p-4 rounded-xl shadow-xs text-left flex gap-3 items-start">
+            <div className="w-5 h-5 rounded-full bg-brand-terracotta/10 flex items-center justify-center text-brand-terracotta flex-shrink-0 mt-0.5 font-bold text-[10px]">
+              i
             </div>
-            <p className="font-sans text-[10px] leading-relaxed text-brand-muted-green">
-              <strong>Demo Disclaimer:</strong> {PRODUCT_CONFIG.demoDisclaimer}
+            <p className="font-sans text-[10px] sm:text-xs leading-relaxed text-brand-muted-green font-medium">
+              Information on this website is provided for product and general self-care information only. Product use should follow the label directions. This website does not provide medical diagnosis or treatment advice. For persistent, severe or medically diagnosed conditions, consult a qualified healthcare professional.
             </p>
           </div>
         </div>

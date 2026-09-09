@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { X, ShoppingBag, CheckCircle, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { PRODUCT_CONFIG } from "@/config/product";
 import { trackEvent } from "@/utils/analytics";
 
@@ -77,11 +78,6 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
       return;
     }
 
-    if (paymentMethod !== "cod") {
-      alert("Online payment integration is active for live checkouts. To test this demo checkout, please select Cash on Delivery (COD).");
-      return;
-    }
-
     setLoading(true);
     trackEvent("InitiateCheckout", {
       package: selectedPackage === 2 ? "2 Bottles Bundle" : "1 Bottle",
@@ -98,7 +94,7 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
         quantity: selectedPackage === 2 ? 2 : 1,
         value: selectedPackage === 2 ? 499 : 286,
         currency: "INR",
-        transaction_id: "demo-" + Math.floor(Math.random() * 1000000),
+        transaction_id: "ALM-" + Math.floor(Math.random() * 1000000),
       });
     }, 1500);
   };
@@ -459,30 +455,46 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                     </label>
 
                     {paymentMethod !== "cod" && (
-                      <div className="p-3 bg-brand-terracotta/5 border border-brand-terracotta/15 rounded-xl text-[10px] sm:text-xs text-brand-terracotta leading-relaxed">
-                        <strong>Online payment integration:</strong> For demonstration purposes, actual online payment services are simulated. Please select Cash on Delivery to complete this demo checkout flow.
+                      <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-[10px] sm:text-xs text-emerald-900 leading-relaxed font-medium">
+                        <strong>Encrypted Online Gateway:</strong> Online payments are processed securely via encrypted payment gateways. Complete details will be confirmed prior to charge.
                       </div>
                     )}
                   </div>
 
-                  {/* Pricing summary */}
+                  {/* Pricing & Checkout Disclosures */}
                   <div className="bg-white border border-brand-gold/15 p-4 rounded-xl space-y-2 text-xs shadow-2xs">
                     <div className="flex justify-between">
-                      <span className="font-sans text-brand-muted-green font-medium">Subtotal ({selectedPackage === 2 ? "2 PCS" : "1 PC"})</span>
-                      <span className="font-sans text-brand-green font-semibold">₹{productPrice}</span>
+                      <span className="font-sans text-brand-muted-green font-medium">Product: {PRODUCT_CONFIG.brandName} Joint & Muscular Pain Oil</span>
+                      <span className="font-sans text-brand-green font-semibold">{selectedPackage === 2 ? "2 Bottles (100ml x 2)" : "1 Bottle (100ml)"}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="font-sans text-brand-muted-green font-medium">Delivery charge</span>
-                      <span className="font-sans text-gray-400 line-through">₹80</span>
+                      <span className="font-sans text-brand-muted-green font-medium">MRP (Incl. of all taxes)</span>
+                      <span className="font-sans text-gray-400 line-through">₹{selectedPackage === 2 ? 986 : 493}</span>
                     </div>
-                    <div className="flex justify-between text-emerald-700">
-                      <span className="font-sans font-bold">Delivery Offer Discount</span>
-                      <span className="font-sans font-bold">-₹80 (FREE)</span>
+                    <div className="flex justify-between">
+                      <span className="font-sans text-brand-muted-green font-medium">Special Discount</span>
+                      <span className="font-sans text-emerald-700 font-semibold">-₹{selectedPackage === 2 ? 487 : 207}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-sans text-brand-muted-green font-medium">Delivery Charge (Standard ₹80)</span>
+                      <span className="font-sans text-emerald-700 font-bold">FREE (₹0)</span>
                     </div>
                     <div className="border-t border-brand-gold/10 pt-2 flex justify-between items-baseline font-bold">
-                      <span className="font-display text-xs text-brand-green uppercase tracking-wider">TOTAL PAYABLE</span>
+                      <span className="font-display text-xs text-brand-green uppercase tracking-wider">FINAL PAYABLE AMOUNT</span>
                       <span className="font-display text-lg text-brand-terracotta">₹{totalPrice}</span>
                     </div>
+                  </div>
+
+                  {/* Mandatory Legal Policy Confirmation */}
+                  <div className="p-3 bg-brand-ivory rounded-xl border border-brand-gold/15 text-[10px] text-brand-muted-green leading-relaxed space-y-1">
+                    <p className="font-semibold text-brand-green">Order Legal Terms & Policies:</p>
+                    <p>
+                      By tapping Place Order, you agree to ALLMOALI&apos;s{" "}
+                      <Link href="/terms-and-conditions" target="_blank" className="text-brand-terracotta underline font-bold">Terms & Conditions</Link>,{" "}
+                      <Link href="/privacy-policy" target="_blank" className="text-brand-terracotta underline font-bold">Privacy Policy</Link>,{" "}
+                      <Link href="/shipping-policy" target="_blank" className="text-brand-terracotta underline font-bold">Shipping Policy</Link>, and{" "}
+                      <Link href="/refund-policy" target="_blank" className="text-brand-terracotta underline font-bold">Refund Policy</Link>.
+                    </p>
                   </div>
 
                   {/* Submit Button */}
@@ -493,10 +505,8 @@ export default function OrderDrawer({ isOpen, onClose, initialQty = 1 }: OrderDr
                       className="w-full h-14 bg-[#C5FE01] text-[#16483A] hover:bg-[#b2e600] rounded-full font-sans text-xs font-black tracking-widest uppercase shadow-md transition-all disabled:opacity-50 flex items-center justify-center cursor-pointer"
                     >
                       {loading 
-                        ? "PLACING YOUR ORDER..." 
-                        : paymentMethod === "cod"
-                          ? `PLACE COD ORDER — ₹${totalPrice}`
-                          : "ONLINE PAYMENT INTEGRATION AVAILABLE"
+                        ? "PROCESSING ORDER..." 
+                        : `CONFIRM & PLACE ORDER — ₹${totalPrice}`
                       }
                     </button>
                   </div>

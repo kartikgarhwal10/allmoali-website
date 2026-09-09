@@ -18,7 +18,7 @@ export default function TrustStrip() {
       icon: <Wind className="w-5 h-5 text-brand-terracotta" />,
     },
     {
-      title: "No Side Effect",
+      title: "Gentle Topical Care",
       icon: <Feather className="w-5 h-5 text-brand-terracotta" />,
     },
   ];

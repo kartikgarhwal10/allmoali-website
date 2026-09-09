@@ -27,7 +27,7 @@ const HERO_IMAGES = [
   },
   {
     src: "/images/hero_carousel_4.jpg",
-    alt: "Powerful Ayurvedic Ingredients - 100% Natural, Safe & Effective",
+    alt: "Powerful Ayurvedic Ingredients - Natural Herbal Formula",
   },
   {
     src: "/images/hero_carousel_5.jpg",
@@ -288,7 +288,7 @@ export default function Hero({ onOrderClick, onGalleryClick }: HeroProps) {
                 12 AYURVEDIC HERBS
               </span>
               <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 font-sans text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-                ✓ NO SIDE EFFECT
+                ✓ GENTLE TOPICAL FORMULA
               </span>
             </motion.div>
 

@@ -23,7 +23,7 @@ export default function WhatsInside({ onGalleryClick }: WhatsInsideProps) {
           <div className="inline-flex items-center gap-2 bg-brand-green/8 border border-brand-green/15 px-3.5 py-1 rounded-full mb-3">
             <Sparkles className="w-3.5 h-3.5 text-brand-terracotta" />
             <span className="font-sans text-[11px] sm:text-xs font-black uppercase tracking-[0.2em] text-brand-green">
-              100% NATURAL | SAFE | EFFECTIVE
+              NATURAL HERBAL FORMULA | TOPICAL MASSAGE CARE
             </span>
           </div>
 
@@ -64,11 +64,11 @@ export default function WhatsInside({ onGalleryClick }: WhatsInsideProps) {
             </span>
           </div>
           <div className="mt-4 pt-4 border-t border-brand-gold/15 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs font-sans font-bold text-brand-green">
-            <span className="flex items-center gap-1.5"><Leaf className="w-4 h-4 text-emerald-600" /> AYURVEDIC & 100% NATURAL</span>
+            <span className="flex items-center gap-1.5"><Leaf className="w-4 h-4 text-emerald-600" /> AYURVEDIC & NATURAL</span>
             <span>•</span>
             <span className="flex items-center gap-1.5"><Sparkles className="w-4 h-4 text-brand-gold" /> ENRICHED WITH NATURAL HERBS</span>
             <span>•</span>
-            <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-brand-terracotta" /> SAFE, EFFECTIVE & NON-GREASY</span>
+            <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-brand-terracotta" /> GENTLE, TOPICAL & NON-GREASY</span>
           </div>
         </div>
 

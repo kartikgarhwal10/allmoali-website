@@ -68,16 +68,16 @@ export const PRODUCT_CONFIG = {
   whatsappMessage: "Hi, I want to order Allmoali Joint & Muscular Pain Oil for ₹286. Please share the order details.",
   email: "info@allmoali.com",
   codAvailable: true,
-  demoDisclaimer: "Prescribed medicines should not be discontinued without professional medical advice. Product claims supported by authorized documentation.",
+  demoDisclaimer: "Information on this website is provided for general product and self-care awareness only. Prescribed medicines should not be discontinued without professional medical advice.",
   
   // Strategic Root Cause Copy
   rootCauseHeading: "ROOT-CAUSE ACTION",
-  rootCauseBody: "Most oils only create a cooling or warming feeling on the skin. Allmoali oil targets inflammation pathways and supports joint health long-term.",
+  rootCauseBody: "Unlike superficial lotions, Allmoali oil is formulated with traditional Ayurvedic herbs that penetrate deeply during massage to support everyday joint and muscular comfort.",
 
   // Story Copy
-  storyHighlightLine1: "Most oils talk to the skin.",
-  storyHighlightLine2: "This one goes where the pain actually lives.",
-  storyBody: "Born from a simple question — “Why do the same oils keep giving temporary relief?” — this formula was created to reach deeper, calm inflammation at its source, and support joints over time, not just for a few hours.",
+  storyHighlightLine1: "Most oils stay on the surface.",
+  storyHighlightLine2: "This one penetrates deeply where discomfort lives.",
+  storyBody: "Formulated for deep massage, this blend of 12 Ayurvedic herbs helps soothe muscular tension, promote relaxation, and support joint care as part of your daily self-care routine.",
 
   // Why Allmoali Cards
   whyAllmoali: [
@@ -99,12 +99,12 @@ export const PRODUCT_CONFIG = {
     {
       id: "04",
       title: "NON-GREASY FORMULA",
-      description: "Non-sticky, comfortable application without leaving a greasy layer."
+      description: "Non-sticky, comfortable application without leaving a greasy residue."
     },
     {
       id: "05",
       title: "DEEP PENETRATION",
-      description: "Advanced formulation designed for deep penetration to calm inflammation at its source."
+      description: "Formulated for deep skin absorption to reach underneath target muscular areas."
     },
     {
       id: "06",
@@ -113,8 +113,8 @@ export const PRODUCT_CONFIG = {
     },
     {
       id: "07",
-      title: "NO SIDE EFFECT",
-      description: "Natural Ayurvedic chemical-free oil formulation for everyday peace of mind."
+      title: "GENTLE TOPICAL CARE",
+      description: "Natural Ayurvedic herbal formulation designed for everyday topical massage."
     }
   ] as WhyCard[],
 
@@ -256,7 +256,7 @@ export const PRODUCT_CONFIG = {
       name: "Sunita Sharma",
       location: "Lucknow, Uttar Pradesh",
       rating: 5,
-      text: "Using regularly for my mother's knee joint care. Natural Ayurvedic chemical-free oil hai, zero side effects.",
+      text: "Using regularly for my mother's knee joint care. Natural Ayurvedic herbal oil, very gentle and soothing.",
       verified: true,
       avatar: "SS"
     },
@@ -300,7 +300,7 @@ export const PRODUCT_CONFIG = {
     { label: "Standard Delivery Charge", value: "₹80 (Discounted to ₹0 with current offer)" },
     { label: "Formula Heritage", value: "Time-Honoured Ayurvedic Formula" },
     { label: "Key Ingredients", value: "12 Ayurvedic Herbs" },
-    { label: "Safety Profile", value: "Natural Ayurvedic, Chemical-Free, No Side Effect" },
+    { label: "Safety Profile", value: "Natural Ayurvedic Herbal Formula for Gentle Topical Massage" },
     { label: "Usage Directions", value: "Apply 3–5 drops to affected area and massage gently" }
   ],
 
@@ -312,11 +312,11 @@ export const PRODUCT_CONFIG = {
     },
     {
       question: "What makes Allmoali formula unique?",
-      answer: "Allmoali is based on a time-honoured Ayurvedic formula enriched with 12 Ayurvedic herbs that target inflammation pathways and support joint health long-term."
+      answer: "Allmoali is based on a time-honoured Ayurvedic formula enriched with 12 Ayurvedic herbs that absorb deeply during massage to support everyday joint and muscular comfort."
     },
     {
-      question: "Does Allmoali have any side effects?",
-      answer: "Allmoali is a natural Ayurvedic, chemical-free oil with NO SIDE EFFECT for everyday topical application."
+      question: "Is Allmoali suitable for everyday topical massage?",
+      answer: "Yes, Allmoali is a natural Ayurvedic herbal topical oil designed for everyday gentle massage routines around areas experiencing muscular discomfort."
     },
     {
       question: "Can I use it for winter joint pain and exercise recovery?",

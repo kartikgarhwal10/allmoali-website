@@ -24,7 +24,7 @@ export default function ProductDetails() {
       specs: [
         { label: "Formula Heritage", value: "Time-Honoured Ayurvedic Formula" },
         { label: "Key Ingredients", value: "12 Ayurvedic Herbs" },
-        { label: "Safety Profile", value: "Natural Ayurvedic, Chemical-Free, No Side Effect" },
+        { label: "Safety Profile", value: "Natural Ayurvedic Herbal Formula for Gentle Topical Massage" },
       ]
     },
     {

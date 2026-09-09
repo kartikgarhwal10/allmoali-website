@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { PRODUCT_CONFIG } from "@/config/product";
+import CookieNotice from "@/components/CookieNotice";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -94,6 +95,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <CookieNotice />
       </body>
     </html>
   );

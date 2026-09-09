@@ -44,8 +44,8 @@ export default function WhyAllmoali() {
     },
     {
       id: "07",
-      title: "NO SIDE EFFECT",
-      description: "Natural Ayurvedic chemical-free oil with no known side effects.",
+      title: "GENTLE TOPICAL CARE",
+      description: "Natural Ayurvedic herbal formulation designed for gentle daily massage care.",
       icon: <Sparkles className="w-5 h-5 text-brand-terracotta" />,
     },
   ];

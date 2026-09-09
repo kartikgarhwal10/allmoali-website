@@ -80,7 +80,7 @@ export default function PainkillerPositioning() {
                 NATURAL AYURVEDIC MASSAGE CARE
               </h3>
               <p className="font-sans text-xs sm:text-sm text-brand-ivory/90 leading-relaxed font-medium">
-                Based on a time-honoured Ayurvedic formula, enriched with 12 Ayurvedic herbs, chemical-free topical massage oil for deep penetration & no side effects.
+                Based on a time-honoured Ayurvedic formula, enriched with 12 Ayurvedic herbs, topical massage oil for deep skin absorption & gentle muscular care.
               </p>
             </div>
           </motion.div>

@@ -7,12 +7,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import { PRODUCT_CONFIG } from "@/config/product";
 
 interface NavbarProps {
-  onOrderClick: () => void;
+  onOrderClick?: () => void;
 }
 
 export default function Navbar({ onOrderClick }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const handleOrderClick = () => {
+    if (onOrderClick) {
+      onOrderClick();
+    } else {
+      window.location.href = "/#product";
+    }
+  };
 
   useEffect(() => {
     let ticking = false;
@@ -123,7 +131,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
             {/* Right: Desktop CTA button */}
             <div className="hidden lg:flex items-center">
               <button
-                onClick={onOrderClick}
+                onClick={handleOrderClick}
                 className="inline-flex items-center gap-2 bg-[#C5FE01] text-[#16483A] hover:bg-[#b2e600] active:scale-97 px-6 py-2.5 rounded-full font-sans text-xs font-black tracking-widest uppercase transition-all duration-300 shadow-md cursor-pointer touch-target h-[46px]"
               >
                 ORDER NOW
@@ -134,7 +142,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
             {/* Mobile Menu Button & Mobile Order CTA */}
             <div className="flex items-center gap-2 lg:hidden flex-shrink-0">
               <button
-                onClick={onOrderClick}
+                onClick={handleOrderClick}
                 className="bg-[#C5FE01] text-[#16483A] hover:bg-[#b2e600] active:scale-97 px-4 sm:px-5 rounded-full font-sans text-[13px] font-extrabold tracking-wider uppercase shadow-xs cursor-pointer flex items-center justify-center h-[44px] shrink-0"
               >
                 ORDER NOW
@@ -219,7 +227,7 @@ export default function Navbar({ onOrderClick }: NavbarProps) {
                 <button
                   onClick={() => {
                     setIsOpen(false);
-                    onOrderClick();
+                    handleOrderClick();
                   }}
                   className="flex w-full items-center justify-center gap-2 bg-[#C5FE01] text-[#16483A] active:bg-[#b2e600] py-4 px-6 rounded-full text-center font-sans text-xs font-black tracking-widest uppercase shadow-md cursor-pointer touch-target h-[48px]"
                 >
