@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 export interface RazorpayOrderParams {
   amount: number; // in paise
@@ -23,11 +24,35 @@ export interface RazorpayOrderResponse {
 
 /**
  * Helper to safely retrieve Razorpay credentials from environment.
+ * Checks both OpenNext Cloudflare Workers context (env bindings) and standard Node process.env.
  */
 export function getRazorpayKeys() {
-  const keyId = process.env.RAZORPAY_KEY_ID || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "";
-  const keySecret = process.env.RAZORPAY_KEY_SECRET || "";
-  const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET || "";
+  let cfEnv: Partial<CloudflareEnv> = {};
+  try {
+    const cfContext = getCloudflareContext();
+    if (cfContext && cfContext.env) {
+      cfEnv = cfContext.env;
+    }
+  } catch (e) {
+    // getCloudflareContext may throw when evaluated during static page prerendering or outside Cloudflare runtime
+  }
+
+  const keyId =
+    cfEnv.RAZORPAY_KEY_ID ||
+    cfEnv.NEXT_PUBLIC_RAZORPAY_KEY_ID ||
+    process.env.RAZORPAY_KEY_ID ||
+    process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ||
+    "";
+
+  const keySecret =
+    cfEnv.RAZORPAY_KEY_SECRET ||
+    process.env.RAZORPAY_KEY_SECRET ||
+    "";
+
+  const webhookSecret =
+    cfEnv.RAZORPAY_WEBHOOK_SECRET ||
+    process.env.RAZORPAY_WEBHOOK_SECRET ||
+    "";
 
   return { keyId, keySecret, webhookSecret };
 }
@@ -79,7 +104,7 @@ export function verifyPaymentSignature(params: {
   signature: string;
   key_secret?: string;
 }): boolean {
-  const { razorpay_key_secret } = { razorpay_key_secret: params.key_secret || getRazorpayKeys().keySecret };
+  const razorpay_key_secret = params.key_secret || getRazorpayKeys().keySecret;
 
   if (!razorpay_key_secret) {
     console.error("Cannot verify signature: RAZORPAY_KEY_SECRET is not configured.");
