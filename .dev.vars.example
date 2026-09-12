@@ -1,0 +1,7 @@
+# Cloudflare Wrangler local environment variables (.dev.vars)
+# Used by wrangler / opennextjs-cloudflare preview
+
+RAZORPAY_KEY_ID=rzp_test_XXXXXXXXXXXXXXXX
+NEXT_PUBLIC_RAZORPAY_KEY_ID=rzp_test_XXXXXXXXXXXXXXXX
+RAZORPAY_KEY_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
+RAZORPAY_WEBHOOK_SECRET=XXXXXXXXXXXXXXXXXXXXXXXX
