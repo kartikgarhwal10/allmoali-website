@@ -61,9 +61,19 @@ export interface OrderRecord {
   updated_at: string;
 }
 
-// In-memory fallback cache for fast synchronous access
-const memoryOrders = new Map<string, OrderRecord>();
-const memoryWebhookEvents = new Set<string>();
+/**
+ * Safe server-side diagnostic logger for database failures.
+ * Never logs secret strings, passwords, or full customer PII.
+ */
+function logSafeDbError(operation: string, identifier: string | undefined, error: any) {
+  const code = error?.code || "UNKNOWN_ERROR";
+  const rawMsg = error?.message ? String(error.message).split("\n")[0] : "No error message";
+  const sanitizedMsg = rawMsg.length > 200 ? rawMsg.substring(0, 200) + "..." : rawMsg;
+
+  console.error(
+    `[DB_ERROR] op=${operation} id=${identifier || "N/A"} code=${code} env=${process.env.NODE_ENV || "development"} msg="${sanitizedMsg}"`
+  );
+}
 
 function mapDbOrderToRecord(dbOrder: any): OrderRecord {
   return {
@@ -95,84 +105,113 @@ function mapDbOrderToRecord(dbOrder: any): OrderRecord {
 }
 
 /**
- * Creates or updates an internal order record in the database.
+ * Creates or updates an internal order record in PostgreSQL.
+ * Uses an atomic database transaction for Order and Customer aggregate records.
+ * Throws an error if PostgreSQL persistence fails — never falls back to memory.
  */
 export async function saveOrder(order: OrderRecord): Promise<OrderRecord> {
-  // Update memory cache
-  memoryOrders.set(order.internal_order_id, order);
-  if (order.razorpay_order_id) {
-    memoryOrders.set(order.razorpay_order_id, order);
-  }
-
-  const orderStatus = order.order_status || (order.payment_method === "cod" ? "pending" : "pending");
+  const orderStatus = order.order_status || "pending";
   const paymentStatus = order.payment_status || (order.payment_method === "cod" ? "cod_pending" : "pending");
 
   try {
-    const dbOrder = await prisma.order.upsert({
-      where: { internalOrderId: order.internal_order_id },
-      create: {
-        internalOrderId: order.internal_order_id,
-        razorpayOrderId: order.razorpay_order_id || null,
-        razorpayPaymentId: order.razorpay_payment_id || null,
-        razorpaySignature: order.razorpay_signature || null,
-        paymentMethod: order.payment_method,
-        paymentStatus: paymentStatus,
-        orderStatus: orderStatus,
-        customerName: order.customer_name,
-        customerPhone: order.customer_phone,
-        customerEmail: order.customer_email || null,
-        shippingAddress: order.shipping_address,
-        city: order.city || null,
-        state: order.state || null,
-        pincode: order.pincode || null,
-        product: order.product,
-        packageType: order.package_type,
-        quantity: order.quantity,
-        amount: order.amount,
-        amountPaise: order.amount_paise,
-        currency: order.currency || "INR",
-        history: {
-          create: {
-            status: orderStatus,
-            notes: `Order created via ${order.payment_method.toUpperCase()}`,
-            createdBy: "system",
+    const dbOrder = await prisma.$transaction(async (tx) => {
+      // 1. Upsert Order
+      const upsertedOrder = await tx.order.upsert({
+        where: { internalOrderId: order.internal_order_id },
+        create: {
+          internalOrderId: order.internal_order_id,
+          razorpayOrderId: order.razorpay_order_id || null,
+          razorpayPaymentId: order.razorpay_payment_id || null,
+          razorpaySignature: order.razorpay_signature || null,
+          paymentMethod: order.payment_method,
+          paymentStatus: paymentStatus,
+          orderStatus: orderStatus,
+          customerName: order.customer_name,
+          customerPhone: order.customer_phone,
+          customerEmail: order.customer_email || null,
+          shippingAddress: order.shipping_address,
+          city: order.city || null,
+          state: order.state || null,
+          pincode: order.pincode || null,
+          product: order.product,
+          packageType: order.package_type,
+          quantity: order.quantity,
+          amount: order.amount,
+          amountPaise: order.amount_paise,
+          currency: order.currency || "INR",
+          history: {
+            create: {
+              status: orderStatus,
+              notes: `Order created via ${order.payment_method.toUpperCase()}`,
+              createdBy: "system",
+            },
           },
         },
-      },
-      update: {
-        razorpayOrderId: order.razorpay_order_id || undefined,
-        razorpayPaymentId: order.razorpay_payment_id || undefined,
-        razorpaySignature: order.razorpay_signature || undefined,
-        paymentMethod: order.payment_method,
-        paymentStatus: paymentStatus,
-        customerName: order.customer_name,
-        customerPhone: order.customer_phone,
-        shippingAddress: order.shipping_address,
-      },
-    });
+        update: {
+          razorpayOrderId: order.razorpay_order_id || undefined,
+          razorpayPaymentId: order.razorpay_payment_id || undefined,
+          razorpaySignature: order.razorpay_signature || undefined,
+          paymentMethod: order.payment_method,
+          paymentStatus: paymentStatus,
+          customerName: order.customer_name,
+          customerPhone: order.customer_phone,
+          shippingAddress: order.shipping_address,
+        },
+      });
 
-    // Sync Customer Directory entity
-    await upsertCustomerRecord({
-      phone: order.customer_phone,
-      name: order.customer_name,
-      email: order.customer_email,
-      address: order.shipping_address,
-      city: order.city,
-      state: order.state,
-      pincode: order.pincode,
-      amount: order.amount,
-      isCod: order.payment_method === "cod",
+      // 2. Upsert Customer within the exact same transaction
+      const phone = order.customer_phone;
+      const isCod = order.payment_method === "cod";
+      const existingCustomer = await tx.customer.findUnique({
+        where: { phone },
+      });
+
+      if (existingCustomer) {
+        await tx.customer.update({
+          where: { phone },
+          data: {
+            name: order.customer_name,
+            email: order.customer_email || existingCustomer.email,
+            address: order.shipping_address || existingCustomer.address,
+            city: order.city || existingCustomer.city,
+            state: order.state || existingCustomer.state,
+            pincode: order.pincode || existingCustomer.pincode,
+            totalOrders: { increment: 1 },
+            totalSpend: { increment: order.amount },
+            codOrders: isCod ? { increment: 1 } : undefined,
+            onlineOrders: !isCod ? { increment: 1 } : undefined,
+          },
+        });
+      } else {
+        await tx.customer.create({
+          data: {
+            phone,
+            name: order.customer_name,
+            email: order.customer_email || null,
+            address: order.shipping_address || null,
+            city: order.city || null,
+            state: order.state || null,
+            pincode: order.pincode || null,
+            totalOrders: 1,
+            totalSpend: order.amount,
+            codOrders: isCod ? 1 : 0,
+            onlineOrders: isCod ? 0 : 1,
+          },
+        });
+      }
+
+      return upsertedOrder;
     });
 
     return mapDbOrderToRecord(dbOrder);
-  } catch (err) {
-    console.error("Database saveOrder error, falling back to memory:", err);
-    return order;
+  } catch (err: any) {
+    logSafeDbError("saveOrder", order.internal_order_id, err);
+    throw new Error(`Order database persistence failed: ${err?.message || "Unknown error"}`);
   }
 }
 
 /**
- * Retrieves an order by internal order ID or Razorpay order ID.
+ * Retrieves an order by internal order ID or Razorpay order ID from PostgreSQL.
  */
 export async function getOrder(id: string): Promise<OrderRecord | undefined> {
   if (!id) return undefined;
@@ -185,19 +224,17 @@ export async function getOrder(id: string): Promise<OrderRecord | undefined> {
     });
 
     if (dbOrder) {
-      const record = mapDbOrderToRecord(dbOrder);
-      memoryOrders.set(record.internal_order_id, record);
-      return record;
+      return mapDbOrderToRecord(dbOrder);
     }
-  } catch (err) {
-    console.error("Database getOrder error:", err);
+    return undefined;
+  } catch (err: any) {
+    logSafeDbError("getOrder", id, err);
+    throw new Error(`Failed to fetch order from database: ${err?.message || "Unknown error"}`);
   }
-
-  return memoryOrders.get(id);
 }
 
 /**
- * Updates order payment status and associated payment IDs.
+ * Updates order payment status and associated payment IDs in PostgreSQL.
  */
 export async function updateOrderStatus(
   id: string,
@@ -221,79 +258,61 @@ export async function updateOrderStatus(
       },
     });
 
-    if (existingDbOrder) {
-      const newPaymentStatus = updates.payment_status || existingDbOrder.paymentStatus;
-      const newOrderStatus = updates.order_status || existingDbOrder.orderStatus;
+    if (!existingDbOrder) {
+      return undefined;
+    }
 
-      const updatedDbOrder = await prisma.order.update({
-        where: { id: existingDbOrder.id },
-        data: {
-          paymentStatus: newPaymentStatus,
-          orderStatus: newOrderStatus,
-          razorpayPaymentId: updates.razorpay_payment_id || existingDbOrder.razorpayPaymentId,
-          razorpayOrderId: updates.razorpay_order_id || existingDbOrder.razorpayOrderId,
-          courierName: updates.courier_name || existingDbOrder.courierName,
-          trackingNumber: updates.tracking_number || existingDbOrder.trackingNumber,
-          history: {
-            create: {
-              status: newOrderStatus,
-              notes: updates.admin_note || `Status updated to ${newOrderStatus} (${newPaymentStatus})`,
-              createdBy: updates.actor || "system",
-            },
+    const newPaymentStatus = updates.payment_status || existingDbOrder.paymentStatus;
+    const newOrderStatus = updates.order_status || existingDbOrder.orderStatus;
+
+    const updatedDbOrder = await prisma.order.update({
+      where: { id: existingDbOrder.id },
+      data: {
+        paymentStatus: newPaymentStatus,
+        orderStatus: newOrderStatus,
+        razorpayPaymentId: updates.razorpay_payment_id || existingDbOrder.razorpayPaymentId,
+        razorpayOrderId: updates.razorpay_order_id || existingDbOrder.razorpayOrderId,
+        courierName: updates.courier_name || existingDbOrder.courierName,
+        trackingNumber: updates.tracking_number || existingDbOrder.trackingNumber,
+        history: {
+          create: {
+            status: newOrderStatus,
+            notes: updates.admin_note || `Status updated to ${newOrderStatus} (${newPaymentStatus})`,
+            createdBy: updates.actor || "system",
           },
         },
-      });
+      },
+    });
 
-      const record = mapDbOrderToRecord(updatedDbOrder);
-      memoryOrders.set(record.internal_order_id, record);
-      return record;
-    }
-  } catch (err) {
-    console.error("Database updateOrderStatus error:", err);
+    return mapDbOrderToRecord(updatedDbOrder);
+  } catch (err: any) {
+    logSafeDbError("updateOrderStatus", id, err);
+    throw new Error(`Failed to update order status in database: ${err?.message || "Unknown error"}`);
   }
-
-  // Memory fallback update
-  const memOrder = memoryOrders.get(id);
-  if (memOrder) {
-    if (updates.payment_status) memOrder.payment_status = updates.payment_status;
-    if (updates.order_status) memOrder.order_status = updates.order_status;
-    if (updates.razorpay_payment_id) memOrder.razorpay_payment_id = updates.razorpay_payment_id;
-    if (updates.razorpay_order_id) memOrder.razorpay_order_id = updates.razorpay_order_id;
-    memOrder.updated_at = new Date().toISOString();
-    return memOrder;
-  }
-
-  return undefined;
 }
 
 /**
- * Webhook idempotency tracking: checks whether an event ID was already processed.
+ * Webhook idempotency tracking: checks whether an event ID was already processed in PostgreSQL.
  */
 export async function isEventProcessed(eventId: string): Promise<boolean> {
   if (!eventId) return false;
-  if (memoryWebhookEvents.has(eventId)) return true;
 
   try {
     const existing = await prisma.webhookEvent.findUnique({
       where: { eventId },
     });
-    if (existing) {
-      memoryWebhookEvents.add(eventId);
-      return true;
-    }
-  } catch (err) {
-    console.error("Error checking webhook idempotency in DB:", err);
+    return !!existing;
+  } catch (err: any) {
+    logSafeDbError("isEventProcessed", eventId, err);
+    return false;
   }
-
-  return false;
 }
 
 /**
- * Webhook idempotency tracking: records an event ID as processed.
+ * Webhook idempotency tracking: records an event ID as processed in PostgreSQL.
  */
 export async function markEventProcessed(eventId: string, eventType: string = "unknown"): Promise<void> {
   if (!eventId) return;
-  memoryWebhookEvents.add(eventId);
 
   try {
     await prisma.webhookEvent.create({
@@ -302,64 +321,7 @@ export async function markEventProcessed(eventId: string, eventType: string = "u
         eventType,
       },
     });
-  } catch (err) {
-    console.error("Error marking webhook event processed in DB:", err);
-  }
-}
-
-/**
- * Normalizes customer details and updates Customer aggregate record.
- */
-async function upsertCustomerRecord(params: {
-  phone: string;
-  name: string;
-  email?: string;
-  address?: string;
-  city?: string;
-  state?: string;
-  pincode?: string;
-  amount: number;
-  isCod: boolean;
-}) {
-  try {
-    const existing = await prisma.customer.findUnique({
-      where: { phone: params.phone },
-    });
-
-    if (existing) {
-      await prisma.customer.update({
-        where: { phone: params.phone },
-        data: {
-          name: params.name,
-          email: params.email || existing.email,
-          address: params.address || existing.address,
-          city: params.city || existing.city,
-          state: params.state || existing.state,
-          pincode: params.pincode || existing.pincode,
-          totalOrders: { increment: 1 },
-          totalSpend: { increment: params.amount },
-          codOrders: params.isCod ? { increment: 1 } : undefined,
-          onlineOrders: !params.isCod ? { increment: 1 } : undefined,
-        },
-      });
-    } else {
-      await prisma.customer.create({
-        data: {
-          phone: params.phone,
-          name: params.name,
-          email: params.email || null,
-          address: params.address || null,
-          city: params.city || null,
-          state: params.state || null,
-          pincode: params.pincode || null,
-          totalOrders: 1,
-          totalSpend: params.amount,
-          codOrders: params.isCod ? 1 : 0,
-          onlineOrders: params.isCod ? 0 : 1,
-        },
-      });
-    }
-  } catch (err) {
-    console.error("Error upserting customer record:", err);
+  } catch (err: any) {
+    logSafeDbError("markEventProcessed", eventId, err);
   }
 }
