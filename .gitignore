@@ -44,3 +44,10 @@ yarn-error.log*
 .dev.vars
 .dev.vars.local
 !.dev.vars.example
+
+# Database files
+dev.db
+*.db
+prisma/*.db
+prisma/dev.db
+

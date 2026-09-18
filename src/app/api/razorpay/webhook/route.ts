@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     }
 
     // 3. Webhook Idempotency Check
-    if (eventId && isEventProcessed(eventId)) {
+    if (eventId && (await isEventProcessed(eventId))) {
       console.log(`Webhook event ${eventId} already processed. Skipping.`);
       return NextResponse.json({ success: true, message: "Event already processed." });
     }
@@ -51,8 +51,9 @@ export async function POST(request: Request) {
         const razorpayPaymentId = paymentEntity?.id;
 
         if (razorpayOrderId) {
-          updateOrderStatus(razorpayOrderId, {
+          await updateOrderStatus(razorpayOrderId, {
             payment_status: "paid",
+            order_status: "confirmed",
             razorpay_payment_id: razorpayPaymentId,
             razorpay_order_id: razorpayOrderId,
           });
@@ -66,7 +67,7 @@ export async function POST(request: Request) {
         const razorpayPaymentId = paymentEntity?.id;
 
         if (razorpayOrderId) {
-          updateOrderStatus(razorpayOrderId, {
+          await updateOrderStatus(razorpayOrderId, {
             payment_status: "failed",
             razorpay_payment_id: razorpayPaymentId,
             razorpay_order_id: razorpayOrderId,
@@ -80,7 +81,7 @@ export async function POST(request: Request) {
         const razorpayOrderId = paymentEntity?.order_id;
 
         if (razorpayOrderId) {
-          updateOrderStatus(razorpayOrderId, {
+          await updateOrderStatus(razorpayOrderId, {
             payment_status: "payment_initiated",
             razorpay_payment_id: paymentEntity?.id,
           });
@@ -95,7 +96,7 @@ export async function POST(request: Request) {
 
     // Mark event ID as processed
     if (eventId) {
-      markEventProcessed(eventId);
+      await markEventProcessed(eventId, eventType);
     }
 
     return NextResponse.json({ success: true, message: "Webhook processed successfully." });

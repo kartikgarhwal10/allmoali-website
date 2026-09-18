@@ -1,0 +1,178 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model AdminUser {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("owner")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Customer {
+  id           String   @id @default(uuid())
+  phone        String   @unique
+  name         String
+  email        String?
+  address      String?
+  city         String?
+  state        String?
+  pincode      String?
+  totalOrders  Int      @default(0)
+  totalSpend   Float    @default(0)
+  codOrders    Int      @default(0)
+  onlineOrders Int      @default(0)
+  orders       Order[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Product {
+  id                String      @id @default(uuid())
+  sku               String      @unique
+  name              String
+  packageType       String
+  price             Float
+  mrp               Float
+  stock             Int         @default(100)
+  lowStockThreshold Int         @default(10)
+  status            String      @default("active")
+  orderItems        OrderItem[]
+  inventoryLogs     Inventory[]
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+model Inventory {
+  id             String   @id @default(uuid())
+  productId      String
+  product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantityChange Int
+  reason         String   // "order_placed", "order_cancelled", "restock", "manual_adjustment"
+  adminEmail     String?
+  createdAt      DateTime @default(now())
+
+  @@index([productId])
+}
+
+model Order {
+  id                   String   @id @default(uuid())
+  internalOrderId      String   @unique
+  razorpayOrderId      String?  @unique
+  razorpayPaymentId    String?
+  razorpaySignature    String?
+  paymentMethod        String   // "cod", "upi", "card", "netbanking", "wallet", "emi", "bank_transfer", "online"
+  paymentStatus        String   // "pending", "payment_initiated", "paid", "failed", "cancelled", "cod_pending", "cod_paid", "refunded", "manual_verification"
+  orderStatus          String   @default("pending") // "pending", "confirmed", "processing", "packed", "shipped", "out_for_delivery", "delivered", "cancelled", "returned", "refunded"
+  customerId           String?
+  customer             Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  customerName         String
+  customerPhone        String
+  customerEmail        String?
+  shippingAddress      String
+  city                 String?
+  state                String?
+  pincode              String?
+  product              String
+  packageType          String   // "1 Bottle" | "2 Bottles Bundle"
+  quantity             Int      @default(1)
+  amount               Float    // In INR
+  amountPaise          Int      // In Paise
+  currency             String   @default("INR")
+  courierName          String?
+  trackingNumber       String?
+  shippingDate         String?
+  expectedDeliveryDate String?
+  shippingNotes        String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  items                OrderItem[]
+  payments             Payment[]
+  history              OrderStatusHistory[]
+  notes                AdminNote[]
+
+  @@index([customerPhone])
+  @@index([paymentStatus])
+  @@index([orderStatus])
+  @@index([createdAt])
+  @@index([razorpayOrderId])
+  @@index([razorpayPaymentId])
+}
+
+model OrderItem {
+  id          String   @id @default(uuid())
+  orderId     String
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String?
+  product     Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  productName String
+  packageType String
+  quantity    Int
+  unitPrice   Float
+  totalPrice  Float
+}
+
+model Payment {
+  id                String   @id @default(uuid())
+  orderId           String
+  order             Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  paymentMethod     String
+  paymentStatus     String
+  amount            Float
+  currency          String   @default("INR")
+  razorpayOrderId   String?
+  razorpayPaymentId String?
+  razorpaySignature String?
+  rawResponse       String?
+  createdAt         DateTime @default(now())
+
+  @@index([orderId])
+  @@index([razorpayPaymentId])
+}
+
+model OrderStatusHistory {
+  id        String   @id @default(uuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status    String
+  notes     String?
+  createdBy String   @default("system")
+  createdAt DateTime @default(now())
+}
+
+model AdminNote {
+  id         String   @id @default(uuid())
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  note       String
+  adminEmail String
+  createdAt  DateTime @default(now())
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  adminEmail String
+  action     String
+  targetType String?
+  targetId   String?
+  details    String?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model WebhookEvent {
+  id          String   @id @default(uuid())
+  eventId     String   @unique
+  eventType   String
+  processedAt DateTime @default(now())
+}

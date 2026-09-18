@@ -50,10 +50,11 @@ export async function POST(request: Request) {
 
     // 4. Handle COD separately if specified
     if (paymentMethod === "cod") {
-      const orderRecord = saveOrder({
+      const orderRecord = await saveOrder({
         internal_order_id: internalOrderId,
         payment_method: "cod",
-        payment_status: "cod",
+        payment_status: "cod_pending",
+        order_status: "pending",
         customer_name: name.trim(),
         customer_phone: cleanPhone,
         shipping_address: address.trim(),
@@ -101,11 +102,12 @@ export async function POST(request: Request) {
     });
 
     // 6. Record pending internal order
-    saveOrder({
+    await saveOrder({
       internal_order_id: internalOrderId,
       razorpay_order_id: rzpOrder.id,
       payment_method: paymentMethod || "online",
       payment_status: "payment_initiated",
+      order_status: "pending",
       customer_name: name.trim(),
       customer_phone: cleanPhone,
       shipping_address: address.trim(),

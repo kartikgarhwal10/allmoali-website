@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       // Mark as failed if order exists
       const targetId = internal_order_id || razorpay_order_id;
       if (targetId) {
-        updateOrderStatus(targetId, {
+        await updateOrderStatus(targetId, {
           payment_status: "failed",
           razorpay_payment_id,
           razorpay_order_id,
@@ -39,15 +39,16 @@ export async function POST(request: Request) {
       );
     }
 
-    // 2. Signature is valid -> Mark order as paid
+    // 2. Signature is valid -> Mark order as paid & confirmed
     const targetId = internal_order_id || razorpay_order_id;
-    const updatedOrder = updateOrderStatus(targetId, {
+    const updatedOrder = await updateOrderStatus(targetId, {
       payment_status: "paid",
+      order_status: "confirmed",
       razorpay_payment_id,
       razorpay_order_id,
     });
 
-    const finalOrder = updatedOrder || getOrder(razorpay_order_id);
+    const finalOrder = updatedOrder || (await getOrder(razorpay_order_id));
 
     return NextResponse.json({
       success: true,
