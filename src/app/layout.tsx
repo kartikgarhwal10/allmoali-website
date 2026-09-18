@@ -43,6 +43,11 @@ export const metadata: Metadata = {
     "no side effect pain oil",
   ],
   authors: [{ name: "ALLMOALI" }],
+  icons: {
+    icon: "/images/allmoali_logo.png",
+    shortcut: "/images/allmoali_logo.png",
+    apple: "/images/allmoali_logo.png",
+  },
   openGraph: {
     title: "Allmoali Joint & Muscular Pain Oil | Ayurvedic Joint & Muscular Care",
     description:
