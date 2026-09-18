@@ -44,9 +44,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "ALLMOALI" }],
   icons: {
-    icon: "/images/allmoali_logo.png",
-    shortcut: "/images/allmoali_logo.png",
-    apple: "/images/allmoali_logo.png",
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     title: "Allmoali Joint & Muscular Pain Oil | Ayurvedic Joint & Muscular Care",
